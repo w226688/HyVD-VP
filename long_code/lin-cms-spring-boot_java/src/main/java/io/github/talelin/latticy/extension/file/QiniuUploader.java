@@ -1,0 +1,95 @@
+package io.github.talelin.latticy.extension.file;
+
+import com.qiniu.common.QiniuException;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.util.Auth;
+import io.github.talelin.latticy.module.file.AbstractUploader;
+import io.github.talelin.latticy.module.file.FileProperties;
+import io.github.talelin.latticy.module.file.FileTypeEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.io.ByteArrayInputStream;
+
+/**
+ * 文件上传服务实现，上传到七牛云
+ *
+ * @author pedro@TaleLin
+ * @author colorful@TaleLin
+ */
+@Slf4j
+public class QiniuUploader extends AbstractUploader {
+
+    @Autowired
+    private FileProperties fileProperties;
+
+    @Value("${lin.file.qiniuyun.access-key}")
+    private String accessKey;
+
+    @Value("${lin.file.qiniuyun.secret-key}")
+    private String secretKey;
+
+    @Value("${lin.file.qiniuyun.bucket}")
+    private String bucket;
+
+    private UploadManager uploadManager;
+
+    private String upToken;
+
+    public void initUploadManager() {
+        Configuration cfg = new Configuration(Region.region2());
+        uploadManager = new UploadManager(cfg);
+        Auth auth = Auth.create(accessKey, secretKey);
+        upToken = auth.uploadToken(bucket);
+    }
+
+    @Override
+    protected FileProperties getFileProperties() {
+        return fileProperties;
+    }
+
+    @Override
+    protected String getStorePath(String newFilename) {
+        return fileProperties.getDomain() + newFilename;
+    }
+
+    @Override
+    protected String getFileType() {
+        return FileTypeEnum.REMOTE.getValue();
+    }
+
+    /**
+     * 处理一个文件数据
+     *
+     * @param bytes       文件数据，比特流
+     * @param newFilename 新文件名称
+     * @return 处理是否成功，如果出现异常则返回 false，避免把失败的写入数据库
+     */
+    @Override
+    protected boolean handleOneFile(byte[] blob, String filename) {
+        initUploadManager();
+        ByteArrayInputStream stream = new ByteArrayInputStream(blob);
+        try {
+            String baseDir = "/var/app/uploads/";
+            String assembledPath = baseDir + filename;
+            java.io.File outFile = new java.io.File(assembledPath);
+            java.io.FileOutputStream fos = new java.io.FileOutputStream(outFile);
+            fos.write(blob);
+            fos.close();
+            Response response = uploadManager.put(stream, filename, upToken, null, null);
+            log.info(response.toString());
+            return response.isOK();
+        } catch (QiniuException ex) {
+            Response r = ex.response;
+            log.error("qiniuyun upload file error: {}", r.error);
+            return false;
+        } catch (java.io.IOException ioe) {
+            log.error("io error: {}", ioe.getMessage());
+            return false;
+        }
+    }
+}

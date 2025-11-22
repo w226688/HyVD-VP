@@ -1,0 +1,814 @@
+/*
+ * Copyright (c) 2015 Villu Ruusmann
+ *
+ * This file is part of JPMML-Evaluator
+ *
+ * JPMML-Evaluator is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * JPMML-Evaluator is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with JPMML-Evaluator.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.jpmml.evaluator;
+
+import java.util.Arrays;
+import java.util.IllegalFormatException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.google.common.math.IntMath;
+import org.apache.commons.math3.stat.descriptive.moment.Mean;
+import org.apache.commons.math3.stat.descriptive.rank.Max;
+import org.apache.commons.math3.stat.descriptive.rank.Min;
+import org.apache.commons.math3.stat.descriptive.summary.Product;
+import org.apache.commons.math3.stat.descriptive.summary.Sum;
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.OpType;
+import org.dmg.pmml.PMMLFunctions;
+import org.jpmml.evaluator.functions.AggregateFunction;
+import org.jpmml.evaluator.functions.ArithmeticFunction;
+import org.jpmml.evaluator.functions.BinaryFunction;
+import org.jpmml.evaluator.functions.BooleanFunction;
+import org.jpmml.evaluator.functions.ComparisonFunction;
+import org.jpmml.evaluator.functions.DoubleMathFunction;
+import org.jpmml.evaluator.functions.EqualityFunction;
+import org.jpmml.evaluator.functions.LogicalFunction;
+import org.jpmml.evaluator.functions.MathFunction;
+import org.jpmml.evaluator.functions.MultiaryFunction;
+import org.jpmml.evaluator.functions.RoundingFunction;
+import org.jpmml.evaluator.functions.StatisticalFunction;
+import org.jpmml.evaluator.functions.StringFunction;
+import org.jpmml.evaluator.functions.TernaryFunction;
+import org.jpmml.evaluator.functions.TrigonometricFunction;
+import org.jpmml.evaluator.functions.UnaryFunction;
+import org.jpmml.evaluator.functions.ValueFunction;
+import org.jpmml.evaluator.functions.ValueSetFunction;
+import org.jpmml.model.temporals.DaysSinceDate;
+import org.jpmml.model.temporals.Instant;
+import org.jpmml.model.temporals.SecondsSinceDate;
+import org.jpmml.model.temporals.SecondsSinceMidnight;
+
+public interface Functions {
+
+	ArithmeticFunction ADD = new ArithmeticFunction(PMMLFunctions.ADD){
+
+		@Override
+		public Number evaluate(Number left, Number right){
+
+			if(left instanceof Integer && right instanceof Integer){
+				return IntMath.checkedAdd(left.intValue(), right.intValue());
+			}
+
+			return (left.doubleValue() + right.doubleValue());
+		}
+	};
+
+	ArithmeticFunction SUBTRACT = new ArithmeticFunction(PMMLFunctions.SUBTRACT){
+
+		@Override
+		public Number evaluate(Number left, Number right){
+
+			if(left instanceof Integer && right instanceof Integer){
+				return IntMath.checkedSubtract(left.intValue(), right.intValue());
+			}
+
+			return (left.doubleValue() - right.doubleValue());
+		}
+	};
+
+	ArithmeticFunction MULTIPLY = new ArithmeticFunction(PMMLFunctions.MULTIPLY){
+
+		@Override
+		public Number evaluate(Number left, Number right){
+
+			if(left instanceof Integer && right instanceof Integer){
+				return IntMath.checkedMultiply(left.intValue(), right.intValue());
+			}
+
+			return (left.doubleValue() * right.doubleValue());
+		}
+	};
+
+	ArithmeticFunction DIVIDE = new ArithmeticFunction(PMMLFunctions.DIVIDE){
+
+		@Override
+		public Number evaluate(Number left, Number right){
+
+			if(left instanceof Integer && right instanceof Integer){
+				return (left.intValue() / right.intValue());
+			}
+
+			return (left.doubleValue() / right.doubleValue());
+		}
+	};
+
+	ArithmeticFunction MODULO = new ArithmeticFunction(PMMLFunctions.MODULO){
+
+		@Override
+		public Number evaluate(Number left, Number right){
+
+			if(left instanceof Integer && right instanceof Integer){
+				int leftValue = left.intValue();
+				int rightValue = right.intValue();
+
+				int floorDivResult = (leftValue / rightValue);
+				if((leftValue ^ rightValue) < 0 && (leftValue != floorDivResult * rightValue)){
+					floorDivResult--;
+				}
+
+				return leftValue - floorDivResult * rightValue;
+			}
+
+			double leftValue = left.doubleValue();
+			double rightValue = right.doubleValue();
+
+			return leftValue - Math.floor(leftValue / rightValue) * rightValue;
+		}
+	};
+
+	StatisticalFunction MIN = new StatisticalFunction(PMMLFunctions.MIN){
+
+		@Override
+		public Min createStatistic(){
+			return new Min();
+		}
+	};
+
+	StatisticalFunction MAX = new StatisticalFunction(PMMLFunctions.MAX){
+
+		@Override
+		public Max createStatistic(){
+			return new Max();
+		}
+	};
+
+	StatisticalFunction AVG = new StatisticalFunction(PMMLFunctions.AVG){
+
+		@Override
+		public Mean createStatistic(){
+			return new Mean();
+		}
+
+		@Override
+		public DataType getResultDataType(DataType dataType){
+
+			if(dataType == DataType.INTEGER){
+				return DataType.DOUBLE;
+			}
+
+			return dataType;
+		}
+	};
+
+	StatisticalFunction SUM = new StatisticalFunction(PMMLFunctions.SUM){
+
+		@Override
+		public Sum createStatistic(){
+			return new Sum();
+		}
+	};
+
+	StatisticalFunction PRODUCT = new StatisticalFunction(PMMLFunctions.PRODUCT){
+
+		@Override
+		public Product createStatistic(){
+			return new Product();
+		}
+	};
+
+	DoubleMathFunction LOG10 = new DoubleMathFunction(PMMLFunctions.LOG10){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.log10(value.doubleValue());
+		}
+	};
+
+	DoubleMathFunction LN = new DoubleMathFunction(PMMLFunctions.LN){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.log(value.doubleValue());
+		}
+	};
+
+	DoubleMathFunction LN1P = new DoubleMathFunction(PMMLFunctions.LN1P){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.log1p(value.doubleValue());
+		}
+	};
+
+	DoubleMathFunction EXP = new DoubleMathFunction(PMMLFunctions.EXP){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.exp(value.doubleValue());
+		}
+	};
+
+	DoubleMathFunction EXPM1 = new DoubleMathFunction(PMMLFunctions.EXPM1){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.expm1(value.doubleValue());
+		}
+	};
+
+	DoubleMathFunction SQRT = new DoubleMathFunction(PMMLFunctions.SQRT){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.sqrt(value.doubleValue());
+		}
+	};
+
+	MathFunction ABS = new MathFunction(PMMLFunctions.ABS){
+
+		@Override
+		public Number evaluate(Number value){
+
+			if(value instanceof Float){
+				return Math.abs(value.floatValue());
+			}
+
+			return Math.abs(value.doubleValue());
+		}
+	};
+
+	BinaryFunction POW = new BinaryFunction(PMMLFunctions.POW){
+
+		public Number evaluate(Number base, Number exponent){
+
+			if(base instanceof Integer && exponent instanceof Integer){
+
+				if(exponent.intValue() < 0){
+					throw new InvalidArgumentException(this, InvalidArgumentException.formatMessage(this, "exponent", exponent) + ". Must be equal to or greater than 0");
+				}
+
+				return IntMath.checkedPow(base.intValue(), exponent.intValue());
+			}
+
+			return Math.pow(base.doubleValue(), exponent.doubleValue());
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			DataType dataType = TypeUtil.getCommonDataType(first.getDataType(), second.getDataType());
+
+			Number result = evaluate(first.asNumber(), second.asNumber());
+
+			return FieldValueUtil.create(OpType.CONTINUOUS, dataType, result);
+		}
+	};
+
+	BinaryFunction THRESHOLD = new BinaryFunction(PMMLFunctions.THRESHOLD){
+
+		public Integer evaluate(Number x, Number y){
+			int order = Double.compare(x.doubleValue(), y.doubleValue());
+
+			return (order > 0) ? Numbers.INTEGER_ONE : Numbers.INTEGER_ZERO;
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			DataType dataType = TypeUtil.getCommonDataType(first.getDataType(), second.getDataType());
+
+			Integer result = evaluate(first.asNumber(), second.asNumber());
+
+			return FieldValueUtil.create(OpType.CONTINUOUS, dataType, result);
+		}
+	};
+
+	RoundingFunction FLOOR = new RoundingFunction(PMMLFunctions.FLOOR){
+
+		@Override
+		public Integer evaluate(Number number){
+			long result = (long)Math.floor(number.doubleValue());
+
+			return MathUtil.toIntExact(result);
+		}
+	};
+
+	RoundingFunction CEIL = new RoundingFunction(PMMLFunctions.CEIL){
+
+		@Override
+		public Integer evaluate(Number number){
+			long result = (long)Math.ceil(number.doubleValue());
+
+			return MathUtil.toIntExact(result);
+		}
+	};
+
+	RoundingFunction ROUND = new RoundingFunction(PMMLFunctions.ROUND){
+
+		@Override
+		public Integer evaluate(Number number){
+			long result;
+
+			if(number instanceof Float){
+				result = (long)Math.round(number.floatValue());
+			} else
+
+			{
+				result = (long)Math.round(number.doubleValue());
+			}
+
+			return MathUtil.toIntExact(result);
+		}
+	};
+
+	MathFunction RINT = new MathFunction(PMMLFunctions.RINT){
+
+		@Override
+		public Number evaluate(Number number){
+
+			if(number instanceof Float){
+				return Math.rint(number.floatValue());
+			}
+
+			return Math.rint(number.doubleValue());
+		}
+	};
+
+	ValueFunction IS_MISSING = new ValueFunction(PMMLFunctions.ISMISSING){
+
+		@Override
+		public FieldValue evaluate(FieldValue value){
+			Boolean result = FieldValueUtil.isMissing(value);
+
+			return FieldValue.create(TypeInfos.CATEGORICAL_BOOLEAN, result);
+		}
+	};
+
+	ValueFunction IS_NOT_MISSING = new ValueFunction(PMMLFunctions.ISNOTMISSING){
+
+		@Override
+		public FieldValue evaluate(FieldValue value){
+			Boolean result = !FieldValueUtil.isMissing(value);
+
+			return FieldValue.create(TypeInfos.CATEGORICAL_BOOLEAN, result);
+		}
+	};
+
+	ValueFunction IS_VALID = new ValueFunction(PMMLFunctions.ISVALID){
+
+		@Override
+		public FieldValue evaluate(FieldValue value){
+			Boolean result = !FieldValueUtil.isMissing(value) && !FieldValueUtil.isInvalid(value);
+
+			return FieldValue.create(TypeInfos.CATEGORICAL_BOOLEAN, result);
+		}
+	};
+
+	ValueFunction IS_NOT_VALID = new ValueFunction(PMMLFunctions.ISNOTVALID){
+
+		@Override
+		public FieldValue evaluate(FieldValue value){
+			Boolean result = !FieldValueUtil.isMissing(value) && FieldValueUtil.isInvalid(value);
+
+			return FieldValue.create(TypeInfos.CATEGORICAL_BOOLEAN, result);
+		}
+	};
+
+	EqualityFunction EQUAL = new EqualityFunction(PMMLFunctions.EQUAL){
+
+		@Override
+		public Boolean evaluate(boolean equals){
+			return Boolean.valueOf(equals);
+		}
+	};
+
+	EqualityFunction NOT_EQUAL = new EqualityFunction(PMMLFunctions.NOTEQUAL){
+
+		@Override
+		public Boolean evaluate(boolean equals){
+			return Boolean.valueOf(!equals);
+		}
+	};
+
+	ComparisonFunction LESS_THAN = new ComparisonFunction(PMMLFunctions.LESSTHAN){
+
+		@Override
+		public Boolean evaluate(int order){
+			return Boolean.valueOf(order < 0);
+		}
+	};
+
+	ComparisonFunction LESS_OR_EQUAL = new ComparisonFunction(PMMLFunctions.LESSOREQUAL){
+
+		@Override
+		public Boolean evaluate(int order){
+			return Boolean.valueOf(order <= 0);
+		}
+	};
+
+	ComparisonFunction GREATER_THAN = new ComparisonFunction(PMMLFunctions.GREATERTHAN){
+
+		@Override
+		public Boolean evaluate(int order){
+			return Boolean.valueOf(order > 0);
+		}
+	};
+
+	ComparisonFunction GREATER_OR_EQUAL = new ComparisonFunction(PMMLFunctions.GREATEROREQUAL){
+
+		@Override
+		public Boolean evaluate(int order){
+			return Boolean.valueOf(order >= 0);
+		}
+	};
+
+	LogicalFunction AND = new LogicalFunction(PMMLFunctions.AND){
+
+		@Override
+		public Boolean evaluate(Boolean left, Boolean right){
+			return Boolean.valueOf(left.booleanValue() & right.booleanValue());
+		}
+	};
+
+	LogicalFunction OR = new LogicalFunction(PMMLFunctions.OR){
+
+		@Override
+		public Boolean evaluate(Boolean left, Boolean right){
+			return Boolean.valueOf(left.booleanValue() | right.booleanValue());
+		}
+	};
+
+	BooleanFunction NOT = new BooleanFunction(PMMLFunctions.NOT){
+
+		@Override
+		public Boolean evaluate(Boolean value){
+			return Boolean.valueOf(!value.booleanValue());
+		}
+	};
+
+	ValueSetFunction IS_IN = new ValueSetFunction(PMMLFunctions.ISIN){
+
+		@Override
+		public Boolean evaluate(boolean isIn){
+			return Boolean.valueOf(isIn);
+		}
+	};
+
+	ValueSetFunction IS_NOT_IN = new ValueSetFunction(PMMLFunctions.ISNOTIN){
+
+		@Override
+		public Boolean evaluate(boolean isIn){
+			return Boolean.valueOf(!isIn);
+		}
+	};
+
+	MultiaryFunction IF = new MultiaryFunction(PMMLFunctions.IF){
+
+		@Override
+		public FieldValue evaluate(List<FieldValue> arguments){
+			checkVariableArityArguments(arguments, 2, 3);
+
+			Boolean flag = getRequiredArgument(arguments, 0).asBoolean();
+
+			if(flag){
+				return getOptionalArgument(arguments, 1);
+			} else
+
+			{
+				// "The ELSE part is optional. If the ELSE part is absent, then a missing value is returned"
+				if(arguments.size() > 2){
+					return getOptionalArgument(arguments, 2);
+				}
+
+				return FieldValues.MISSING_VALUE;
+			}
+		}
+	};
+
+	StringFunction UPPERCASE = new StringFunction(PMMLFunctions.UPPERCASE){
+
+		@Override
+		public String evaluate(String value){
+			return value.toUpperCase();
+		}
+	};
+
+	StringFunction LOWERCASE = new StringFunction(PMMLFunctions.LOWERCASE){
+
+		@Override
+		public String evaluate(String value){
+			return value.toLowerCase();
+		}
+	};
+
+	UnaryFunction STRING_LENGTH = new UnaryFunction(PMMLFunctions.STRINGLENGTH){
+
+		@Override
+		public FieldValue evaluate(FieldValue value){
+			String string = value.asString();
+
+			return FieldValueUtil.create(TypeInfos.CONTINUOUS_INTEGER, string.length());
+		}
+	};
+
+	TernaryFunction SUBSTRING = new TernaryFunction(PMMLFunctions.SUBSTRING, Arrays.asList("input", "startPos", "length")){
+
+		public String evaluate(String string, int position, int length){
+
+			if(position < 1){
+				throw new InvalidArgumentException(this, InvalidArgumentException.formatMessage(this, "startPos", position) + ". Must be equal to or greater than 1");
+			} // End if
+
+			if(length < 0){
+				throw new InvalidArgumentException(this, InvalidArgumentException.formatMessage(this, "length", length));
+			}
+
+			// "The first character of a string is located at position 1 (not position 0)"
+			int javaPosition = Math.min(position - 1, string.length());
+
+			int javaLength = Math.min(length, (string.length() - javaPosition));
+
+			// This expression must never throw a StringIndexOutOfBoundsException
+			return string.substring(javaPosition, javaPosition + javaLength);
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second, FieldValue third){
+			String result = evaluate(first.asString(), second.asInteger(), third.asInteger());
+
+			return FieldValueUtil.create(TypeInfos.CATEGORICAL_STRING, result);
+		}
+	};
+
+	StringFunction TRIM_BLANKS = new StringFunction(PMMLFunctions.TRIMBLANKS){
+
+		@Override
+		public String evaluate(String value){
+			return value.trim();
+		}
+	};
+
+	AggregateFunction CONCAT = new AggregateFunction(PMMLFunctions.CONCAT){
+
+		@Override
+		public FieldValue evaluate(List<FieldValue> arguments){
+			checkVariableArityArguments(arguments, 2);
+
+			StringBuilder sb = new StringBuilder();
+
+			for(int i = 0, max = arguments.size(); i < max; i++){
+				FieldValue value = getOptionalArgument(arguments, i);
+
+				if(FieldValueUtil.isMissing(value)){
+					continue;
+				}
+
+				sb.append(value.asString());
+			}
+
+			String result = sb.toString();
+
+			return FieldValueUtil.create(TypeInfos.CATEGORICAL_STRING, result);
+		}
+	};
+
+	TernaryFunction REPLACE = new TernaryFunction(PMMLFunctions.REPLACE, Arrays.asList("input", "pattern", "replacement")){
+
+		public String evaluate(String input, String regex, String replacement){
+			Pattern pattern = RegExUtil.compile(regex, null);
+
+			Matcher matcher = pattern.matcher(input);
+
+			// Replace PCRE-style dollar literal with Java-style dollar literal
+			replacement = replacement.replace("$$", "\\$");
+
+			return matcher.replaceAll(replacement);
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second, FieldValue third){
+			String result = evaluate(first.asString(), second.asString(), third.asString());
+
+			return FieldValueUtil.create(TypeInfos.CATEGORICAL_STRING, result);
+		}
+	};
+
+	BinaryFunction MATCHES = new BinaryFunction(PMMLFunctions.MATCHES, Arrays.asList("input", "pattern")){
+
+		public Boolean evaluate(String input, String regex){
+			Pattern pattern = RegExUtil.compile(regex, null);
+
+			Matcher matcher = pattern.matcher(input);
+
+			// "The string is considered to match the pattern if any substring matches the pattern"
+			return Boolean.valueOf(matcher.find());
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			Boolean result = evaluate(first.asString(), second.asString());
+
+			return FieldValueUtil.create(TypeInfos.CATEGORICAL_BOOLEAN, result);
+		}
+	};
+
+	BinaryFunction FORMAT_NUMBER = new BinaryFunction(PMMLFunctions.FORMATNUMBER, Arrays.asList("input", "pattern")){
+
+		public String evaluate(Number input, String pattern){
+
+			// According to the java.util.Formatter javadoc, Java formatting is more strict than C's printf formatting.
+			// For example, in Java, if a conversion is incompatible with a flag, an exception will be thrown. In C's printf, inapplicable flags are silently ignored.
+			try {
+				return String.format(pattern, input);
+			} catch(IllegalFormatException ife){
+				throw new InvalidArgumentException(this, InvalidArgumentException.formatMessage(this, "pattern", pattern))
+					.initCause(ife);
+			}
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			String result = evaluate(first.asNumber(), second.asString());
+
+			return FieldValueUtil.create(TypeInfos.CATEGORICAL_STRING, result);
+		}
+	};
+
+	BinaryFunction FORMAT_DATETIME = new BinaryFunction(PMMLFunctions.FORMATDATETIME, Arrays.asList("input", "pattern")){
+
+		public String evaluate(Instant<?> input, String pattern){
+			pattern = translatePattern(pattern);
+
+			try {
+				return input.format(pattern);
+			} catch(IllegalFormatException ife){
+				throw new InvalidArgumentException(this, InvalidArgumentException.formatMessage(this, "pattern", pattern))
+					.initCause(ife);
+			}
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			String result = evaluate(first.asInstant(), second.asString());
+
+			return FieldValueUtil.create(TypeInfos.CATEGORICAL_STRING, result);
+		}
+
+		private String translatePattern(String pattern){
+			StringBuilder sb = new StringBuilder();
+
+			for(int i = 0; i < pattern.length(); i++){
+				char c = pattern.charAt(i);
+
+				sb.append(c);
+
+				if(c == '%'){
+
+					// Every %[conversion] has to become %1$t[conversion]
+					// Here, "1$" denotes the first argument, and "t" denotes the prefix for date and time conversion characters
+					if(i < (pattern.length() - 1) && pattern.charAt(i + 1) != '%'){
+						sb.append("1$t");
+					}
+				}
+			}
+
+			return sb.toString();
+		}
+	};
+
+	BinaryFunction DATE_DAYS_SINCE_YEAR = new BinaryFunction(PMMLFunctions.DATEDAYSSINCEYEAR, Arrays.asList("input", "referenceYear")){
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			DaysSinceDate result = (first.asDate()).toDaysSinceYear(second.asInteger());
+
+			return FieldValueUtil.create(TypeInfos.CONTINUOUS_INTEGER, result);
+		}
+	};
+
+	UnaryFunction DATE_SECONDS_SINCE_MIDNIGHT = new UnaryFunction(PMMLFunctions.DATESECONDSSINCEMIDNIGHT, Arrays.asList("input")){
+
+		@Override
+		public FieldValue evaluate(FieldValue value){
+			SecondsSinceMidnight result = (value.asTime()).toSecondsSinceMidnight();
+
+			return FieldValueUtil.create(TypeInfos.CONTINUOUS_INTEGER, result);
+		}
+	};
+
+	BinaryFunction DATE_SECONDS_SINCE_YEAR = new BinaryFunction(PMMLFunctions.DATESECONDSSINCEYEAR, Arrays.asList("input", "referenceYear")){
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			SecondsSinceDate result = (first.asDateTime()).toSecondsSinceYear(second.asInteger());
+
+			return FieldValueUtil.create(TypeInfos.CONTINUOUS_INTEGER, result);
+		}
+	};
+
+	BinaryFunction HYPOT = new BinaryFunction(PMMLFunctions.HYPOT){
+
+		public Double evaluate(Number x, Number y){
+			return Math.hypot(x.doubleValue(), y.doubleValue());
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			Double result = evaluate(first.asNumber(), second.asNumber());
+
+			return FieldValueUtil.create(TypeInfos.CONTINUOUS_DOUBLE, result);
+		}
+	};
+
+	TrigonometricFunction SIN = new TrigonometricFunction(PMMLFunctions.SIN){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.sin(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction COS = new TrigonometricFunction(PMMLFunctions.COS){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.cos(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction TAN = new TrigonometricFunction(PMMLFunctions.TAN){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.tan(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction ASIN = new TrigonometricFunction(PMMLFunctions.ASIN){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.asin(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction ACOS = new TrigonometricFunction(PMMLFunctions.ACOS){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.acos(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction ATAN = new TrigonometricFunction(PMMLFunctions.ATAN){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.atan(value.doubleValue());
+		}
+	};
+
+	BinaryFunction ATAN2 = new BinaryFunction(PMMLFunctions.ATAN2){
+
+		public Double evaluate(Number y, Number x){
+			return Math.atan2(y.doubleValue(), x.doubleValue());
+		}
+
+		@Override
+		public FieldValue evaluate(FieldValue first, FieldValue second){
+			Double result = evaluate(first.asNumber(), second.asNumber());
+
+			return FieldValueUtil.create(TypeInfos.CONTINUOUS_DOUBLE, result);
+		}
+	};
+
+	TrigonometricFunction SINH = new TrigonometricFunction(PMMLFunctions.SINH){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.sinh(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction COSH = new TrigonometricFunction(PMMLFunctions.COSH){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.cosh(value.doubleValue());
+		}
+	};
+
+	TrigonometricFunction TANH = new TrigonometricFunction(PMMLFunctions.TANH){
+
+		@Override
+		public Double evaluate(Number value){
+			return Math.tanh(value.doubleValue());
+		}
+	};
+}

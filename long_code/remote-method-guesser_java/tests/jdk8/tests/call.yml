@@ -1,0 +1,18 @@
+tester:
+  title: Calling Tests
+  description: |-
+    'Performs tests for the call action.'
+
+  id: '001-003'
+  groups:
+    - call
+    - plugin
+  id_pattern: '001-003-{:03}'
+
+
+variables:
+  file: jdk8-call-rce-test.txt
+
+
+include:
+  - ../../shared/call.yml

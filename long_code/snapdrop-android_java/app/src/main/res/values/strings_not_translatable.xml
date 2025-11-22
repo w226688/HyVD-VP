@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- baseURL -->
+    <string name="baseURL" translatable="false">https://snapdrop.net/</string>
+    <!-- onboarding - suggested instances -->
+    <string name="onboarding_server_pairdrop" translatable="false">https://pairdrop.net</string>
+    <string name="onboarding_server_snapdrop" translatable="false">https://snapdrop.net</string>
+</resources>

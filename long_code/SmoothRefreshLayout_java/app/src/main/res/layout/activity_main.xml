@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.dkzwm.widget.srl.sample.widget.WaveSmoothRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/smoothRefreshLayout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:sr_content="@+id/scrollView_main_container">
+
+    <ScrollView
+        android:id="@+id/scrollView_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_main_with_frameLayout"
+                style="@style/LargeButtonStyle"
+                android:text="@string/with_frameLayout" />
+
+            <Button
+                android:id="@+id/button_main_test_recyclerView_in_nestedScrollView"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_recyclerView_in_nestedScrollView" />
+
+            <Button
+                android:id="@+id/button_main_test_recyclerView_in_nestedScrollView_in_srl"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_recyclerView_in_nestedScrollView_in_srl" />
+
+            <Button
+                android:id="@+id/button_main_with_listView"
+                style="@style/LargeButtonStyle"
+                android:text="@string/with_listView" />
+
+            <Button
+                android:id="@+id/button_main_with_recyclerView"
+                style="@style/LargeButtonStyle"
+                android:text="@string/with_recyclerView" />
+
+            <Button
+                android:id="@+id/button_main_test_horizontal_recyclerView"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_horizontal_recyclerView" />
+
+            <Button
+                android:id="@+id/button_main_with_gridView"
+                style="@style/LargeButtonStyle"
+                android:text="@string/with_gridView" />
+
+            <Button
+                android:id="@+id/button_main_with_webView"
+                style="@style/LargeButtonStyle"
+                android:text="@string/with_webView" />
+
+            <Button
+                android:id="@+id/button_main_with_viewPager"
+                style="@style/LargeButtonStyle"
+                android:text="@string/with_viewPager" />
+
+            <Button
+                android:id="@+id/button_main_with_recyclerView_in_coordinatorLayout"
+                style="@style/LargeButtonStyle"
+                android:text="@string/in_coordinatorLayout_with_recyclerView" />
+
+            <Button
+                android:id="@+id/button_main_test_nested_viewPager"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_refresh_layout_in_viewPager_under_nested_layout" />
+
+            <Button
+                android:id="@+id/button_main_test_over_scroll"
+                style="@style/LargeButtonStyle"
+                android:text="@string/over_scroll" />
+
+            <Button
+                android:id="@+id/button_main_test_nested"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_nested" />
+
+            <Button
+                android:id="@+id/button_main_test_nested_with_viewPager_in_one_srl"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_nested_with_viewpager" />
+
+            <Button
+                android:id="@+id/button_main_test_release_to_refresh"
+                style="@style/LargeButtonStyle"
+                android:text="@string/release_to_refresh" />
+
+            <Button
+                android:id="@+id/button_main_test_material_style"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_material_style" />
+
+            <Button
+                android:id="@+id/button_main_test_two_level_refresh"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_two_level_refresh" />
+
+            <Button
+                android:id="@+id/button_main_test_horizontal_refresh"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_horizontal_refresh" />
+
+            <Button
+                android:id="@+id/button_main_test_multi_direction_views"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_multi_direction_views" />
+
+            <Button
+                android:id="@+id/button_main_test_QQ_activity_style"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_qq_activity_style" />
+
+            <Button
+                android:id="@+id/button_main_test_QQ_web_style"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_qq_web_style" />
+
+            <Button
+                android:id="@+id/button_main_test_base_recyclerView_adapter"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_base_recyclerView_adapter" />
+
+            <Button
+                android:id="@+id/button_main_test_nested_horizontal_views"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_nested_horizontal_views" />
+
+            <Button
+                android:id="@+id/button_main_test_scroll_to_auto_refresh"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_scroll_to_auto_refresh" />
+
+            <Button
+                android:id="@+id/button_main_test_scale_effect"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_scale_effect" />
+
+            <Button
+                android:id="@+id/button_main_test_horizontal_scale_effect"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_horizontal_scale_effect" />
+
+            <Button
+                android:id="@+id/button_main_test_bottom_sheet_dialog"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_bottom_sheet_dialog" />
+
+            <Button
+                android:id="@+id/button_main_test_motionLayout_scene"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_motionlayout_scene" />
+            <Button
+                android:id="@+id/button_main_test_inner_motionLayout_scene"
+                style="@style/LargeButtonStyle"
+                android:text="@string/test_inner_motionlayout_scene" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView_main_bottom_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <Button
+        android:id="@+id/button_main_debug"
+        style="@style/LargeButtonStyle"
+        android:layout_gravity="end"
+        android:layout_marginTop="72dp"
+        android:layout_marginRight="24dp"
+        android:text="@string/debug_on" />
+</me.dkzwm.widget.srl.sample.widget.WaveSmoothRefreshLayout>

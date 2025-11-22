@@ -1,0 +1,57 @@
+---
+# Purpose: KDC server related settings
+#
+# Notes: 
+#   - Assumes there is only one (1) KDC server node
+
+- name: Install Kerberos server package
+  yum: name={{ item }} state=latest
+  with_items:
+   - krb5-server
+   - krb5-libs
+
+- name: Copy and configure KDC server configs
+  template: 
+    src=var/kerberos/krb5kdc/kdc.conf.j2 
+    dest=/var/kerberos/krb5kdc/kdc.conf 
+    mode=0600
+    owner=root
+    group=root
+  notify:
+  - restart kerberos
+
+- name: Copy and configure KDC server ACLs
+  template: 
+    src=var/kerberos/krb5kdc/kadm5.acl.j2 
+    dest=/var/kerberos/krb5kdc/kadm5.acl 
+    mode=0600
+    owner=root 
+    group=root
+  notify:
+  - restart kerberos
+
+- name: Copy and configure client krb5.conf
+  template:
+    src=etc/krb5.conf.j2
+    dest=/etc/krb5.conf
+    mode=0644
+    owner=root
+    group=root
+
+#- name: Check if KRB5 database needs to be generated
+#  stat: path=/var/kerberos/krb5kdc/principal
+#  register: principal_file
+
+- name: Create KRB5 database if necessary
+  include: createkdb5.yml
+#  when: (principal_file.stat.exists is defined and not principal_file.stat.exists) or principal_file.stat.exists is not defined
+  
+- name: Start Kerberos services
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+    - krb5kdc
+    - kadmin
+
+- name: Create principals
+  include: createprincs.yml
+

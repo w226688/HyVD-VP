@@ -1,0 +1,207 @@
+/*
+ * Copyright (C) 2007-2010 Wayne Meissner
+ *
+ * This file is part of the JNR project.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package jnr.ffi;
+
+import jnr.ffi.mapper.FunctionMapper;
+import jnr.ffi.provider.FFIProvider;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import java.util.HashMap;
+import java.util.Map;
+
+public class LibraryLoaderTest {
+
+    public static interface TestLib {
+        int setLastError(int error);
+    }
+
+    @Test public void loadShouldNotThrowExceptions() {
+        try {
+            LibraryLoader.create(TestLib.class).load("non-existent-library");
+        } catch (Throwable t) {
+            fail("load raised exception " + t);
+        }
+    }
+
+    @Test
+    public void failImmediatelyShouldThrowULE() {
+        assertThrows(UnsatisfiedLinkError.class, () -> {
+            LibraryLoader.create(TestLib.class).failImmediately().load("non-existent-library");
+        });
+    }
+
+    @Test
+    public void invocationOnFailedLoadShouldThrowULE() {
+        assertThrows(UnsatisfiedLinkError.class, () -> {
+            TestLib lib = LibraryLoader.create(TestLib.class).failImmediately().load("non-existent-library");
+            lib.setLastError(0);
+        });
+    }
+
+    // Loadable library interface to test function mapping
+    public static interface TestLibMapped {
+        int set(int error);
+    }
+
+    @Test
+    public void optionWithFunctionMapper() {
+        LibraryLoader<TestLibMapped> loader = FFIProvider.getSystemProvider()
+                .createLibraryLoader(TestLibMapped.class);
+        loader.library("test");
+
+        // Define function mappings by a FunctionMapper entry in options
+        FunctionMapper.Builder shortNames = new FunctionMapper.Builder();
+        shortNames.map("set", "setLastError");
+        loader.option(LibraryOption.FunctionMapper, shortNames.build());
+
+        // Load and call the mapped function
+        TestLibMapped lib = loader.load();
+        lib.set(1);
+    }
+
+    @Test
+    public void mapperWithFuctionMapper() {
+        LibraryLoader<TestLibMapped> loader = FFIProvider.getSystemProvider()
+                .createLibraryLoader(TestLibMapped.class);
+        loader.library("test");
+
+        // Define function mappings via the type-safe API
+        FunctionMapper.Builder shortNames = new FunctionMapper.Builder();
+        shortNames.map("set", "setLastError");
+        loader.mapper(shortNames.build());
+
+        // Load and call the mapped function
+        TestLibMapped lib = loader.load();
+        lib.set(2);
+    }
+
+    @Test
+    public void mapMethod() {
+        LibraryLoader<TestLibMapped> loader = FFIProvider.getSystemProvider()
+                .createLibraryLoader(TestLibMapped.class);
+        loader.library("test");
+
+        // Define function mappings via the String API
+        loader.map("set", "setLastError");
+
+        // Load and call the mapped function
+        TestLibMapped lib = loader.load();
+        lib.set(3);
+    }
+
+    // Loadable library interface to test complicated function mapping
+    public static interface TestLibMath {
+        public int add(int i1, int i2); // = add_int32_t
+        public int sub(int i1, int i2); // = sub_int32_t
+        public int mul(int i1, int i2); // = mul_int32_t
+        public int div(int i1, int i2); // = div_int32_t
+        public double addd(double f1, double f2); // = add_double
+        public double subd(double f1, double f2); // = add_double
+    }
+
+    @Test
+    public void functionMappersCombine() {
+        LibraryLoader<TestLibMath> loader = FFIProvider.getSystemProvider()
+                .createLibraryLoader(TestLibMath.class);
+        loader.library("test");
+
+        // Define function mappings by a FunctionMapper entry in options
+        FunctionMapper.Builder shortNames = new FunctionMapper.Builder();
+        shortNames.map("add", "add_int32_t");
+        shortNames.map("sub", "sub_int32_t");
+        loader.option(LibraryOption.FunctionMapper, shortNames.build());
+
+        // Define function mappings via the type-safe API
+        shortNames = new FunctionMapper.Builder();
+        shortNames.map("mul", "mul_int32_t");
+        shortNames.map("div", "div_int32_t");
+        loader.mapper(shortNames.build());
+
+        // Define function mappings via the String API
+        loader.map("addd", "add_double");
+        loader.map("subd", "sub_double");
+
+        TestLibMath lib = loader.load();
+        assertNotNull(lib, "Could not load libtest");
+
+        // Do some arithmetic with the library to prove methods exist
+        int sum = lib.sub(lib.add(10, 5), 3); // 10+5-3 = 12
+        int prod = lib.mul(sum, 7);
+        int answer = lib.div(prod, 2);
+        assertEquals(answer, 42);
+
+        double a = lib.subd(lib.addd(30.0, 20.0), 8.0);
+        assertEquals(a, 42.0, 1e-4);
+    }
+
+    public interface DefaultGetpid {
+        long getpid();
+    }
+
+    @Test
+    public void searchDefault() {
+        // explicit default search
+        LibraryLoader<DefaultGetpid> loader = FFIProvider.getSystemProvider().createLibraryLoader(DefaultGetpid.class);
+
+        loader.searchDefault();
+
+        DefaultGetpid dgp = loader.load();
+
+        assertNotNull(dgp);
+        assertTrue(dgp.getpid() > 0);
+
+        // try with default name
+        loader = FFIProvider.getSystemProvider().createLibraryLoader(DefaultGetpid.class);
+
+        loader.library(LibraryLoader.DEFAULT_LIBRARY);
+
+        dgp = loader.load();
+
+        assertNotNull(dgp);
+        assertTrue(dgp.getpid() > 0);
+    }
+
+    public static interface EmptyLib {
+    }
+
+    // Incorrect empty lib doesn't fail because of lazy loading
+    @Test
+    public void testLazyLoadedIncorrectLib() {
+        String libName = "should-not-find-me";
+        // because of lazy loading behavior, empty mappings don't load anything, so this doesn't fail
+        EmptyLib testLib = LibraryLoader.loadLibrary(EmptyLib.class, null, libName);
+        assertNotNull(testLib);
+    }
+
+    // Incorrect empty lib fails when we set LibraryOption.LoadNow
+    @Test
+    public void testLoadNowIncorrectLib() {
+        String libName = "should-not-find-me";
+        Map<LibraryOption, Object> options = new HashMap<>();
+        options.put(LibraryOption.LoadNow, true);
+        assertThrows(UnsatisfiedLinkError.class, () -> {
+            LibraryLoader.loadLibrary(EmptyLib.class, options, libName); // fails because LoadNow
+        });
+    }
+}

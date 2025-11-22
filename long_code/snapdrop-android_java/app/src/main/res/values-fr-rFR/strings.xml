@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_long">Snapdrop &amp; PairDrop pour Android</string>
+    <string name="app_name_slogan">Transférez des fichiers en toute simplicité entre tous vos appareils.</string>
+    <string name="err_no_browser">Impossible d\'ouvrir le navigateur</string>
+    <string name="err_no_app">Aucune application installée pour ouvrir ce fichier</string>
+    <string name="open_url">Ouvrir l\'URL</string>
+    <!-- Onboarding -->
+    <string name="onboarding_button_continue">continuer</string>
+    <string name="onboarding_button_grant">accorder l’autorisation</string>
+    <string name="onboarding_button_finish">terminer</string>
+    <string name="onboarding_choose_server">Choisir une adresse de serveur</string>
+    <string name="onboarding_choose_server_short">Choisir le serveur</string>
+    <string name="onboarding_choose_server_description">Cette application est un client optimisé pour les applications web Snapdrop et PairDrop.\nChoisissez l\'une des instances suivantes ou spécifiez un URL personnalisé à laquelle vous devez vous connecter.\n\nNote : Vous devez choisir le même URL sur tous les appareils.</string>
+    <string name="onboarding_storage_permission">Autorisation d\'accès au stockage</string>
+    <string name="onboarding_storage_permission_description">Cette application est un utilitaire de partage de fichiers. Par conséquent, une autorisation de stockage est nécessaire pour l\'utiliser.</string>
+    <string name="onboarding_server_pairdrop_summary">(recommandé)\nFonctionnalité d\'appairage, transfert par internet et priorité à la stabilité.</string>
+    <string name="onboarding_server_snapdrop_summary">Le Snapdrop classique. Simple et épuré.</string>
+    <string name="onboarding_server_snapdrop_summary_server_warning">Attention : Serveur instable</string>
+    <string name="onboarding_server_custom">URL personnalisé</string>
+    <string name="onboarding_server_custom_summary">Les experts peuvent aussi héberger leurs propres serveurs.</string>
+    <string name="onboarding_server_custom_add">Ajouter serveur</string>
+    <string name="onboarding_howto">Mode d\'emploi</string>
+    <string name="onboarding_howto_summary">1. Ouvrez cette application ou %s sur n\'importe quel autre appareil connecté à votre réseau local.\n\n2. Appuyer sur l\'appareil vers lequel vous souhaitez partager le(s) fichier(s) et sélectionnez le(s) fichier(s) à envoyer.\n\n3. Et voilà ! Le(s) fichier(s) sera(ont) envoyé(s)…</string>
+    <string name="onboarding_howto_troubleshoot">Note : Les appareils doivent être connectés sur le même réseau local/WiFi. Cela peut ne pas fonctionner si un VPN est activé.</string>
+    <!-- Download -->
+    <string name="download_save_pending">Enregistrement du fichier. Merci de patienter…</string>
+    <string name="download_successful">Téléchargement réussi</string>
+    <string name="notification_channel_name">Téléchargement terminé</string>
+    <!-- Action Buttons -->
+    <string name="open">ouvrir</string>
+    <string name="install">installer</string>
+    <string name="reset">réinitialiser</string>
+    <string name="copy">copier</string>
+    <string name="retry">Réessayer</string>
+    <!-- Settings / About -->
+    <string name="home_as_up_indicator_about">À propos</string>
+    <string name="title_activity_about">À propos de Snapdrop &amp; PairDrop pour Android</string>
+    <string name="pref_about_title">À propos de cette application</string>
+    <string name="view_downloads">Afficher les téléchargements</string>
+    <string name="pref_category_settings">Paramètres</string>
+    <string name="logs">Journaux de débogage</string>
+    <string name="components_summary">Appuyer pour afficher</string>
+    <string name="support_us">Soutenez-nous</string>
+    <string name="support_us_summary">Voir, comment vous pouvez soutenir ce projet</string>
+    <string name="read_more">voir plus</string>
+    <string name="pref_device_name_title">Nom de l\'appareil</string>
+    <string name="pref_device_name_summary">Définir un nom d\'appareil personnalisé</string>
+    <string name="notifications_summary">Afficher une notification lorsque le téléchargement est terminé</string>
+    <string name="keep_on_summary">(Recommandé) De nombreux appareils ont des problèmes d\"interruption de transfert lorsque l\'écran s\'éteint</string>
+    <string name="keep_on_title">Garder l\'écran allumé pendant le transfert</string>
+    <string name="floating_text_selection_title">Sélection de texte flottante</string>
+    <string name="floating_text_selection_summary">Lors de la sélection de texte dans d\'autres applications, une option \"Envoyer via Snapdrop\" sera affichée</string>
+    <string name="show_connectivity_card_title">Avertissement sur la connexion</string>
+    <string name="show_connectivity_card_summary"> Afficher un avertissement lorsque vous n\'êtes pas connecté à un réseau Wi-Fi</string>
+    <string name="floating_text_selection_activity_label">Envoyer via Snapdrop</string>
+    <string name="permission_not_granted">veuillez accorder l\'autorisation nécessaire</string>
+    <string name="permission_not_granted_fallback">veuillez accorder manuellement l\'autorisation nécessaire</string>
+    <string name="open_settings">ouvrir les paramètres</string>
+    <string name="retain_location_metadata_title">Conserver les métadonnées de localisation</string>
+    <string name="retain_location_metadata_summary_off">Certains fichiers multimédias peuvent contenir des données de localisation qui sont supprimées par défaut. Accorder la permission d\'inclure des métadonnées complètes</string>
+    <string name="retain_location_metadata_summary_on">L\'application dispose actuellement d\'un accès complet aux fichiers</string>
+    <string name="settings_theme_title">Thème</string>
+    <string-array name="darkmode_entries">
+        <item>Suivre le système</item>
+        <item>Clair</item>
+        <item>Sombre</item>
+    </string-array>
+    <string name="baseurl_title">Modifier l\'adresse du serveur</string>
+    <string name="baseurl_not_set">Non défini</string>
+    <string name="baseurl_instance_verified">L\'instance a été vérifiée avec succès</string>
+    <string name="baseurl_no_snapdrop_instance">L\'instance ne semble pas être prise en charge</string>
+    <string name="baseurl_check_instance_failed">Échec de la vérification de l\'instance</string>
+    <string name="baseurl_unofficial_instances">Consultez la <a href="">FAQ</a> pour obtenir une liste d\'instances non officielles. Veuillez noter que certaines instances peuvent ne pas fonctionner correctement dans l\'application.</string>
+    <string name="save_location">Dossier de sauvegarde</string>
+    <!-- File sharing -->
+    <string name="intent_file">Un fichier est sélectionné pour être partagé</string>
+    <string name="intent_files">Des fichiers sont sélectionnés pour être partagés</string>
+    <string name="intent_content">Du contenu est sélectionné pour être partagé</string>
+    <string name="error_filechooser">Impossible d\'ouvrir le sélecteur de fichiers</string>
+    <string name="error_network">Veuillez vérifier que vous êtes connecté à un réseau Wi-Fi</string>
+    <string name="error_network_no_wifi">Veuillez vous connecter à un réseau Wi-Fi ou associer les appareils</string>
+    <string name="error_network_offline">Vous êtes hors ligne</string>
+    <string name="ignore_error_network">Laisse-moi quand même entrer</string>
+    <string name="error_not_reachable_title">Oups, désolé !</string>
+    <string name="error_server_not_reachable">Le serveur est inaccessible. \n\nSi votre connexion internet fonctionne et que cela se produit malgré tout, essayer de sélectionner une autre adresse de serveur.</string>
+    <!-- Website Localization -->
+    <string name="website_no_peers_info">Ouvrez l\'application ou le site web sur d\'autres appareils pour envoyer des fichiers</string>
+    <string name="website_instruction">Touchez pour envoyer des fichiers ou appuyez longuement pour envoyer un message</string>
+    <string name="website_file_received">Fichier reçu</string>
+    <string name="website_file_ask_before_download">Toujours demander avant d\'enregistrer un fichier</string>
+    <string name="website_file_download">Enregistrer</string>
+    <string name="website_footer_discovery">Vous pouvez être découvert par tous les utilisateurs de ce réseau</string>
+    <string name="website_footer_known_as">Vous êtes identifié en tant que %s</string>
+    <string name="website_about_subheading">Le moyen le plus simple de transférer des fichiers sur tous les appareils</string>
+</resources>

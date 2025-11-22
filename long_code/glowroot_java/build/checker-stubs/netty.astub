@@ -1,0 +1,28 @@
+import org.checkerframework.checker.nullness.qual.*;
+
+/* ========================================================================== */
+package io.netty.handler.codec.http;
+
+public interface HttpHeaders {
+    @Nullable String get(String name);
+}
+
+public class HttpContentEncoder {
+    @Nullable Result beginEncode(HttpResponse headers, String acceptEncoding);
+}
+
+public class HttpContentCompressor {
+    @Nullable Result beginEncode(HttpResponse headers, String acceptEncoding);
+}
+
+public class HttpResponseStatus {
+    boolean equals(@Nullable Object o);
+}
+
+/* ========================================================================== */
+package io.netty.handler.stream;
+
+public interface ChunkedInput<B> {
+    @Nullable B readChunk(ChannelHandlerContext ctx);
+    @Nullable B readChunk(ByteBufAllocator allocator);
+}

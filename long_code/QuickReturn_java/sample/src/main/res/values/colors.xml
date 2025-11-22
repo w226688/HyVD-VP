@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Transparent colors -->
+    <color name="transparent_white_five">#0Dffffff</color>
+    <color name="transparent_white_ten">#1Affffff</color>
+    <color name="transparent_white_twenty">#33ffffff</color>
+    <color name="transparent_white_thirty">#4Dffffff</color>
+    <color name="transparent_white_fifty">#80ffffff</color>
+    <color name="transparent_white_sixty">#99ffffff</color>
+    <color name="transparent_white_eighty">#CCffffff</color>
+    <color name="transparent_white_ninty">#E6ffffff</color>
+    <color name="transparent_white_ninty_five">#F2ffffff</color>
+
+    <color name="transparent_black_five">#0D000000</color>
+    <color name="transparent_black_ten">#1A000000</color>
+    <color name="transparent_black_twenty">#33000000</color>
+    <color name="transparent_black_thirty">#4D000000</color>
+    <color name="transparent_black_forty">#66000000</color>
+    <color name="transparent_black_fifty">#80000000</color>
+    <color name="transparent_black_sixty">#99000000</color>
+    <color name="transparent_black_eighty">#CC000000</color>
+    <color name="transparent_black_ninty">#E6000000</color>
+    <color name="transparent_black_ninty_five">#F2000000</color>
+
+    <color name="transparent_gray24_fifty">#80ededed</color>
+    <color name="whitesmoke">#f5f5f5</color>
+    <color name="cornflower_blue">#598deb</color>
+    <color name="bulgarian_blue">#4771BC</color>
+
+    <!-- App Theme -->
+    <color name="quick_return_primary">#4688f1</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="quick_return_primary_dark">#386DC1</color>
+    <color name="quick_return_accent">#386DC1</color>
+
+    <!-- Twitter Theme -->
+    <color name="twitter_primary">#55acee</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="twitter_primary_dark">#1c6399</color>
+    <color name="twitter_accent">#1c6399</color>
+    <color name="twitter_tab_underline">#bbddf5</color>
+
+    <!-- Facebook Theme -->
+    <color name="facebook_primary">#3b5988</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="facebook_primary_dark">#293E5F</color>
+    <color name="facebook_accent">@color/green_500</color>
+    <color name="facebook_bg">#dcdee3</color>
+    <color name="dark_slate_blue">#3c5896</color>
+    <color name="transparent_dark_slate_blue_ninty">#E63c5896</color>
+    <color name="new_posts_start">#5b93fc</color>
+    <color name="new_posts_end">#6ca8fc</color>
+
+    <!-- Google Plus Theme -->
+    <color name="google_plus_primary">#db4437</color>
+    <!--<color name="control_highlight">#1f8755</color>-->
+    <color name="google_plus_primary_dark">#c53929</color>
+    <color name="google_plus_accent">@color/green_500</color>
+    <color name="google_plus_bg">#e5e5e5</color>
+
+    <!-- Grays -->
+    <color name="gray1">#f1f2f1</color>
+    <color name="gray2">#F2F2F2</color>
+    <color name="gray3">#ededed</color>
+    <color name="gray4">#ebeceb</color>
+    <color name="gray5">#EAEAEA</color>
+    <color name="gray6">#e4e4e4</color>
+    <color name="gray7">#d5d5d5</color>
+    <color name="gray8">#D2D2D2</color> //
+    <color name="gray9">#cecece</color>
+    <color name="gray10">#C2C2C2</color>
+    <color name="gray11">#C9C9C9</color> //
+    <color name="gray12">#c8c8c8</color> //
+    <color name="gray13">#BEBEBE</color>
+    <color name="gray14">#BDBDBD</color>
+    <color name="gray15">#A4A4A4</color>
+    <color name="gray16">#818181</color>
+    <color name="gray17">#7A7A7A</color> //
+    <color name="gray18">#767676</color> //
+    <color name="gray19">#666666</color> //
+    <color name="gray20">#656565</color> //
+    <color name="gray21">#464646</color> //
+
+
+</resources>

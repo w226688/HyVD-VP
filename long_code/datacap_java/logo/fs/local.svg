@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="#4A90E2" />
+
+    <!-- 文件夹形状 -->
+    <!-- Folder shape -->
+    <path d="M50 70 L80 70 L90 60 L150 60 L150 140 L50 140 Z"
+          fill="#FFFFFF"
+          stroke="#2C3E50"
+          stroke-width="4"/>
+
+    <!-- 主页/本地指示器 -->
+    <!-- Home/Local indicator -->
+    <path d="M85 85 L115 85 L100 70 Z"
+          fill="#2C3E50"/>
+
+    <!-- 文件图表 -->
+    <!-- Files representation -->
+    <rect x="70" y="95" width="60" height="8" rx="2" fill="#2C3E50"/>
+    <rect x="70" y="110" width="40" height="8" rx="2" fill="#2C3E50"/>
+    <rect x="70" y="125" width="50" height="8" rx="2" fill="#2C3E50"/>
+</svg>

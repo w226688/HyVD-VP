@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.hasor.net/sechma/hasor-tconsole">
+    <!-- 框架配置，包扫描范围 -->
+    <hasor>
+        <loadPackages>net.hasor.tconsole.*</loadPackages>
+
+        <modules>
+            <!-- tConsole 控制台插件 -->
+            <module>net.hasor.tconsole.binder.ConsoleModule</module>
+        </modules>
+
+        <!-- Binder扩展 -->
+        <apiBinderSet>
+            <binder type="net.hasor.tconsole.ConsoleApiBinder">net.hasor.tconsole.binder.ConsoleApiBinderCreator</binder>
+        </apiBinderSet>
+
+        <autoLoadSpi>
+            <spi>net.hasor.tconsole.spi.TelAfterExecutorListener</spi>
+            <spi>net.hasor.tconsole.spi.TelBeforeExecutorListener</spi>
+            <spi>net.hasor.tconsole.spi.TelHostPreFinishListener</spi>
+            <spi>net.hasor.tconsole.spi.TelSessionCreateListener</spi>
+            <spi>net.hasor.tconsole.spi.TelSessionDestroyListener</spi>
+            <spi>net.hasor.tconsole.spi.TelStartContextListener</spi>
+            <spi>net.hasor.tconsole.spi.TelStopContextListener</spi>
+        </autoLoadSpi>
+    </hasor>
+</config>

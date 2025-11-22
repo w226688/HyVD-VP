@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.warmuuh</groupId>
+		<artifactId>milkman-parent</artifactId>
+		<version>5.11.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>milkman-sync-git</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.warmuuh</groupId>
+			<artifactId>milkman</artifactId>
+			<version>5.11.0-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.warmuuh</groupId>
+			<artifactId>milkman-rest</artifactId>
+			<version>5.11.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jgit</groupId>
+			<artifactId>org.eclipse.jgit</artifactId>
+			<version>5.3.1.201904271842-r</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.jgit</groupId>
+		    <artifactId>org.eclipse.jgit.ssh.apache</artifactId>
+		    <version>5.3.1.201904271842-r</version>
+		</dependency>
+		<dependency>
+			<groupId>de.danielbechler</groupId>
+			<artifactId>java-object-diff</artifactId>
+			<version>0.95</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.github.classgraph</groupId>
+		    <artifactId>classgraph</artifactId>
+		    <version>4.8.43</version>
+		</dependency>
+		
+		<!--  incompatible with jdk9 -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.reflections</groupId> -->
+<!-- 			<artifactId>reflections</artifactId> -->
+<!-- 			<version>0.9.11</version> -->
+<!-- 		</dependency> -->
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<appendAssemblyId>false</appendAssemblyId>
+					<archive>
+						<manifestSections>
+							<manifestSection>
+								<name>milkman.plugin</name>
+								<manifestEntries>
+									<Id>Milkman Git Sync Plugin</Id>
+									<Author>warmuuh</Author>
+								</manifestEntries>
+							</manifestSection>
+						</manifestSections>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assemble-all</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

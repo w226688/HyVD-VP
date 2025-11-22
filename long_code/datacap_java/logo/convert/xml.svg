@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="90" fill="#4A90E2" />
+
+    <!-- XML 标签符号 -->
+    <!-- XML tag symbols -->
+    <g fill="white" transform="translate(0, -15)">
+        <!-- 左箭头 < -->
+        <!-- Left arrow < -->
+        <path d="M60 70 L80 50 L80 60 L100 60 L100 80 L80 80 L80 90 Z" />
+
+        <!-- 右箭头 > -->
+        <!-- Right arrow > -->
+        <path d="M140 130 L120 110 L120 120 L100 120 L100 140 L120 140 L120 150 Z" />
+
+        <!-- 中间转换箭头 -->
+        <!-- Middle conversion arrow -->
+        <path d="M85 95 L115 95 L115 85 L135 100 L115 115 L115 105 L85 105 Z" />
+
+        <!-- XML 文本 -->
+        <!-- XML text -->
+        <text x="100" y="170" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24">XML</text>
+    </g>
+
+    <!-- 装饰性圆环 -->
+    <!-- Decorative ring -->
+    <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-width="2" stroke-dasharray="10,5" />
+</svg>

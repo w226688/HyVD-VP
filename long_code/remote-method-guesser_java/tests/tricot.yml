@@ -1,0 +1,72 @@
+tester:
+  name: rmg
+  title: 'remote-method-guesser Tests'
+  error_mode: break
+  description: >
+    'Launches some end-to-end tests of remote-method-guesser.'
+
+  requires:
+      files:
+        - path: ~/ysoserial.jar
+          url: 'https://github.com/frohoff/ysoserial/releases/download/v0.0.6/ysoserial-all.jar'
+          hash:
+            sha256: 2c9bddd6a1a4ec66c1078ea97dacb61eb66d1c41aec7b6d21e3c72214ce170f1
+        - path: ~/.local/bin/beanshooter
+          url: 'https://github.com/qtc-de/beanshooter/releases/download/v4.1.0/beanshooter-4.1.0-jar-with-dependencies.jar'
+          hash:
+            sha256: fc9830784690a79f0fddf98f076ba1d07e7d09859c7d1082b7db54d2ac119ba9
+          mode: 0o755
+      commands:
+        - bash
+        - beanshooter
+        - javac
+        - nc
+        - rmg
+      version:
+        ge: 1.12.0
+
+variables:
+  rmg: rmg-5.1.0-jar-with-dependencies.jar
+  volume: /tmp/rmg-tricot-test/
+  volume-d: /rce/
+  codebase-class: CodebaseTest
+  TARGET:
+    - ${DOCKER-IP}
+    - 9010
+  TARGET-SSL:
+    - ${DOCKER-IP}
+    - 1090
+    - --ssl
+  TARGET-SPRING:
+    - ${DOCKER-IP}
+    - 1099
+  TARGET-ACT:
+    - ${DOCKER-IP}
+    - 1098
+  OPTIONS:
+    - --no-color
+
+
+plugins:
+  - mkdir:
+      force: false
+      cleanup: true
+      dirs:
+        - ${volume}
+
+  - cleanup:
+      items:
+        - utils/CodebaseTest1.class
+        - utils/CodebaseTest2.class
+        - utils/CodebaseTest3.class
+        - utils/CodebaseTest4.class
+        - utils/CodebaseTest5.class
+        - utils/CodebaseTest6.class
+
+
+testers:
+  - ./jdk8/jdk8.yml
+  - ./jdk9/jdk9.yml
+  - ./jdk11/jdk11.yml
+  - ./generic/generic.yml
+  - ./spring/spring.yml

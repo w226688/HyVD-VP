@@ -1,0 +1,150 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+//apply plugin: "io.github.wurensen.android-aspectjx"
+Properties versionProps = new Properties()
+android {
+    signingConfigs {
+        debug {
+            storeFile file('../key/PcamLeak.jks')
+            storePassword 'photoncamera'
+            keyPassword 'photoncamera'
+            keyAlias 'key0'
+        }
+    }
+    def versionPropsFile = file('version.properties')
+    def versionBuild
+
+    buildFeatures {
+        dataBinding true
+        mlModelBinding true
+    }
+
+    if (versionPropsFile.canRead()) {
+        versionProps.load(new FileInputStream(versionPropsFile))
+        versionBuild = versionProps['VERSION_BUILD'].toInteger()
+    } else {
+        throw new FileNotFoundException("Could not read version.properties!")
+    }
+
+    ext.autoIncrementBuildNumber = {
+        if (versionPropsFile.canRead()) {
+            versionProps.load(new FileInputStream(versionPropsFile))
+            versionBuild = versionProps['VERSION_BUILD'].toInteger() + 1
+            versionProps['VERSION_BUILD'] = versionBuild.toString()
+            versionProps.store(versionPropsFile.newWriter(), null)
+        } else {
+            throw new FileNotFoundException("Could not read version.properties!")
+        }
+    }
+
+    defaultConfig {
+        compileSdk 35
+        applicationId 'com.particlesdevs.photoncamera'
+        minSdkVersion 26
+        targetSdkVersion 35
+        versionCode versionBuild
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters "arm64-v8a", "armeabi-v7a"
+        }
+        versionName '0.93'
+        versionProps['VERSION_NAME'] = versionName
+        proguardFiles
+    }
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (taskGraph.hasTask(assembleDebug)) {
+            autoIncrementBuildNumber()
+        } else if (taskGraph.hasTask(assembleRelease)) {
+            autoIncrementBuildNumber()
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            jniDebuggable = false
+            zipAlignEnabled = true
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            jniDebuggable = true
+            zipAlignEnabled = false
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            version "3.22.1"
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    lint {
+        abortOnError false
+    }
+    namespace 'com.particlesdevs.photoncamera'
+    applicationVariants.all {
+        variant -> variant.outputs.all {
+            outputFileName = "PhotonCamera-${versionName}${versionBuild}-${variant.name}.apk"
+        }
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':circularbarlib')
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.preference:preference-ktx:1.2.1'
+    implementation 'org.jetbrains:annotations:23.0.0'
+    implementation 'androidx.exifinterface:exifinterface:1.4.1'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'com.github.mohammadatif:Animatoo:master'
+    implementation 'com.github.ChickenHook:RestrictionBypass:2.2'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    implementation group: 'commons-io', name: 'commons-io', version: '20030203.000550'
+    implementation 'com.google.code.gson:gson:2.11.0'
+    // Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:2.9.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.9.0"
+    //Subsampling image view
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
+    //Google Material
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation "androidx.core:core-ktx:1.16.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Leak Canary
+    //Use this lib to detect memory leaks when debugging
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
+    //For Testing
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    implementation 'androidx.test.ext:junit:1.2.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'org.testng:testng:7.4.0'
+    implementation 'com.elvishew:xlog:1.11.1'
+    implementation 'com.elvishew:xlog-libcat:1.0.0'
+
+}
+repositories {
+    mavenCentral()
+}

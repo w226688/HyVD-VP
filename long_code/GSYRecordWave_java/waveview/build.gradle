@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply from: "../publish.gradle"
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    compileSdk globalConfiguration.androidCompileSdkVersion
+
+    defaultConfig {
+        minSdk globalConfiguration.androidMinSdkVersion
+        targetSdk globalConfiguration.androidTargetSdkVersion
+
+        versionCode 1
+        versionName "1.0"
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    
+    lintOptions {
+        abortOnError false
+    }
+    
+    namespace 'com.shuyu.waveview'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def viewDependencies = rootProject.ext.viewDependencies
+    implementation viewDependencies.videocache
+}
+
+//apply from: '../bintray.gradle'

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="90" fill="#F0652A" />
+
+    <!-- JSON 符号组 -->
+    <!-- JSON symbol group -->
+    <g fill="white" transform="translate(0, -15)">
+        <!-- 左大括号 { -->
+        <!-- Left curly brace { -->
+        <path d="M50 85 Q60 85 60 95 L60 105 Q60 115 70 115 Q60 115 60 125 L60 135 Q60 145 50 145"
+              fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/>
+
+        <!-- 右大括号 } -->
+        <!-- Right curly brace } -->
+        <path d="M150 85 Q140 85 140 95 L140 105 Q140 115 130 115 Q140 115 140 125 L140 135 Q140 145 150 145"
+              fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/>
+
+        <!-- 中间转换箭头 -->
+        <!-- Middle conversion arrow -->
+        <path d="M85 105 L105 105 L105 95 L120 115 L105 135 L105 125 L85 125 Z" />
+
+        <!-- JSON 文本 -->
+        <!-- JSON text -->
+        <text x="100" y="170" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="24">JSON</text>
+    </g>
+
+    <!-- 装饰性圆环 -->
+    <!-- Decorative ring -->
+    <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-width="2" stroke-dasharray="10,5" />
+</svg>

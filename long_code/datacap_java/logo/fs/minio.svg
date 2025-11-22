@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="#C72030" />
+
+    <!-- 存储容器形状 -->
+    <!-- Storage container shape -->
+    <path d="M60 60 L140 60 L140 140 L60 140 Z"
+          fill="#FFFFFF"
+          stroke="#333333"
+          stroke-width="4" />
+
+    <!-- 中心M字母造型 -->
+    <!-- Central M letter design -->
+    <path d="M75 85 L85 115 L100 85 L115 115 L125 85"
+          fill="none"
+          stroke="#333333"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+
+    <!-- 数据点装饰 -->
+    <!-- Data point decorations -->
+    <circle cx="75" cy="85" r="4" fill="#333333" />
+    <circle cx="125" cy="85" r="4" fill="#333333" />
+    <circle cx="100" cy="85" r="4" fill="#333333" />
+
+    <!-- 底部连接线 -->
+    <!-- Bottom connection line -->
+    <path d="M70 125 L130 125"
+          stroke="#333333"
+          stroke-width="4"
+          stroke-linecap="round" />
+</svg>

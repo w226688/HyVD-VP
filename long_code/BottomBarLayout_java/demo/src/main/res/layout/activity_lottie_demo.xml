@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.chaychan.library.BottomBarLayout
+        android:id="@+id/bbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barHeight="45dp"
+        app:barBackground="@color/tab_gb"
+        app:iconWidth="30dp"
+        app:iconHeight="30dp"
+        app:itemTextSize="10sp"
+        app:textColorNormal="@color/tab_normal_color"
+        app:textColorSelected="@color/tab_selected_color"
+        />
+
+</LinearLayout>

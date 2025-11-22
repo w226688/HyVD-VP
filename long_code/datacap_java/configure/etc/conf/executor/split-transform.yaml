@@ -1,0 +1,34 @@
+id: split-transform
+label: Split
+tid: split-transform
+key: Split
+description: Split transform
+category: transform
+configure:
+  - field: separator
+    label: Separator
+    type: input
+    placeholder: Please input source table name
+    required: true
+    description: The list of fields that need to be kept. Fields not in the list will be deleted
+  - field: split_field
+    label: Split field
+    type: input
+    required: true
+    placeholder: Please input split field
+  - field: output_fields
+    label: Output fields
+    type: array
+    required: true
+    placeholder: The result fields after split
+ports:
+  - id: input
+    label: Input
+    type: input
+    required: true
+    message: Input is required
+  - id: output
+    label: Output
+    type: output
+    required: true
+    message: Output is required

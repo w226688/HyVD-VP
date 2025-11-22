@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="waveView">
+        <attr name="gsyWaveColor" format="color" />
+        <attr name="gsyTexture_bg_waveColor" format="color" />
+        <attr name="gsyWaveOffset" format="dimension" />
+        <attr name="gsyWaveCount" format="dimension" />
+    </declare-styleable>
+
+</resources>

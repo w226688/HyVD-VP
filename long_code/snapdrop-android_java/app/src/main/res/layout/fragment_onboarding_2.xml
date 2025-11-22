@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:theme="@style/AppTheme.Fullscreen"
+    tools:context=".OnboardingActivity">
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/continue_button"
+        android:layout_alignParentTop="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding_choose_server"
+                android:textAlignment="center"
+                android:textColor="@color/textColorWhite"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/onboarding_choose_server_description"
+                android:textAlignment="center"
+                android:textColor="@color/textColorWhite"
+                android:textSize="16sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listview"
+                android:layout_marginTop="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:overScrollMode="never"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/customUrl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/onboarding_server_custom"
+                android:textAlignment="center"
+                android:textColor="@color/textColorWhite"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/onboarding_server_custom_summary"
+                android:textAlignment="center"
+                android:textColor="@color/textColorWhite"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/add"
+                style="@style/OnboardingOutlinedButtonStyle"
+                android:layout_margin="10dp"
+                android:text="@string/onboarding_server_custom_add" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/continue_button"
+        style="@style/OnboardingButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/onboarding_button_continue" />
+
+</RelativeLayout>

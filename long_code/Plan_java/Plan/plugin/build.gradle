@@ -1,0 +1,118 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+apply plugin: "com.gradleup.shadow"
+
+logger.lifecycle("Building artifact for version $fullVersion / $fullVersionFilename / $fullVersionSemantic")
+
+dependencies {
+    implementation project(":api")
+    implementation project(":extensions")
+    implementation project(":common")
+    implementation project(":bukkit")
+    implementation project(":nukkit")
+    implementation project(":sponge")
+    implementation project(":bungeecord")
+    implementation project(":velocity")
+
+    // Shadow configuration required to depend on Folia due to newer Java version
+    implementation project(path: ":folia", configuration: "shadow")
+
+    // Shadow configuration required to only relocate adventure calls in ComponentConverter, not whole plugin
+    implementation project(path: ":extensions:adventure", configuration: "shadow")
+}
+
+jar {
+    // Add the sponge mixin into the manifest
+    manifest.attributes([
+            'MixinConfigs': 'plan-sponge.mixins.json'
+    ])
+}
+tasks.named("shadowJar", ShadowJar) {
+    // Exclude these files
+    exclude "**/*.svg"
+    exclude "**/*.psd"
+    exclude "**/*.map"
+    exclude "LICENSE*.txt"
+    exclude "jetty-dir.css"
+
+    exclude "**/module-info.class"
+    exclude "module-info.class"
+    exclude "META-INF/versions/" // Causes Sponge to crash
+    exclude "META-INF/services/net.kyori.**" // Causes ResolutionException on Sponge due to export to net.kyori module
+    exclude "mozilla/**/*"
+
+    // Exclude extra dependencies
+    exclude "org/checkerframework/**/*" // Dagger compiler
+    exclude "com/google/common/**/*"
+    exclude "com/google/thirdparty/**/*"
+    exclude "com/google/auto/**/*"
+
+    exclude "org.javassist:.*"
+    // Exclude swagger
+    exclude "org/yaml/**/*"
+    exclude "nonapi/**/*"
+    exclude "io/github/classgraph/**/*"
+    exclude "io/swagger/**/*"
+    exclude "com/sun/activation/**/*"
+    exclude "jakarta/activation/**/*"
+    exclude "jakarta/validation/**/*"
+    exclude "jakarta/ws/**/*"
+    exclude "jakarta/xml/**/*"
+    exclude "javassist/**/*"
+
+    relocate("org.slf4j", "plan.org.slf4j")
+
+    // Unrelocate a package to use platform version of some libraries that were relocated in Plan
+    exclude "com/djrapitops/plan/unrelocate/**/*"
+    relocate("com.djrapitops.plan.unrelocate.", "")
+
+    relocate("org.apache", "plan.org.apache") {
+        exclude "org/apache/logging/**"
+        exclude "org/apache/maven/**" // This needs to be unrelocated for Sponge
+    }
+
+    // Don't relocate MySQL or SQLite since they are loaded with a isolated class loader
+    // relocate "org.sqlite", "plan.org.sqlite"
+    // relocate "com.mysql", "plan.com.mysql"
+    // relocate "com.google.protobuf", "plan.com.mysql.cj.x.google.protobuf"
+
+    relocate "dagger", "plan.dagger"
+    relocate "javax.inject", "plan.javax.inject"
+    relocate "jakarta.inject", "plan.jakarta.inject"
+
+    relocate "dev.vankka.dependencydownload", "plan.dev.vankka.dependencydownload"
+    relocate "com.github.benmanes", "plan.com.github.benmanes"
+    relocate "com.maxmind", "plan.com.maxmind"
+    relocate "com.fasterxml", "plan.com.fasterxml"
+    relocate "com.zaxxer", "plan.com.zaxxer"
+    relocate "com.google.gson", "plan.com.google.gson"
+    relocate "com.google.errorprone", "plan.com.google.errorprone"
+    relocate "org.bstats", "plan.org.bstats"
+    relocate "org.jasypt", "plan.org.jasypt"
+
+    relocate "org.eclipse.jetty", "plan.org.eclipse.jetty"
+    relocate "jakarta.servlet", "plan.jakarta.servlet"
+    relocate "javax.servlet", "plan.javax.servlet"
+
+    relocate "org.json.simple", "plan.org.json.simple"
+
+    destinationDirectory.set(file("$rootDir/builds/"))
+    archiveBaseName.set("Plan")
+    archiveClassifier.set("")
+
+    mergeServiceFiles()
+}
+
+tasks.assemble.dependsOn tasks.shadowJar
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "com.djrapitops"
+            artifactId = "Plan-plugin"
+            version = "$fullVersion"
+
+            artifact shadowJar
+        }
+    }
+}

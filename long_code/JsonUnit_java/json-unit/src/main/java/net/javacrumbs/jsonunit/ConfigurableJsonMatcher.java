@@ -1,0 +1,76 @@
+/**
+ * Copyright 2009-2019 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package net.javacrumbs.jsonunit;
+
+import java.math.BigDecimal;
+import java.util.Collection;
+import net.javacrumbs.jsonunit.core.Configuration;
+import net.javacrumbs.jsonunit.core.ConfigurationWhen.ApplicableForPath;
+import net.javacrumbs.jsonunit.core.ConfigurationWhen.PathsParam;
+import net.javacrumbs.jsonunit.core.Option;
+import net.javacrumbs.jsonunit.core.listener.DifferenceListener;
+import org.hamcrest.Matcher;
+
+/**
+ * JsonMatcher interface.
+ *
+ *
+ */
+public interface ConfigurableJsonMatcher<T> extends Matcher<T> {
+
+    /**
+     * Set's numeric comparison tolerance. If none set, value form {@link net.javacrumbs.jsonunit.JsonAssert#getTolerance()}  is used.
+     */
+    ConfigurableJsonMatcher<T> withTolerance(BigDecimal tolerance);
+
+    /**
+     * Set's numeric comparison tolerance. If none set, value form {@link net.javacrumbs.jsonunit.JsonAssert#getTolerance()}  is used.
+     */
+    ConfigurableJsonMatcher<T> withTolerance(double tolerance);
+
+    /**
+     * Add options. Note that options are ADDED to those set
+     * by net.javacrumbs.jsonunit.JsonAssert.setOptions()
+     */
+    ConfigurableJsonMatcher<T> when(Option first, Option... next);
+
+    /**
+     * Sets options.
+     */
+    ConfigurableJsonMatcher<T> withOptions(Collection<Option> options);
+
+    /**
+     * Adds a matcher to be used in ${json-unit.matches:matcherName} macro.
+     */
+    ConfigurableJsonMatcher<T> withMatcher(String matcherName, Matcher<?> matcher);
+
+    /**
+     * Sets paths to be ignored.
+     */
+    ConfigurableJsonMatcher<T> whenIgnoringPaths(String... paths);
+
+    /**
+     * Sets DifferenceListener.
+     */
+    ConfigurableJsonMatcher<T> withDifferenceListener(DifferenceListener differenceListener);
+
+    /**
+     * Sets specific path options.
+     *
+     * @see Configuration#when(PathsParam, ApplicableForPath...)
+     */
+    ConfigurableJsonMatcher<T> when(PathsParam object, ApplicableForPath... actions);
+}

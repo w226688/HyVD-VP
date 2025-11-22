@@ -1,0 +1,48 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+CLUSTER_DOMAIN = "hbase.book"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+
+  config.vm.define "master-1" do |node|
+    node.vm.hostname = "master-1.#{CLUSTER_DOMAIN}"
+    node.vm.network :private_network, ip: "10.10.0.10"
+    node.vm.provider "virtualbox" do |v|
+      v.name = "HBase Book - Master 1"
+    end
+  end
+
+  config.vm.define "master-2" do |node|
+    node.vm.hostname = "master-2.#{CLUSTER_DOMAIN}"
+    node.vm.network :private_network, ip: "10.10.0.11"
+    node.vm.provider "virtualbox" do |v|
+      v.name = "HBase Book - Master 2"
+    end
+  end
+
+  config.vm.define "worker-1" do |node|
+    node.vm.hostname = "worker-1.#{CLUSTER_DOMAIN}"
+    node.vm.network :private_network, ip: "10.10.0.20"
+    node.vm.provider "virtualbox" do |v|
+      v.name = "HBase Book - Worker 1"
+    end
+  end
+
+  config.vm.define "worker-2" do |node|
+    node.vm.hostname = "worker-2.#{CLUSTER_DOMAIN}"
+    node.vm.network :private_network, ip: "10.10.0.21"
+    node.vm.provider "virtualbox" do |v|
+      v.name = "HBase Book - Worker 2"
+    end
+  end
+
+  config.vm.define "worker-3" do |node|
+    node.vm.hostname = "worker-3.#{CLUSTER_DOMAIN}"
+    node.vm.network :private_network, ip: "10.10.0.22"
+    node.vm.provider "virtualbox" do |v|
+      v.name = "HBase Book - Worker 3"
+    end
+  end
+end

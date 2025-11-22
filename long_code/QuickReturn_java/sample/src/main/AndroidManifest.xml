@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.etiennelawlor.quickreturn"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".QuickReturnApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        tools:replace="android:icon"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activities.QuickReturnActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.QuickReturnBaseActivity"/>
+        <activity
+            android:name=".activities.QuickReturnTwitterActivity"
+            android:label="@string/twitter"
+            android:theme="@style/TwitterTheme"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
+            android:name=".activities.QuickReturnFacebookActivity"
+            android:label="@string/facebook"
+            android:theme="@style/FacebookTheme"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
+            android:name=".activities.QuickReturnGooglePlusActivity"
+            android:label="@string/google_plus"
+            android:theme="@style/GooglePlusTheme"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
+            android:name=".activities.QuickReturnRecyclerViewActivity"
+            android:label="@string/recyclerview"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
+            android:name=".activities.QuickReturnListViewActivity"
+            android:label="@string/list_view"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
+            android:name=".activities.QuickReturnScrollViewActivity"
+            android:label="@string/scroll_view"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+        <activity
+            android:name=".activities.QuickReturnWebViewActivity"
+            android:label="@string/web_view"
+            android:parentActivityName=".activities.QuickReturnActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.QuickReturnActivity" />
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+
+android {
+    defaultConfig {
+        applicationId "com.lgh.tapclick"
+        compileSdk 34
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 106
+        versionName "10.6"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BUILD_TIME", "\"" + new Date().toString() + "\"")
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            buildConfigField("String", "BUILD_TIME", "\"" + new Date().toString() + "\"")
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    signingConfigs {
+        release {
+            keyAlias '*'
+            keyPassword '*'
+            storeFile file('../adgo.jks')
+            storePassword '*'
+        }
+        debug {
+            keyAlias '*'
+            keyPassword '*'
+            storeFile file('../adgo.jks')
+            storePassword '*'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+    }
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
+    namespace 'com.lgh.tapclick'
+}
+
+dependencies {
+    compileOnly files('libs/classes4-dex2jar.jar')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    implementation 'androidx.room:room-runtime:2.5.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+    implementation 'me.codeboy.android:align-text-view:2.3.2'
+    implementation 'commons-io:commons-io:2.13.0'
+    implementation 'cn.hutool:hutool-core:5.8.32'
+    implementation 'cn.hutool:hutool-crypto:5.8.32'
+    implementation 'com.github.Justson:CoolIndicator:v1.0.0'
+    implementation 'com.github.tiann:FreeReflection:3.2.2'
+    compileOnly 'de.robv.android.xposed:api:82'
+    annotationProcessor 'androidx.room:room-compiler:2.5.1'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation 'junit:junit:4.13.2'
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            Set<File> fileSet = options.bootstrapClasspath.getFiles()
+            List<File> newFileList = new ArrayList<>()
+            newFileList.add(new File("libs\\classes4-dex2jar.jar"))
+            newFileList.addAll(fileSet)
+            options.bootstrapClasspath = files(newFileList.toArray())
+        }
+    }
+}

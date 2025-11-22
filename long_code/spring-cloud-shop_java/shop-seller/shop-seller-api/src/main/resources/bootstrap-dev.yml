@@ -1,0 +1,40 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 106.54.251.32:8848
+        group: shop
+        namespace: 0759bc76-60b5-4f32-acd5-e5095cf2b93d
+      discovery:
+        server-addr: 106.54.251.32:8848
+        group: shop
+        namespace: 0759bc76-60b5-4f32-acd5-e5095cf2b93d
+    sentinel:
+      enabled: true
+      transport:
+        dashboard: 127.0.0.1:8080
+      filter:
+        enabled: true
+
+seata:
+  service:
+    vgroup-mapping:
+      shop-seller-seata-service-group: default
+    grouplist:
+      default: 106.54.251.32:8091
+    disable-global-transaction: false
+
+# 内部服务调用授权认证配置
+security:
+  oauth2:
+    client:
+      clientId: shop-client
+      clientSecret: shop-client
+      user-authorization-uri: http://localhost:8095/oauth/authorize
+      access-token-uri: http://localhost:8095/oauth/token
+      scope: app
+    resource:
+      id: shop-seller
+      user-info-uri: http://shop-auth/oauth/principal
+      prefer-token-info: true
+      loadBalanced: true

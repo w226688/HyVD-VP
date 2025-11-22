@@ -1,0 +1,43 @@
+import org.checkerframework.checker.nullness.qual.*;
+
+/* ========================================================================== */
+package com.fasterxml.jackson.core;
+
+public class JsonGenerator {
+    public void writeString(@Nullable String text);
+    public void writeStringField(String fieldName, @Nullable String value);
+    public void writeObjectField(String fieldName, @Nullable Object pojo);
+}
+
+/* ========================================================================== */
+package com.fasterxml.jackson.databind;
+
+public class JsonDeserializer<T> {
+    public @Nullable T deserialize(JsonParser jp, DeserializationContext ctxt);
+}
+
+public class JsonNode {
+    public @Nullable JsonNode get(String fieldName);
+}
+
+public class ObjectMapper {
+    public <T extends @Nullable Object> T treeToValue(TreeNode n, Class<T> valueType);
+    public <T extends @Nullable Object> T readValue(String content, Class<T> valueType);
+    public <T extends @Nullable Object> T readValue(String content, TypeReference valueTypeRef);
+    public <T extends @Nullable Object> T readValue(File src, Class<T> valueType);
+    public <T extends @Nullable Object> T convertValue(@Nullable Object fromValue,
+            Class<T> toValueType);
+    public String writeValueAsString(@Nullable Object value);
+}
+
+public class ObjectWriter {
+    public void writeValue(JsonGenerator jgen, @Nullable Object value);
+}
+
+/* ========================================================================== */
+package com.fasterxml.jackson.databind.node;
+
+public class ObjectNode {
+    public @Nullable JsonNode get(String fieldName);
+    public ObjectNode put(String fieldName, @Nullable Double value);
+}

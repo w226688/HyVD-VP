@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:3.3.0"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:1.5"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+    group="com.github.nekocode"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,408 @@
+// Copyright 2025 Memgraph Ltd.
+//
+// Use of this software is governed by the Business Source License
+// included in the file licenses/BSL.txt; by using this file, you agree to be bound by the terms of the Business Source
+// License, and you may not use this file except in compliance with the Business Source License.
+//
+// As of the Change Date specified in that file, in accordance with
+// the Business Source License, use of this software will be governed
+// by the Apache License, Version 2.0, included in the file
+// licenses/APL.txt.
+
+#pragma once
+
+#include <fmt/core.h>
+#include <fmt/format.h>
+#include <optional>
+#include <set>
+
+#include "communication/bolt/v1/codes.hpp"
+#include "communication/bolt/v1/state.hpp"
+#include "communication/bolt/v1/value.hpp"
+#include "communication/exceptions.hpp"
+#include "communication/metrics.hpp"
+#include "flags/auth.hpp"
+#include "spdlog/spdlog.h"
+#include "utils/likely.hpp"
+#include "utils/logging.hpp"
+#include "utils/string.hpp"
+
+namespace memgraph::communication::bolt {
+
+namespace details {
+
+template <typename TSession>
+void HandleAuthFailure(TSession &session) {
+  if (!session.encoder_.MessageFailure(
+          {{"code", "Memgraph.ClientError.Security.Unauthenticated"}, {"message", "Authentication failure"}})) {
+    spdlog::trace("Couldn't send failure message to the client!");
+  }
+  // Throw an exception to indicate to the network stack that the session
+  // should be closed and cleaned up.
+  throw SessionClosedException("The client is not authenticated!");
+}
+
+template <typename TSession>
+void HandleResourceFailure(TSession &session) {
+  if (!session.encoder_.MessageFailure({{"code", "Memgraph.ClientError.Statement.SessionLimitReached"},
+                                        {"message", "User reached the limit of concurent sessions"}})) {
+    spdlog::trace("Couldn't send failure message to the client!");
+  }
+  // Throw an exception to indicate to the network stack that the session
+  // should be closed and cleaned up.
+  throw SessionClosedException("The user cannot connect due to the imposed session limit!");
+}
+
+template <typename TSession>
+std::optional<State> BasicAuthentication(TSession &session, memgraph::communication::bolt::map_t &data) {
+  if (!data.contains("principal")) {  // Special case principal = ""
+    spdlog::warn("The client didn't supply the principal field! Trying with \"\"...");
+    data["principal"] = "";
+  }
+  if (!data.contains("credentials")) {  // Special case credentials = ""
+    spdlog::warn("The client didn't supply the credentials field! Trying with \"\"...");
+    data["credentials"] = "";
+  }
+  auto username = data["principal"].ValueString();
+  auto password = data["credentials"].ValueString();
+
+  const auto auth_res = session.Authenticate(username, password);
+  if (auth_res.HasError()) {
+    switch (auth_res.GetError()) {
+      case AuthFailure::kGeneric:
+        HandleAuthFailure(session);
+        break;
+      case AuthFailure::kResourceBound:
+        HandleResourceFailure(session);
+        break;
+    }
+  }
+
+  return std::nullopt;
+}
+
+template <typename TSession>
+std::optional<State> SSOAuthentication(TSession &session, memgraph::communication::bolt::map_t &data) {
+  if (!data.contains("credentials")) {
+    spdlog::warn("The client didn’t supply the SSO token!");
+    return State::Close;
+  }
+
+  auto scheme = data["scheme"].ValueString();
+  auto identity_provider_response = data["credentials"].ValueString();
+  const auto auth_res = session.SSOAuthenticate(scheme, identity_provider_response);
+  if (auth_res.HasError()) {
+    switch (auth_res.GetError()) {
+      case AuthFailure::kGeneric:
+        HandleAuthFailure(session);
+        break;
+      case AuthFailure::kResourceBound:
+        HandleResourceFailure(session);
+        break;
+    }
+  }
+  return std::nullopt;
+}
+
+template <typename TSession>
+std::optional<State> AuthenticateUser(TSession &session, Value &metadata) {
+  // Get authentication data.
+  // From neo4j driver v4.4, fields that have a default value are not sent.
+  // In order to have back-compatibility, the missing fields will be added.
+
+  auto &data = metadata.ValueMap();
+  if (data.empty()) {  // Special case auth=None
+    spdlog::warn("The client didn't supply the authentication scheme! Trying with \"none\"...");
+    data["scheme"] = "none";
+  }
+
+  auto scheme_in_module_mappings = [](std::string_view auth_scheme) {
+    if (auth_scheme == "basic") {  // "Basic" refers to username + password auth, as opposed to SSO
+      return false;
+    }
+    for (const auto &mapping : utils::Split(FLAGS_auth_module_mappings, ";")) {
+      if (auth_scheme == utils::Trim(utils::Split(mapping, ":")[0])) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  if (data["scheme"].ValueString() == "basic" || data["scheme"].ValueString() == "none") {
+    return BasicAuthentication(session, data);
+  }
+  if (scheme_in_module_mappings(data["scheme"].ValueString())) {
+    return SSOAuthentication(session, data);
+  }
+
+  spdlog::warn(
+      "The \"{}\" authentication scheme doesn’t have an associated single sign-on module in the auth-module-mappings "
+      "flag or isn’t otherwise supported",
+      data["scheme"].ValueString());
+  HandleAuthFailure(session);
+
+  return State::Close;
+}
+
+template <typename TSession>
+std::optional<Value> GetMetadataV1(TSession &session, const Marker marker) {
+  if (marker != Marker::TinyStruct2) [[unlikely]] {
+    spdlog::trace("Expected TinyStruct2 marker, but received 0x{:02X}!", utils::UnderlyingCast(marker));
+    spdlog::trace(
+        "The client sent malformed data, but we are continuing "
+        "because the official Neo4j Java driver sends malformed "
+        "data. D'oh!");
+    // TODO: this should be uncommented when the Neo4j Java driver is fixed
+    // return State::Close;
+  }
+
+  Value client_name;
+  if (!session.decoder_.ReadValue(&client_name, Value::Type::String)) {
+    spdlog::trace("Couldn't read client name!");
+    return std::nullopt;
+  }
+
+  Value metadata;
+  if (!session.decoder_.ReadValue(&metadata, Value::Type::Map)) {
+    spdlog::trace("Couldn't read metadata!");
+    return std::nullopt;
+  }
+
+  spdlog::info("Client connected '{}'", client_name.ValueString());
+
+  return metadata;
+}
+
+template <typename TSession>
+std::optional<Value> GetMetadataV4(TSession &session, const Marker marker) {
+  if (marker != Marker::TinyStruct1) [[unlikely]] {
+    spdlog::trace("Expected TinyStruct1 marker, but received 0x{:02X}!", utils::UnderlyingCast(marker));
+    spdlog::trace(
+        "The client sent malformed data, but we are continuing "
+        "because the official Neo4j Java driver sends malformed "
+        "data. D'oh!");
+    // TODO: this should be uncommented when the Neo4j Java driver is fixed
+    // return State::Close;
+  }
+
+  Value metadata;
+  if (!session.decoder_.ReadValue(&metadata, Value::Type::Map)) {
+    spdlog::trace("Couldn't read metadata!");
+    return std::nullopt;
+  }
+
+  auto &data = metadata.ValueMap();
+  if (!data.contains("user_agent")) {
+    spdlog::warn("The client didn't supply the user agent!");
+    return std::nullopt;
+  }
+
+  spdlog::info("Client connected '{}'", data.at("user_agent").ValueString());
+
+  return metadata;
+}
+
+template <typename TSession>
+std::optional<Value> GetInitDataV5(TSession &session, const Marker marker) {
+  if (marker != Marker::TinyStruct1) [[unlikely]] {
+    spdlog::trace("Expected TinyStruct1 marker, but received 0x{:02X}!", utils::UnderlyingCast(marker));
+    return std::nullopt;
+  }
+
+  Value metadata;
+  if (!session.decoder_.ReadValue(&metadata, Value::Type::Map)) {
+    spdlog::trace("Couldn't read metadata!");
+    return std::nullopt;
+  }
+
+  const auto &data = metadata.ValueMap();
+  if (!data.contains("user_agent")) {
+    spdlog::warn("The client didn't supply the user agent!");
+    return std::nullopt;
+  }
+
+  spdlog::info("Client connected '{}'", data.at("user_agent").ValueString());
+
+  return metadata;
+}
+
+template <typename TSession>
+std::optional<Value> GetAuthDataV5(TSession &session, const Marker marker) {
+  if (marker != Marker::TinyStruct1) [[unlikely]] {
+    spdlog::trace("Expected TinyStruct1 marker, but received 0x{:02X}!", utils::UnderlyingCast(marker));
+    return std::nullopt;
+  }
+
+  Value metadata;
+  if (!session.decoder_.ReadValue(&metadata, Value::Type::Map)) {
+    spdlog::trace("Couldn't read metadata!");
+    return std::nullopt;
+  }
+
+  return metadata;
+}
+
+template <typename TSession>
+State SendSuccessMessage(TSession &session) {
+  // Neo4j's Java driver 4.1.1+ requires connection_id.
+  // The only usage in the mentioned version is for logging purposes.
+  // Because it's not critical for the regular usage of the driver
+  // we send a hardcoded value for now.
+  map_t metadata{{"connection_id", "bolt-1"}};
+  if (auto server_name = session.GetServerNameForInit(); server_name) {
+    metadata.insert({"server", std::move(*server_name)});
+  }
+  bool success_sent = session.encoder_.MessageSuccess(metadata);
+  if (!success_sent) {
+    spdlog::trace("Couldn't send success message to the client!");
+    return State::Close;
+  }
+
+  return State::Idle;
+}
+
+template <typename TSession>
+State StateInitRunV1(TSession &session, const Marker marker, const Signature signature) {
+  if (signature != Signature::Init) [[unlikely]] {
+    spdlog::trace("Expected Init signature, but received 0x{:02X}!", utils::UnderlyingCast(signature));
+    return State::Close;
+  }
+
+  auto maybeMetadata = GetMetadataV1(session, marker);
+
+  if (!maybeMetadata) {
+    return State::Close;
+  }
+  if (auto result = AuthenticateUser(session, *maybeMetadata)) {
+    return result.value();
+  }
+
+  // Register session to metrics
+  RegisterNewSession(session, *maybeMetadata);
+
+  return SendSuccessMessage(session);
+}
+
+template <typename TSession, int bolt_minor = 0>
+State StateInitRunV4(TSession &session, Marker marker, Signature signature) {
+  if constexpr (bolt_minor > 0) {
+    if (signature == Signature::Noop) [[unlikely]] {
+      SPDLOG_DEBUG("Received NOOP message");
+      return State::Init;
+    }
+  }
+
+  if (signature != Signature::Init) [[unlikely]] {
+    spdlog::trace("Expected Init signature, but received 0x{:02X}!", utils::UnderlyingCast(signature));
+    return State::Close;
+  }
+
+  auto maybeMetadata = GetMetadataV4(session, marker);
+
+  if (!maybeMetadata) {
+    return State::Close;
+  }
+  if (auto result = AuthenticateUser(session, *maybeMetadata)) {
+    return result.value();
+  }
+
+  // Register session to metrics
+  RegisterNewSession(session, *maybeMetadata);
+
+  return SendSuccessMessage(session);
+}
+
+template <typename TSession>
+State StateInitRunV5(TSession &session, Marker marker, Signature signature) {
+  if (signature == Signature::Noop) [[unlikely]] {
+    SPDLOG_DEBUG("Received NOOP message");
+    return State::Init;
+  }
+
+  if (signature == Signature::Init) {
+    auto maybeMetadata = GetInitDataV5(session, marker);
+
+    if (!maybeMetadata) {
+      return State::Close;
+    }
+
+    if (SendSuccessMessage(session) == State::Close) {
+      return State::Close;
+    }
+
+    // Register session to metrics
+    TouchNewSession(session, *maybeMetadata);
+
+    // Stay in Init
+    return State::Init;
+  }
+
+  if (signature == Signature::LogOn) {
+    if (marker != Marker::TinyStruct1) [[unlikely]] {
+      spdlog::trace("Expected TinyStruct1 marker, but received 0x{:02X}!", utils::UnderlyingCast(marker));
+      spdlog::trace(
+          "The client sent malformed data, but we are continuing "
+          "because the official Neo4j Java driver sends malformed "
+          "data. D'oh!");
+      return State::Close;
+    }
+
+    auto maybeMetadata = GetAuthDataV5(session, marker);
+    if (!maybeMetadata) {
+      return State::Close;
+    }
+    auto result = AuthenticateUser(session, *maybeMetadata);
+    if (result) {
+      spdlog::trace("Failed to authenticate, closing connection...");
+      return State::Close;
+    }
+
+    if (SendSuccessMessage(session) == State::Close) {
+      return State::Close;
+    }
+
+    // Register session to metrics
+    UpdateNewSession(session, *maybeMetadata);
+
+    return State::Idle;
+  }
+
+  spdlog::trace("Expected Init signature, but received 0x{:02X}!", utils::UnderlyingCast(signature));
+  return State::Close;
+}
+}  // namespace details
+
+/**
+ * Init state run function.
+ * This function runs everything to initialize a Bolt session with the client.
+ * @param session the session that should be used for the run.
+ */
+template <typename TSession>
+State StateInitRun(TSession &session) {
+  DMG_ASSERT(!session.encoder_buffer_.HasData(), "There should be no data to write in this state");
+
+  Marker marker;
+  Signature signature;
+  if (!session.decoder_.ReadMessageHeader(&signature, &marker)) {
+    spdlog::trace("Missing header data!");
+    return State::Close;
+  }
+
+  switch (session.version_.major) {
+    case 1: {
+      return details::StateInitRunV1<TSession>(session, marker, signature);
+    }
+    case 4: {
+      if (session.version_.minor > 0) {
+        return details::StateInitRunV4<TSession, 1>(session, marker, signature);
+      }
+      return details::StateInitRunV4<TSession>(session, marker, signature);
+    }
+    case 5: {
+      return details::StateInitRunV5<TSession>(session, marker, signature);
+    }
+  }
+  spdlog::trace("Unsupported bolt version:{}.{})!", session.version_.major, session.version_.minor);
+  return State::Close;
+}
+}  // namespace memgraph::communication::bolt

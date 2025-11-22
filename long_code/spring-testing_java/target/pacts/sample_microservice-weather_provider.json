@@ -1,0 +1,87 @@
+{
+  "consumer": {
+    "name": "sample_microservice"
+  },
+  "interactions": [
+    {
+      "description": "a request for a weather request for Hamburg",
+      "providerStates": [
+        {
+          "name": "weather forecast data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/data/2.5/weather",
+        "query": {
+          "appid": [
+            "someAppId"
+          ],
+          "q": [
+            "Hamburg,de"
+          ]
+        }
+      },
+      "response": {
+        "body": {
+          "base": "stations",
+          "clouds": {
+            "all": 0
+          },
+          "cod": 200,
+          "coord": {
+            "lat": 53.55,
+            "lon": 10
+          },
+          "dt": 1600610385,
+          "id": 2911298,
+          "main": {
+            "feels_like": 292.46,
+            "humidity": 35,
+            "pressure": 1019,
+            "temp": 295.22,
+            "temp_max": 295.37,
+            "temp_min": 295.15
+          },
+          "name": "Hamburg",
+          "sys": {
+            "country": "DE",
+            "id": 1263,
+            "sunrise": 1600578166,
+            "sunset": 1600622640,
+            "type": 1
+          },
+          "timezone": 7200,
+          "visibility": 10000,
+          "weather": [
+            {
+              "description": "a light drizzle",
+              "icon": "01d",
+              "id": 800,
+              "main": "raining"
+            }
+          ],
+          "wind": {
+            "deg": 30,
+            "speed": 2.6
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.3.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "weather_provider"
+  }
+}

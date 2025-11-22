@@ -1,0 +1,14 @@
+tester:
+  title: DGC Tests
+  description: |-
+    'Performs tests for the serial action on an RMI DGC endpoint.'
+
+  id: '003-005'
+  groups:
+    - dgc
+    - serial
+  id_pattern: '003-005-{:03}'
+
+
+include:
+  - ../../shared/dgc.yml

@@ -1,0 +1,224 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/twitter_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/twitter_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp">
+
+            <!--app:cardCornerRadius="0dp"-->
+            <!--app:cardElevation="2dp"-->
+            <!--app:cardPreventCornerOverlap="true"-->
+
+            <!--app:contentPaddingLeft="@dimen/content_padding_left"-->
+            <!--app:contentPaddingRight="@dimen/content_padding_right"-->
+            <!--app:contentPaddingBottom="@dimen/content_padding_bottom"-->
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:clipChildren="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/twitter"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/facebook_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/facebook_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:clipChildren="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/facebook"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/google_plus_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/google_plus_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/google_plus"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
+        
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/recyclerview_linearlayout_cv"
+        style="@style/CardViewStyle"
+        app:cardBackgroundColor="@color/quick_return_primary"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp">
+
+        <com.etiennelawlor.quickreturn.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="RecyclerView with LinearLayoutManager"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+
+            android:textColor="@android:color/white"
+            app:textFont="Roboto_Bold" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/recyclerview_gridlayout_cv"
+        style="@style/CardViewStyle"
+        app:cardBackgroundColor="@color/quick_return_primary"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp">
+
+        <com.etiennelawlor.quickreturn.views.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="RecyclerView with GridLayoutManager"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white"
+            app:textFont="Roboto_Bold" />
+
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/listview_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/quick_return_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/listview"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/scrollview_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/quick_return_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            >
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/scrollview"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/webview_cv"
+            style="@style/CardViewStyle"
+            app:cardBackgroundColor="@color/quick_return_primary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            >
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/webview"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                app:textFont="Roboto_Bold" />
+
+        </android.support.v7.widget.CardView>
+        
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+    

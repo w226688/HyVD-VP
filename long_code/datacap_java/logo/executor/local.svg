@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- 背景圆 -->
+    <!-- Background circle -->
+    <circle cx="50" cy="50" r="46" fill="#3498db" />
+
+    <!-- 内部圆环 -->
+    <!-- Inner circle -->
+    <circle cx="50" cy="50" r="38" fill="none" stroke="#ffffff" stroke-width="4" />
+
+    <!-- 本地计算机图标 -->
+    <!-- Local computer icon -->
+    <rect x="30" y="35" width="40" height="30" rx="2" fill="#ffffff" />
+
+    <!-- 显示器底座 -->
+    <!-- Monitor base -->
+    <path d="M42 65 L58 65 L54 70 L46 70 Z" fill="#ffffff" />
+
+    <!-- 执行箭头 -->
+    <!-- Execution arrow -->
+    <path d="M40 45 L45 50 L40 55 M45 50 L55 50"
+          stroke="#3498db"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none" />
+</svg>

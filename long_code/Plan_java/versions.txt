@@ -1,0 +1,171 @@
+DEV|5.7.3123|https://github.com/plan-player-analytics/Plan/releases/download/5.7.3123/Plan-5.7-dev-build-3123.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.7.3123
+REL|5.6.2965|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2965/Plan-5.6-build-2965.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.6.2961|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2961/Plan-5.6-build-2961.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.6.2959|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2959/Plan-5.6-build-2959.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.6.2948|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2948/Plan-5.6-dev-build-2948.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2948
+DEV|5.6.2906|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2906/Plan-5.6-dev-build-2906.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2906
+REL|5.6.2883|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2883/Plan-5.6-build-2883.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.6.2850|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2850/Plan-5.6-dev-build-2850.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2850
+REL|5.6.2820|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2820/Plan-5.6-build-2820.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.6.2816|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2816/Plan-5.6-build-2816.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.6.2796|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2796/Plan-5.6-dev-build-2796.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2796
+DEV|5.6.2731|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2731/Plan-5.6-dev-build-2731.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2731
+DEV|5.6.2703|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2703/Plan-5.6-dev-build-2703.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2703
+REL|5.6.2614|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2614/Plan-5.6-build-2614.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.6.2574|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2574/Plan-5.6-dev-build-2574.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2574
+DEV|5.6.2556|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2556/Plan-5.6-dev-build-2556.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2556
+DEV|5.6.2542|https://github.com/plan-player-analytics/Plan/releases/download/5.6.2542/Plan-5.6-dev-build-2542.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.6.2542
+REL|5.5.2461|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2461/Plan-5.5-build-2461.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.5.2411|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2411/Plan-5.5-dev-build-2411.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2411
+REL|5.5.2391|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2391/Plan-5.5-build-2391.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.5.2379|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2379/Plan-5.5-dev-build-2379.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2379
+DEV|5.5.2335|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2335/Plan-5.5-dev-build-2335.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2335
+REL|5.5.2307|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2307/Plan-5.5-build-2307.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.5.2290|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2290/Plan-5.5-dev-build-2290.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2290
+REL|5.5.2272|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2272/Plan-5.5-build-2272.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.5.2254|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2254/Plan-5.5-dev-build-2254.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2254
+DEV|5.5.2208|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2208/Plan-5.5-dev-build-2208.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2208
+DEV|5.5.2195|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2195/Plan-5.5-dev-build-2195.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2195
+REL|5.5.2172|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2172/Plan-5.5-build-2172.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5.2163|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2163/Plan-5.5-build-2163.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5.2150|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2150/Plan-5.5-build-2150.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5.2121|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2121/Plan-5.5-build-2121.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5 build 2100|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2100/Plan-5.5-build-2100.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.5 build 2076|https://github.com/plan-player-analytics/Plan/releases/download/5.5.2076/Plan-5.5-dev-build-2076.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.2076
+REL|5.5 build 1984|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1984/Plan-5.5-build-1984.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5 build 1969|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1969/Plan-5.5-build-1969.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5 build 1953|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1953/Plan-5.5-build-1953.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.5 build 1951|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1951/Plan-5.5-build-1951.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.5 build 1923|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1923/Plan-5.5-dev-build-1923.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.1923
+DEV|5.5 build 1833|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1833/Plan-5.5-dev-build-1833.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.1833
+DEV|5.5 build 1740|https://github.com/plan-player-analytics/Plan/releases/download/5.5.1740/Plan-5.5-dev-build-1740.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.5.1740
+REL|5.4 build 1722|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1722/Plan-5.4-build-1722.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1722
+DEV|5.4 build 1718|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1718/Plan-5.4-dev-build-1718.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1718
+REL|5.4 build 1690|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1690/Plan-5.4-build-1690.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1690
+DEV|5.4 build 1661|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1661/Plan-5.4-dev-build-1661.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1661
+DEV|5.4 build 1651|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1651/Plan-5.4-dev-build-1651.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1651
+DEV|5.4 build 1648|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1648/Plan-5.4-dev-build-1648.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1648
+REL|5.4 build 1633|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1633/Plan-5.4-build-1633.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.4 build 1626|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1628/Plan-5.4-build-1628.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.4 build 1619|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1619/Plan-5.4-dev-build-1619.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1619
+DEV|5.4 build 1616|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1616/Plan-5.4-dev-build-1616.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1616
+DEV|5.4 build 1611|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1611/Plan-5.4-dev-build-1611.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1611
+REL|5.4 build 1583|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1583/Plan-5.4-build-1583.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.4 build 1581|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1581/Plan-5.4-build-1581.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.4 build 1575|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1575/Plan-5.4-dev-build-1575.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1575
+DEV|5.4 build 1555|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1555/Plan-5.4-dev-build-1555.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1555
+DEV|5.4 build 1536|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1536/Plan-5.4-dev-build-1536.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1536
+DEV|5.4 build 1526|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1526/Plan-5.4-dev-build-1526.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1526
+REL|5.4 build 1516|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1516/Plan-5.4-build-1516.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.4 build 1494|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1494/Plan-5.4-build-1494.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.4 build 1485|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1485/Plan-5.4-build-1485.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.4 build 1463|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1463/Plan-5.4-dev-build-1463.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1463
+DEV|5.4 build 1445|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1445/Plan-5.4-dev-build-1445.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1445
+DEV|5.4 build 1412|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1412/Plan-5.4-dev-build-1412.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1412
+DEV|5.4 build 1396|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1396/Plan-5.4-dev-build-1396.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1396
+REL|5.4 build 1366|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1366/Plan-5.4-build-1366.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.4 build 1354|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1354/Plan-5.4-build-1354.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.4 build 1330|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1330/Plan-5.4-build-1330.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.4 build 1317|https://github.com/plan-player-analytics/Plan/releases/download/5.4.1317/Plan-5.4-dev-build-1317.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.4.1317
+REL|5.3 build 1284|https://github.com/plan-player-analytics/Plan/releases/download/5.3.1284/Plan-5.3-build-1284.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.2 build 1273|https://github.com/plan-player-analytics/Plan/releases/download/5.3.1273/Plan-5.3-dev-build-1273.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.3.1273
+DEV|5.2 build 1262|https://github.com/plan-player-analytics/Plan/releases/download/5.3.1262/Plan-5.3-dev-build-1262.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.3.1262
+DEV|5.2 build 1234|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1234/Plan-5.2-dev-build-1234.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.1234
+REL|5.2 build 1174|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1174/Plan-5.2-build-1174.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.2 build 1147|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1147/Plan-5.2-build-1147.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.2 build 1124|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1124/Plan-5.2-build-1124.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.2 build 1120|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1120/Plan-5.2-build-1120.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.2 build 1108|https://github.com/plan-player-analytics/Plan/releases/download/5.2.11.08/Plan-5.2-dev-build-1108.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.11.08
+DEV|5.2 build 1097|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1097/Plan-5.2-dev-build-1097.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.1097
+REL|5.2 build 1068|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1068/Plan-5.2-build-1068.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.2 build 1063|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1063/Plan-5.2-build-1063.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.2 build 1056|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1056/Plan-5.2-dev-build-1056.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.1056
+DEV|5.2 build 1022|https://github.com/plan-player-analytics/Plan/releases/download/5.2.1022/Plan-5.2-dev-build-1022.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.1022
+DEV|5.2 build 970|https://github.com/plan-player-analytics/Plan/releases/download/5.2.970/Plan-5.2-dev-build-970.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.970
+DEV|5.2 build 902|https://github.com/plan-player-analytics/Plan/releases/download/5.2.902/Plan-5.2-dev-build-904.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.2.902
+REL|5.1 build 813|https://github.com/plan-player-analytics/Plan/releases/download/5.1.813/Plan-5.1-build-813.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 810|https://github.com/plan-player-analytics/Plan/releases/download/5.1.810/Plan-5.1-build-810.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 808|https://github.com/plan-player-analytics/Plan/releases/download/5.1.808/Plan-5.1-build-808.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 791|https://github.com/plan-player-analytics/Plan/releases/download/5.1.791/Plan-5.1-build-791.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 770|https://github.com/plan-player-analytics/Plan/releases/download/5.1.770/Plan-5.1-build-770.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 768|https://github.com/plan-player-analytics/Plan/releases/download/5.1.768/Plan-5.1-build-768.jar|https://github.com/plan-player-analytics/Plan/releases
+DEV|5.1 build 740|https://github.com/plan-player-analytics/Plan/releases/download/5.1.740/Plan-5.1-dev-build-740.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.740
+DEV|5.1 build 705|https://github.com/plan-player-analytics/Plan/releases/download/5.1.705/Plan-5.1-dev-build-705.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.705
+REL|5.1 build 657|https://github.com/plan-player-analytics/Plan/releases/download/5.1.657/Plan-5.1-build-657.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 624|https://github.com/plan-player-analytics/Plan/releases/download/5.1.624/Plan-5.1-build.624.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 615|https://github.com/plan-player-analytics/Plan/releases/download/5.1.615/Plan-5.1-build-615.jar|https://github.com/plan-player-analytics/Plan/releases
+REL|5.1 build 563|https://github.com/plan-player-analytics/Plan/releases/download/5.1.563/Plan-5.1-build-563.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.563
+REL|5.1 build 545|https://github.com/plan-player-analytics/Plan/releases/download/5.1.545/Plan-5.1-build-545.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.545
+DEV|5.1 build 538|https://github.com/plan-player-analytics/Plan/releases/download/5.1.538/Plan-5.1-dev-build-538.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.538
+REL|5.1 build 505|https://github.com/plan-player-analytics/Plan/releases/download/5.1.505/Plan-5.1-build-505.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.505
+REL|5.1 build 497|https://github.com/plan-player-analytics/Plan/releases/download/5.1.497/Plan-5.1-build-497.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.497
+REL|5.1 build 486|https://github.com/plan-player-analytics/Plan/releases/download/5.1.486/Plan-5.1-build-486.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.486
+REL|5.1 build 474|https://github.com/plan-player-analytics/Plan/releases/download/5.1.474/Plan-5.1-build-474.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.1.474
+DEV|5.0 build 458|https://github.com/plan-player-analytics/Plan/releases/download/5.0.458/Plan-5.0-dev-build-458.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.458
+REL|5.0 build 415|https://github.com/plan-player-analytics/Plan/releases/download/5.0.415/Plan-5.0-build-415.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.415
+REL|5.0 build 410|https://github.com/plan-player-analytics/Plan/releases/download/5.0.410/Plan-5.0-build-410.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.410
+REL|5.0 build 382|https://github.com/plan-player-analytics/Plan/releases/download/5.0.382/Plan-5.0-build-382.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.382
+DEV|5.0 build 368|https://github.com/plan-player-analytics/Plan/releases/download/5.0.368/Plan-5.0.dev.build.368.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.368
+REL|5.0 build 367|https://github.com/plan-player-analytics/Plan/releases/download/5.0.367/Plan-5.0-build-367.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.367
+DEV|5.0 build 361|https://github.com/plan-player-analytics/Plan/releases/download/5.0.361/Plan-5.0.dev.build.361.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.361
+DEV|5.0 build 345|https://github.com/plan-player-analytics/Plan/releases/download/5.0.345/Plan-5.0.dev.build.345.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.345
+REL|5.0 build 335|https://github.com/plan-player-analytics/Plan/releases/download/5.0.335/Plan-5.0-build-335.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.335
+REL|5.0 build 309|https://github.com/plan-player-analytics/Plan/releases/download/5.0.309/Plan-5.0-build-309.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.309
+REL|5.0 build 292|https://github.com/plan-player-analytics/Plan/releases/download/5.0-build-292/Plan-5.0.build.292.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0-build-292
+REL|5.0 build 288|https://github.com/plan-player-analytics/Plan/releases/download/5.0.288/Plan-5.0.build.288.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.288
+REL|5.0 build 286|https://github.com/plan-player-analytics/Plan/releases/download/5.0.286/Plan-5.0.build.286.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0.286
+REL|5.0 build 279|https://github.com/plan-player-analytics/Plan/releases/download/5.0-build-279/Plan-5.0.build.279.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0-build-279
+REL|5.0 build 260|https://github.com/plan-player-analytics/Plan/releases/download/5.0-build-260/Plan-5.0.build.260.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0-build-260
+REL|5.0 build 249|https://github.com/plan-player-analytics/Plan/releases/download/5.0-build-249/Plan-5.0.build.249.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0-build-249
+REL|5.0 build 224|https://github.com/Rsl1122/Plan/releases/download/5.0/Plan-5.0.build.224.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0
+DEV|5.0 RC build 196|https://github.com/Rsl1122/Plan/releases/download/5.0-RC-build-196/Plan-5.0.RC.build.196.jar|https://github.com/plan-player-analytics/Plan/releases/tag/5.0-RC-build-196
+REL|4.9.4|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.9.4/Plan-4.9.4.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.9.4
+REL|4.9.3|https://github.com/plan-player-analytics/Plan/releases/download/4.9.3/Plan-4.9.3.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.9.3
+REL|4.9.2|https://github.com/plan-player-analytics/Plan/releases/download/4.9.2/Plan-4.9.2.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.9.2
+DEV|4.9.1-b1|https://github.com/plan-player-analytics/Plan/releases/download/4.9.2-DEV1/Plan-4.9.1-b1.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.9.2-DEV1
+REL|4.9.1|https://github.com/plan-player-analytics/Plan/releases/download/4.9.1/Plan-4.9.1.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.9.1
+REL|4.9.0|https://github.com/plan-player-analytics/Plan/releases/download/4.9.0-REL/Plan-4.9.0.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.9.0-REL
+REL|4.8.8|https://github.com/plan-player-analytics/Plan/releases/download/4.8.8/Plan-4.8.8.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.8
+REL|4.8.7|https://github.com/plan-player-analytics/Plan/releases/download/4.8.7/Plan-4.8.7.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.7
+REL|4.8.5|https://github.com/plan-player-analytics/Plan/releases/download/4.8.5/Plan-4.8.5.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.5
+REL|4.8.3|https://github.com/plan-player-analytics/Plan/releases/download/4.8.3/Plan-4.8.3.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.3
+REL|4.8.2|https://github.com/plan-player-analytics/Plan/releases/download/4.8.2/Plan-4.8.2.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.2
+DEV|4.8.1-b5|https://github.com/plan-player-analytics/Plan/releases/download/4.8.2-DEV5/Plan-4.8.1-b5.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.2-DEV5
+DEV|4.8.1-b3|https://github.com/plan-player-analytics/Plan/releases/download/4.8.2-DEV3/Plan-4.8.1-b3.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.2-DEV3
+REL|4.8.1|https://github.com/plan-player-analytics/Plan/releases/download/4.8.1/Plan-4.8.1.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.1
+DEV|4.8.0-b1|https://github.com/plan-player-analytics/Plan/releases/download/4.8.1-DEV1/Plan-4.8.0-b1.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.1-DEV1
+REL|4.8.0|https://github.com/plan-player-analytics/Plan/releases/download/4.8.0/Plan-4.8.0.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.0
+DEV|4.7.2-b1|https://github.com/plan-player-analytics/Plan/releases/download/4.8.0-DEV1/Plan-4.7.2-b1.jar|https://github.com/plan-player-analytics/Plan/releases/tag/4.8.0-DEV1
+REL|4.7.2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.2/Plan-4.7.2.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.2
+REL|4.7.1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.1/Plan-4.7.1.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.1
+DEV|4.7.0-b1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.1-DEV1/Plan-4.7.1-SNAPSHOT-b1.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.1-DEV1
+REL|4.7.0|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.0/Plan-4.7.0.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.0
+DEV|4.6.2-b3|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.0-DEV3/Plan-4.7.0-SNAPSHOT-b3.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.0-DEV3
+DEV|4.6.2-b2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.0-DEV2/Plan-4.7.0-SNAPSHOT-b2.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.0-DEV2
+DEV|4.6.2-b1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.7.0-DEV1/Plan-4.7.0-SNAPSHOT-b1.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.7.0-DEV1
+REL|4.6.2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.2-REL/Plan-4.6.2.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.2-REL
+REL|4.6.1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.1-REL/Plan-4.6.1.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.1-REL
+REL|4.6.0|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.0-REL/Plan-4.6.0.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.0-REL
+DEV|4.5.2-b4|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.0-DEV4/Plan-4.5.2-b4.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.0-DEV4
+DEV|4.5.2-b3|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.0-DEV3/Plan-4.5.2-b3.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.0-DEV3
+DEV|4.5.2-b2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.0-DEV2/Plan-4.5.2-b2.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.0-DEV2
+DEV|4.5.2-b1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.6.0-DEV1/Plan-4.5.2-b1.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.6.0-DEV1
+REL|4.5.2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.5.2-REL/Plan-4.5.2.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.5.2-REL
+REL|4.5.1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.5.1-REL/Plan-4.5.1-bukkit-bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.5.1-REL
+REL|4.5.0|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.5.0-RELEASE/Plan-4.5.0-bukkit-bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.5.0-RELEASE
+DEV|4.4.7-b4|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.5.0-DEV4/Plan-4.4.7-b4-bukkit-bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.5.0-DEV4
+REL|4.4.7|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.7-REL/Plan-4.4.7-bukkit-bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.4.7-REL
+REL|4.4.6|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.6-REL/Plan-4.4.6-bukkit-bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.4.6-REL
+DEV|4.4.5-b2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.6-DEV2/Plan-4.4.5-b2-bukkit-bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.4.6-DEV2
+REL|4.4.5|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.5-RELEASE/Plan-4.4.5.Bukkit.Bungee.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.4.5-RELEASE
+REL|4.4.4|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.4-REL/Plan-4.4.4.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=240584
+DEV|4.4.3-b3|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.4-DEV3/Plan-4.4.3-b3.jar|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/tag/4.4.4-DEV3
+REL|4.4.3|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.3/Plan-4.4.3.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=238545
+REL|4.4.2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.2/Plan-4.4.2.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=237951
+REL|4.4.1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.1/Plan-4.4.1.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=234420
+REL|4.4.0|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.4.0/Plan-4.4.0.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=234282
+REL|4.3.2|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.3.2-Release/Plan-4.3.2.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=227663
+REL|4.3.1|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.3.1/Plan-4.3.1.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=226625
+REL|4.2.0|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.2.0/Plan-4.2.0.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=219875
+REL|4.1.7|https://github.com/Rsl1122/Plan-PlayerAnalytics/releases/download/4.1.7/Plan-4.1.7.jar|https://www.spigotmc.org/resources/plan-player-analytics.32536/update?update=214180
+# This file is used for /plan update command

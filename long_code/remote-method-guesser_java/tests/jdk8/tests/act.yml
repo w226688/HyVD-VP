@@ -1,0 +1,18 @@
+tester:
+  title: Activator Tests
+  description: |-
+    'Performs tests for the serial action on an RMI activator endpoint.'
+
+  id: '001-001'
+  groups:
+    - act
+    - serial
+  id_pattern: '001-001-{:03}'
+
+
+variables:
+  file: jdk8-activator-rce-test.txt
+
+
+include:
+  - ../../shared/act.yml

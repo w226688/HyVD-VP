@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">Preglednik nedostupan</string>
+    <string name="err_no_app">Nema aplikacije za otvaranje datoteke ovog tipa</string>
+    <string name="open_url">Otvori URL adresu</string>
+    <!-- Onboarding -->
+    <!-- Download -->
+    <string name="download_save_pending">Spremanje datoteke. Pričekajte trenutak…</string>
+    <string name="download_successful">Preuzimanje je uspješno</string>
+    <string name="notification_channel_name">Preuzimanje je završeno</string>
+    <!-- Action Buttons -->
+    <string name="open">otvori</string>
+    <string name="reset">ponovno pokreni</string>
+    <string name="copy">kopiraj</string>
+    <!-- Settings / About -->
+    <string name="pref_category_settings">Postavke</string>
+    <string name="logs">Debug Dnevnici</string>
+    <string name="components_summary">Pritisni za prikaz</string>
+    <string name="version">Verzija</string>
+    <string name="pref_device_name_title">Naziv uređaja</string>
+    <string name="pref_device_name_summary">Postavite svoj naziv uređaja</string>
+    <string name="keep_on_summary">(Preporučeno) Mnogi uređaji imaju problem s prekinutim prijenosima kada se ekran isključi</string>
+    <string name="keep_on_title">Održi ekran upaljen za vrijeme prijenosa</string>
+    <string name="settings_theme_title">Tema</string>
+    <string-array name="darkmode_entries">
+        <item>Zadano sustavom</item>
+        <item>Svijetlo</item>
+        <item>Tamno</item>
+    </string-array>
+    <string name="save_location">Mjesto spremanja</string>
+    <!-- File sharing -->
+    <string name="intent_file">Datoteka je označena za dijeljenje</string>
+    <string name="intent_files">Datoteke su označene za dijeljenje</string>
+    <string name="intent_content">Sadržaj je označen za dijeljenje</string>
+    <string name="error_filechooser">Izbornik datoteka nedostupan</string>
+    <string name="error_network">Molimo provjerite jeste li spojeni na WiFi mrežu</string>
+    <string name="ignore_error_network">Svejedno me pusti unutra</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">Kliknite za slanje datoteka ili držite za slanje poruke</string>
+    <string name="website_file_received">Datoteka primljena</string>
+    <string name="website_file_ask_before_download">Uvijek pitaj prije spremanja datoteke</string>
+    <string name="website_file_download">Spremi</string>
+    <string name="website_footer_discovery">Možete biti otkriveni sa svakog na istom internetu</string>
+    <string name="website_footer_known_as">Budete prepoznati kao %s</string>
+    <string name="website_about_subheading">Najlakši način prijenos datoteka preko uređaja</string>
+</resources>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- 背景圆 -->
+    <!-- Background circle -->
+    <circle cx="50" cy="50" r="46" fill="#95a5a6" />
+
+    <!-- 内部圆环 -->
+    <!-- Inner ring -->
+    <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="2" stroke-dasharray="4,2" />
+
+    <!-- 装饰线条 - 左侧 -->
+    <!-- Decorative lines - left -->
+    <line x1="18" y1="50" x2="25" y2="50" stroke="white" stroke-width="2" />
+
+    <!-- 装饰线条 - 右侧 -->
+    <!-- Decorative lines - right -->
+    <line x1="78" y1="50" x2="85" y2="50" stroke="white" stroke-width="2" />
+
+    <!-- 文本背景 -->
+    <!-- Text background -->
+    <rect x="28" y="35" width="44" height="30" fill="#95a5a6" />
+
+    <!-- None 文本 -->
+    <!-- None text -->
+    <text x="51" y="57"
+          font-family="Arial, sans-serif"
+          font-size="20"
+          font-weight="bold"
+          text-anchor="middle"
+          fill="white">
+        None
+    </text>
+</svg>

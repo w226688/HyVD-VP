@@ -1,0 +1,195 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.netflix.nebula:gradle-aggregate-javadocs-plugin:3.0.+"
+    }
+}
+
+plugins {
+    id("base")
+    id "org.sonarqube" version "6.3.1.5724"
+    id "com.gradleup.shadow" version "9.0.0-beta6" apply false
+    id "fabric-loom" version "1.11-SNAPSHOT" apply false
+}
+
+apply plugin: "nebula-aggregate-javadocs"
+
+clean {
+    delete "builds/"
+}
+
+allprojects {
+    group = "com.djrapitops"
+    version = "5.7-SNAPSHOT"
+
+    ext {
+        majorVersion = "5"
+        minorVersion = "7"
+        buildVersion = providers.provider {
+            def command = "git rev-list --count HEAD"
+            def buildInfo = command.execute().text.trim()
+            // Magic number: git rev-list --count cdb13e3b663b18e3938ad5efc60d165fa9301f6e
+            return Integer.parseInt(buildInfo.toString().replaceAll("[^0-9]", "")) - 3529
+        }.get()
+
+        fullVersion = majorVersion + "." + minorVersion + " build " + buildVersion
+        fullVersionFilename = majorVersion + "." + minorVersion + "-build-" + buildVersion
+        fullVersionSemantic = majorVersion + "." + minorVersion + "+build." + buildVersion
+    }
+}
+
+subprojects {
+    // Build plugins
+    apply plugin: "java-library"
+    apply plugin: "maven-publish"
+
+    // Report plugins
+    apply plugin: "checkstyle"
+    apply plugin: "jacoco"
+
+    compileJava {
+        options.release = 11
+    }
+
+    ext {
+        daggerVersion = "2.57.1"
+
+        palVersion = "5.3.0"
+
+        bukkitVersion = "1.13.2-R0.1-SNAPSHOT"
+        spigotVersion = "1.13.2-R0.1-SNAPSHOT"
+        paperVersion = "1.13.2-R0.1-SNAPSHOT"
+        spongeVersion = "14.0.0"
+        nukkitVersion = "1.0-SNAPSHOT"
+        bungeeVersion = "1.16-R0.4"
+        velocityVersion = "3.0.0-SNAPSHOT"
+        redisBungeeVersion = "0.3.8-SNAPSHOT"
+        redisBungeeProxioDevVersion = "0.7.3"
+
+        commonsTextVersion = "1.14.0"
+        commonsCompressVersion = "1.28.0"
+        commonsCodecVersion = "1.19.0"
+        caffeineVersion = "3.2.2"
+        jetbrainsAnnotationsVersion = "26.0.2"
+        jettyVersion = "11.0.26"
+        mysqlVersion = "9.4.0"
+        mariadbVersion = "3.5.6"
+        sqliteVersion = "3.42.0.1"
+        adventureVersion = "4.24.0"
+        hikariVersion = "7.0.2"
+        slf4jVersion = "2.0.17"
+        geoIpVersion = "4.4.0"
+        gsonVersion = "2.13.2"
+        dependencyDownloadVersion = "2.0.0"
+        ipAddressMatcherVersion = "5.5.1"
+        jasyptVersion = "1.9.3"
+
+        bstatsVersion = "3.1.0"
+        placeholderapiVersion = "2.11.5"
+        nkPlaceholderapiVersion = "1.4-SNAPSHOT"
+
+        junitVersion = "5.13.4"
+        mockitoVersion = "5.19.0"
+        seleniumVersion = "4.35.0"
+        testContainersVersion = "1.21.3"
+        awaitilityVersion = "4.3.0"
+        swaggerVersion = "2.2.36"
+        guavaVersion = "33.4.8-jre"
+    }
+
+    repositories {
+        mavenCentral()
+        google()
+        maven { url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" } // Spigot
+        maven { url = "https://repo.papermc.io/repository/maven-public/" } // Paper
+        maven { url = "https://repo.spongepowered.org/repository/maven-public/" } // Sponge
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots" } // BungeeCord
+        maven { url = "https://repo.playeranalytics.net/releases" } // Plan
+        maven { url = "https://repo.md-5.net/content/repositories/snapshots/" } // RedisBungee
+        maven { url = "https://jitpack.io" } // RedisBungee fork
+    }
+
+    dependencies {
+        // Dependency Injection used across the project
+        implementation("com.google.dagger:dagger:$daggerVersion") {
+            exclude group: "org.jspecify", module: "jspecify"
+        }
+        annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion") {
+            exclude group: "org.jspecify", module: "jspecify"
+        }
+
+        // Required for JUnit to discover tests in modules.
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "failed", "skipped"
+            exceptionFormat = "full"
+        }
+        finalizedBy jacocoTestReport
+    }
+
+    checkstyle {
+        toolVersion = "10.21.1"
+        getConfigDirectory().set file("$rootProject.projectDir/config/checkstyle")
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.required = true
+            // xml.destination file("${buildDir}/jacoco/report.xml")
+        }
+    }
+
+    // Fix for UTF-8 files showing with wrong encoding when compiled on Windows machines.
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
+        options.fork = true
+    }
+
+    tasks.withType(Javadoc).configureEach {
+        options.encoding = "UTF-8"
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Player Analytics"
+        property "sonar.projectKey", "com.djrapitops:Plan"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
+
+tasks.register("snapshotVersion") {
+    def textFile = layout.buildDirectory.file("versions/snapshot.txt")
+    doLast {
+        textFile.get().asFile.with {
+            parentFile.mkdirs()
+            write(version as String)
+        }
+    }
+}
+
+tasks.register("jarNameVersion") {
+    def textFile = layout.buildDirectory.file("versions/jar.txt")
+    doLast {
+        textFile.get().asFile.with {
+            parentFile.mkdirs()
+            write("$majorVersion.$minorVersion-build-$buildVersion")
+        }
+    }
+}
+
+tasks.register("humanReadableVersion") {
+    def textFile = layout.buildDirectory.file("versions/human.txt")
+    doLast {
+        textFile.get().asFile.with {
+            parentFile.mkdirs()
+            write(fullVersion)
+        }
+    }
+}

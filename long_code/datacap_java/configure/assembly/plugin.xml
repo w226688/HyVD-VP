@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <id>bin</id>
+
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>./</outputDirectory>
+            <unpack>false</unpack>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
+            <excludes>
+                <!-- Spring related -->
+                <exclude>org.springframework.boot:*</exclude>
+                <exclude>org.springframework:*</exclude>
+                <exclude>org.springframework.*:*</exclude>
+
+                <!-- Tomcat related -->
+                <exclude>org.apache.tomcat:*</exclude>
+                <exclude>org.apache.tomcat.embed:*</exclude>
+
+                <!-- Kotlin related -->
+                <exclude>org.jetbrains.kotlin:*</exclude>
+                <exclude>org.jetbrains:*</exclude>
+                <exclude>org.jetbrains.annotations:*</exclude>
+
+                <!-- FindBugs and Code Quality -->
+                <exclude>com.google.code.findbugs:*</exclude>
+                <exclude>net.sourceforge.findbugs:*</exclude>
+                <exclude>org.checkerframework:*</exclude>
+                <exclude>com.google.errorprone:*</exclude>
+                <exclude>com.google.j2objc:*</exclude>
+                <exclude>org.jcip:*</exclude>
+
+                <!-- Guava related -->
+                <exclude>com.google.guava:*</exclude>
+
+                <!-- ASM related -->
+                <exclude>org.ow2.asm:*</exclude>
+                <exclude>asm:*</exclude>
+
+                <!-- XML related -->
+                <exclude>dom4j:*</exclude>
+                <exclude>jaxen:*</exclude>
+                <exclude>xml-apis:*</exclude>
+
+                <!-- Connection Pool -->
+                <exclude>com.mchange:*</exclude>
+                <exclude>com.zaxxer:*</exclude>
+
+                <!-- Logging -->
+                <exclude>org.slf4j:*</exclude>
+                <exclude>ch.qos.logback:*</exclude>
+                <exclude>org.apache.logging.log4j:*</exclude>
+
+                <!-- Others -->
+                <exclude>aopalliance:*</exclude>
+                <exclude>Apple:*</exclude>
+                <exclude>javax.inject:*</exclude>
+                <exclude>org.quartz-scheduler:*</exclude>
+                <exclude>org.yaml:*</exclude>
+                <exclude>org.projectlombok:*</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>./</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <excludes>
+                <!-- Documentation and source jars -->
+                <exclude>**/*-javadoc.jar</exclude>
+                <exclude>**/*-sources.jar</exclude>
+                <exclude>**/*-test.jar</exclude>
+                <exclude>**/test-*.jar</exclude>
+
+                <!-- Extra JARs -->
+                <exclude>**/aopalliance-*.jar</exclude>
+                <exclude>**/AppleJavaExtensions-*.jar</exclude>
+                <exclude>**/asm-*.jar</exclude>
+                <exclude>**/c3p0-*.jar</exclude>
+                <exclude>**/checker-qual-*.jar</exclude>
+                <exclude>**/dom4j-*.jar</exclude>
+                <exclude>**/error_prone_annotations-*.jar</exclude>
+                <exclude>**/HikariCP-*.jar</exclude>
+                <exclude>**/j2objc-annotations-*.jar</exclude>
+                <exclude>**/javax.inject-*.jar</exclude>
+                <exclude>**/jaxen-*.jar</exclude>
+                <exclude>**/jcip-annotations-*.jar</exclude>
+                <exclude>**/log4j-*.jar</exclude>
+                <exclude>**/mchange-commons-java-*.jar</exclude>
+                <exclude>**/quartz-*.jar</exclude>
+                <exclude>**/snakeyaml-*.jar</exclude>
+                <exclude>**/xml-apis-*.jar</exclude>
+                <exclude>**/org.projectlombok-*.jar</exclude>
+                <exclude>**/lombok-*.jar</exclude>
+            </excludes>
+        </fileSet>
+    </fileSets>
+</assembly>

@@ -1,0 +1,150 @@
+---
+
+# ============================================================================
+# Configuration of a HBase Cluster
+# ---
+# The variables in this part can be changed to adapt the playbooks to your
+# specific needs. Anything further down should only be changed if you really
+# know what you are doing!
+# ============================================================================
+
+# The versions of software that will be installed by the playbooks.
+HADOOP_VERSION: 2.7.3
+HBASE_VERSION: 1.3.0
+HUE_VERSION: 3.10.0
+ZOOKEEPER_VERSION: 3.4.9
+SPARK_VERSION: 1.6.1
+
+# Setting this to true causes the entire cluster to be started in secure mode,
+# all services will require a kerberos ticket to allow access and all http uis
+# will only work over https. Please note: Since a new CA is generated for this
+# example your browser will warn you about an insecure connection, as your
+# browser will not trust this CA. To fix this you can either add an exception
+# for these urls or import the rootCA.pem file from the
+# cluster/ansible/files/tmp/certs folder relative to your repository root.
+SECURITY_ENABLED: false
+
+# If set to true all services will be restarted whenever a config file change
+# that affects this service is made. TBD.
+RESTART_ON_CHANGE: true
+
+# This setting affects the fqdns that your hosts will get on the internal
+# network that Vagrant (if used at all) creates. Hostnames will be
+# "master-[1..x].CLUSTER_DOMAIN" and "worker-[1..y].CLUSTER_DOMAIN".
+CLUSTER_DOMAIN: hbase.book
+
+# This controls where the tarballs for the installation are retrieved from.
+# Setting this to true means that every machine downloads the tarball from the
+# internet - this is useful for EC2 instances for example. Setting this to
+# false makes the playbook upload the tarballs to the remote machines from the
+# machine that runs ansible. In this case you need to provide tarballs for the
+# versions configured below in the files/downloads/ directory.
+REMOTE_FETCH_TARBALLS: false
+
+# Defines if the monitoring packages based on Ganglia are also installed.
+MONITORING_ENABLED: false
+
+# The paths that will be used to install software under and put configuration
+# files in, feel free to change these if you have a reason to do so, but there
+# probably won't be a need to touch these.
+PACKAGE_BASE: "/opt"  # all installed software will be put in subdirectories of this folder
+CONFIG_BASE: "/etc" # config files will be placed in subdirectories of this folder
+VAR_RUN_BASE: "/var/opt" # all execution related files are placed in subdirectories of this folder
+HADOOP_DATA: "/data/hadoop/hdfs" # the Hadoop data directory, all HDFS data will be stored in this directory
+ZOOKEEPER_DATA: "/data/zookeeper" # Zookeeper data will be stored here
+
+HBASE_ROOT_DIR: "/hbase"
+HBASE_TEMP_DIR: "/data/tmp"
+
+TMP_DIR: "/tmp"
+LOG_DIR: "/var/log/hadoop"
+PID_DIR: "/var/run"
+
+# This password will be used to secure all keystores and keys contained in
+# them, we don't support using different passwords for multiple servers/
+# services at this time, since these playbooks are not intended for production
+# use.
+SSL_STORE_PASSWORD: sslsekret
+SSL_KEY_PASSWORD: sslsekret
+
+# The password used for the encryption key
+HBASE_CRYPTO_PASSWORD: kryptosekret
+
+# Set the Thrift implementation version to start (can be "1" or "2")
+HBASE_THRIFT_VERSION: 1
+
+# ==== Don't change anything below this line - really! ====
+
+# List with all technical OS accounts, share the "hadoop" group
+HADOOP_USERS: [ 'hdfs', 'yarn', 'mapred', 'hbase', 'hbase-rest', 'hbase-thrift', 'zookeeper', 'hue', 'hadoop' ]
+
+# List with all non-technical OS user accounts, mainly used for testing
+END_USERS:
+  - { user: hbasebook, group: hbasebook, extra_groups: [ hadoop ] }
+  - { user: foobar, group: foobar, extra_groups: [] }
+  - { user: app1user1, group: app1user1, extra_groups: [ app1group ] }
+  - { user: app1user2, group: app1user2, extra_groups: [ app1group ] }
+
+# This group defines all Kerberos related accounts that need a principal
+KRB_ADMIN: "hbasebook"
+KRB_REALM: "{{ CLUSTER_DOMAIN | upper }}"
+KRB_SERVER: "{{ groups['kdc_server'][0] }}"
+KRB_PRINCIPALS: [ 'hdfs', 'HTTP', 'yarn', 'hbase', 'hbase-rest', 'hbase-thrift', 'zookeeper' ]
+KRB_SERVICES_WITH_HTTP: [ 'hdfs', 'yarn', 'hbase', 'hbase-rest', 'hbase-thrift', 'zookeeper' ]
+
+# Paths
+JAVA_HOME: /etc/alternatives/jre_1.7.0
+
+# Define the packages that are needed on all machines
+BASE_PACKAGES_RH_PRE7: [ 'snappy', 'ntp', 'ntpdate', 'java-1.7.0-openjdk', 'java-1.7.0-openjdk-devel', 'libselinux-python', 'unzip', 'tar' ]
+BASE_PACKAGES_RH_7: [ 'snappy', 'ntp', 'ntpdate', 'java-1.7.0-openjdk', 'java-1.7.0-openjdk-devel', 'libselinux-python', 'unzip', 'tar' ]
+BASE_PACKAGES_DEBIAN: [ 'libsnappy-dev', 'ntp', 'ntpdate', 'openjdk-7-jdk', 'python-selinux', 'unzip', 'tar' ]
+
+# Set the download locations for tarballs
+HADOOP_DOWNLOAD_LINK: 'http://ftp.halifax.rwth-aachen.de/apache/hadoop/common'
+ZOOKEEPER_DOWNLOAD_LINK: 'http://ftp.halifax.rwth-aachen.de/apache/zookeeper'
+HBASE_DOWNLOAD_LINK: 'http://ftp.halifax.rwth-aachen.de/apache/hbase'
+HUE_DOWNLOAD_LINK: 'https://dl.dropboxusercontent.com/u/730827/hue/releases'
+
+DOWNLOAD_ONCE: true
+
+# Path variables derived from base paths above - Do not touch
+HADOOP_CONFIG: "{{ CONFIG_BASE }}/hadoop/conf"
+HADOOP_HOME: "{{ PACKAGE_BASE }}/hadoop"
+ZOOKEEPER_CONFIG: "{{ CONFIG_BASE }}/zookeeper"
+ZOOKEEPER_HOME: "{{ PACKAGE_BASE }}/zookeeper"
+HBASE_CONFIG: "{{ CONFIG_BASE }}/hbase/conf"
+HBASE_HOME: "{{ PACKAGE_BASE }}/hbase"
+
+PATHS_BY_OWNER:
+  hadoop:
+    home:   "{{ PACKAGE_BASE }}/hadoop"
+    config: "{{ CONFIG_BASE }}/hadoop/conf"
+  hdfs:
+    home:   "{{ PACKAGE_BASE }}/hadoop"
+    config: "{{ CONFIG_BASE }}/hadoop/conf"
+  zookeeper:
+    home:   "{{ PACKAGE_BASE }}/zookeeper"
+    config: "{{ CONFIG_BASE }}/zookeeper"
+  hbase:
+    home:   "{{ PACKAGE_BASE }}/hbase"
+    config: "{{ CONFIG_BASE }}/hbase/conf"
+    logs:   "{{ VAR_RUN_BASE }}/hbase/logs"
+    pid:    "{{ VAR_RUN_BASE }}/hbase/pid"
+  hbase-rest:
+    home:   "{{ PACKAGE_BASE }}/hbase"
+    config: "{{ CONFIG_BASE }}/hbase-rest/conf"
+    logs:   "{{ VAR_RUN_BASE }}/hbase-rest/logs"
+    pid:    "{{ VAR_RUN_BASE }}/hbase-rest/pid"
+
+# Note: See http://pyyaml.org/wiki/PyYAMLDocumentation#YAMLtagsandPythontypes for
+#  reference to how Ansible builds blocks through YAML
+
+# Security related paths
+KEYTAB_DIR: /etc/security/keytabs
+KEYSTORE_STAGING_DIR: /root/certs
+KEYSTORE_DIR: /etc/security/keystores
+
+# Default values for variables, these will be overriden for master servers in Vagrantfile
+namenode: false
+zookeeper: false

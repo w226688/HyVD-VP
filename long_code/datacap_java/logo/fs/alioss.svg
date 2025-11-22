@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="#FF6A00"/>
+
+    <!-- 文件夹形状 -->
+    <!-- Folder shape -->
+    <path d="M50 70 L80 70 L90 60 L150 60 L150 140 L50 140 Z"
+          fill="#FFFFFF"
+          stroke="#2C3E50"
+          stroke-width="4"/>
+
+    <!-- 云形状指示器 -->
+    <!-- Cloud shape indicator -->
+    <path d="M85 85 C85 80, 95 80, 95 85 C98 82, 105 82, 108 85 C108 80, 118 80, 118 85 C118 90, 85 90, 85 85"
+          fill="#2C3E50"/>
+
+    <!-- OSS文字标识 -->
+    <!-- OSS text identifier -->
+    <rect x="70" y="95" width="60" height="8" rx="2" fill="#2C3E50"/>
+    <rect x="70" y="110" width="40" height="8" rx="2" fill="#2C3E50"/>
+    <rect x="70" y="125" width="50" height="8" rx="2" fill="#2C3E50"/>
+</svg>

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "@id@",
+  "version": "@version@",
+  "name": "@name@",
+  "description": "@description@",
+  "authors": ["@author@"],
+  "contributors": ["credits"],
+  "environment": "server",
+  "entrypoints": {
+    "server": ["me.neznamy.tab.platforms.fabric.FabricTAB"]
+  },
+  "depends": {
+    "fabric-api-base": "*",
+    "java": ">=17",
+    "minecraft": [
+      "1.21.9",
+      "1.21.10"
+    ]
+  },
+  "recommends": {
+    "fabric-permissions-api-v0": "*"
+  },
+  "accessWidener": "resources/tab.accesswidener"
+}

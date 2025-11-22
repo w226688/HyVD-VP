@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply from: 'https://raw.githubusercontent.com/chrisbanes/gradle-mvn-push/97de89785bdbf0bc0b380fb60851cabc552811dc/gradle-mvn-push.gradle'
+apply plugin: 'com.github.pedrovgs.kuronometer'
+
+kuronometer {
+  platformName = 'Android'
+  //This value can be true or false.
+  //It's used to remove the project sensitive information before to being reported. By default is true.
+  reportProjectInfo = false
+  //This value can be true or false.
+  //It's used to send or not the build report to the kuronometer server. By default is true.
+  reportDataRemotely = false
+  //This value can be true or false.
+  //It's used to show a message after the build execution showing the report execution result. By default is false.
+  verbose = false
+}
+android {
+  compileSdkVersion 29
+
+  defaultConfig {
+    minSdkVersion 14
+    targetSdkVersion 29
+    versionCode 1
+    versionName "1.0"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation 'androidx.recyclerview:recyclerview:1.1.0'
+  implementation 'androidx.viewpager:viewpager:1.0.0'
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.mockito:mockito-core:2.26.0'
+  testImplementation 'org.robolectric:robolectric:4.2'
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="colorHighPriority"
+            format="color" />
+    <attr name="colorMediumPriority"
+            format="color" />
+    <attr name="colorLowPriority"
+            format="color" />
+
+    <attr name="colorError"
+            format="color" />
+
+    <attr name="colorWarning"
+            format="color" />
+
+    <attr name="closedCardBackground"
+            format="color|reference" />
+
+    <attr name="opentasks_progress_gradient_end_color"
+            format="color" />
+    <attr name="opentasks_progress_gradient_start_color"
+            format="color" />
+</resources>

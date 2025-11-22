@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "nochatreports",
+  "version": "${version}",
+
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "contributors": [
+	"${contributor_0}"
+  ],
+  "contact": {
+    "homepage": "${mod_url}",
+    "sources": "${mod_url}",
+    "issues": "${issue_tracker_url}"
+  },
+
+  "license": "${mod_license}",
+  "icon": "${mod_icon}",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.aizistral.nochatreports.fabric.NoChatReports"
+    ],
+	  "client": [
+      "com.aizistral.nochatreports.fabric.NoChatReportsClient"
+    ],
+    "modmenu": [
+      "com.aizistral.nochatreports.common.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "mixins/common/nochatreports.mixins.json",
+    "mixins/fabric/nochatreports-fabric.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "fabric-api": "*",
+    "minecraft": [ ">=1.21.9" ],
+    "java": ">=21"
+  },
+  "suggests": {},
+  "accessWidener" : "nochatreports.accesswidener",
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "${mod_url}",
+        "modmenu.curseforge": "${issue_tracker_url}"
+      }
+    }
+  }
+}

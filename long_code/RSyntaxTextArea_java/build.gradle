@@ -1,0 +1,93 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'biz.aQute.bnd:biz.aQute.bnd.gradle:7.1.0'
+    }
+}
+
+plugins {
+    id 'com.github.spotbugs' version '6.1.7'
+}
+
+// We require building with JDK 17 or later. Built artifact compatibility
+// is controlled by javaLanguageVersion
+assert JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)
+
+group = 'com.fifesoft'
+// NOTE: Local Java 17: /Library/Java/JavaVirtualMachines/jdk-17.0.13+11/Contents/Home
+
+allprojects {
+
+    repositories {
+        mavenCentral()
+        maven {
+            url = 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
+    }
+
+    wrapper {
+        gradleVersion = '8.13'
+    }
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    apply plugin: 'com.github.spotbugs'
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    checkstyle {
+        toolVersion = '10.21.4'
+        configDirectory = file("$rootProject.projectDir/config/checkstyle")
+    }
+
+    spotbugs {
+        // Relative to subprojects
+        includeFilter = file('../config/spotbugs-exclude.xml')
+    }
+
+    spotbugsMain {
+        reports {
+            html {
+                required = true
+            }
+            xml {
+                required = false
+            }
+        }
+    }
+    spotbugsTest {
+        reports {
+            html {
+                required = true
+            }
+            xml {
+                required = false
+            }
+        }
+    }
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.12.1')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        testImplementation 'org.mockito:mockito-core:5.15.2'
+    }
+
+    compileJava {
+        options.release = Integer.parseInt(javaLanguageVersion)
+        options.debug = true
+        options.debugOptions.debugLevel = 'source,vars,lines'
+        options.compilerArgs << '-Xlint:deprecation' << '-Xlint:unchecked'
+    }
+}

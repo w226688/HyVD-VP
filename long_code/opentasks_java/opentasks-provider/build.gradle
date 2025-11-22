@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION.toInteger()
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION.toInteger()
+        targetSdkVersion TARGET_SDK_VERSION.toInteger()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+dependencies {
+    implementation project(':opentasks-contract')
+    implementation deps.datetime
+    implementation deps.lib_recur
+    implementation deps.jems
+
+    testImplementation deps.robolectric
+    testImplementation deps.junit
+    testImplementation deps.mockito
+    testImplementation deps.jems_testing
+    testImplementation deps.hamcrest
+
+    androidTestImplementation project(':opentaskspal')
+    androidTestImplementation deps.contenttestpal
+    androidTestImplementation deps.support_annotations
+    androidTestImplementation deps.support_test_runner
+    androidTestImplementation deps.support_test_rules
+    androidTestImplementation deps.mockito
+    androidTestImplementation deps.jems_testing
+    androidTestImplementation deps.hamcrest
+    androidTestImplementation deps.contentpal_testing
+}

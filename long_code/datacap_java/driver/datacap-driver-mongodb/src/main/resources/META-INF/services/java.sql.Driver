@@ -1,0 +1,2 @@
+io.edurt.datacap.driver.MongoJdbcDriver
+com.dbschema.MongoJdbcDriver

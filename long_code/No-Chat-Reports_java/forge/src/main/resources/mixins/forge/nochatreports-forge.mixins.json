@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.aizistral.nochatreports.forge.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+	"client.MixinClientConnection",
+	"client.MixinClientHandshakePacketListenerImpl",
+	"client.MixinClientPacketListener"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "nochatreports.refmap.json"
+}

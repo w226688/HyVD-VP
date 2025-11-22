@@ -1,0 +1,17 @@
+tester:
+  title: Binding Tests
+  description: |-
+    'Performs tests for the bind, rebind and unbind operations.'
+
+  id: '001-002'
+  groups:
+    - bind
+  id_pattern: '001-002-{:03}'
+
+
+variables:
+  bound-name: jdk8-binding-test
+
+
+include:
+  - ../../shared/bind.yml

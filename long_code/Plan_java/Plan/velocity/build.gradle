@@ -1,0 +1,23 @@
+plugins {
+    id "net.kyori.blossom" version "1.3.1"
+}
+
+blossom {
+    replaceTokenIn("src/main/java/com/djrapitops/plan/PlanVelocity.java")
+    replaceToken("@version@", "$fullVersion")
+}
+
+dependencies {
+    implementation project(":common")
+
+    implementation "net.playeranalytics:platform-abstraction-layer-velocity:$palVersion"
+
+    compileOnly "com.velocitypowered:velocity-api:$velocityVersion"
+    annotationProcessor "com.velocitypowered:velocity-api:$velocityVersion"
+    compileOnly "com.github.ProxioDev.ValioBungee:RedisBungee-API:$redisBungeeProxioDevVersion"
+
+    testImplementation "com.velocitypowered:velocity-api:$velocityVersion"
+    testImplementation "com.github.ProxioDev.ValioBungee:RedisBungee-API:$redisBungeeProxioDevVersion"
+    testImplementation(testFixtures(project(":common")))
+    testImplementation(project(":extensions:adventure"))
+}

@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'expanding-view'
+
+    publishedGroupId = 'com.diegodobelo.expandingview'
+    libraryName = 'ExpandingView'
+    artifact = 'expanding-view'
+
+    libraryDescription = 'Android library to create expandable list with animation.'
+
+    siteUrl = 'https://github.com/diegodobelo/AndroidExpandingViewLibrary'
+    gitUrl = 'https://github.com/diegodobelo/AndroidExpandingViewLibrary.git'
+
+    libraryVersion = '0.9.4'
+
+    developerId = 'diegodobelo'
+    developerName = 'Diego Bezerra'
+    developerEmail = 'diego.bezerra@gmail.com'
+
+    licenseName = 'ISC'
+    licenseUrl = 'https://opensource.org/licenses/ISC'
+    allLicenses = ["ISC"]
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 94
+        versionName "0.9.4"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    tasks.withType(Javadoc).all { enabled = false }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.0.0-rc01'
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

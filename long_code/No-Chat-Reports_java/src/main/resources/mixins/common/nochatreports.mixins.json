@@ -1,0 +1,42 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.aizistral.nochatreports.common.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+	"common.MixinJsonByteBufCodec",
+	"server.MixinServerboundChatPacket",
+	"server.MixinServerCommonPacketListenerImpl",
+	"server.MixinPlayerList",
+	"server.MixinServerboundChatSessionUpdatePacket",
+	"server.MixinServerboundChatCommandSignedPacket"
+  ],
+  "client": [
+	"client.MixinOptions",
+	"client.MixinChatListener",
+    "client.MixinChatOptionsScreen",
+	"client.MixinYggdrasilUserApiService",
+	"client.MixinPlayerEntry",
+	"client.MixinChatScreen",
+	"client.MixinConnectScreen",
+	"client.MixinJoinMultiplayerScreen",
+	"client.MixinGuiMessageTag",
+	"client.MixinToastComponent",
+	"client.MixinRealmsConnect",
+	"client.MixinServerData",
+	"client.MixinServerStatusPinger$1",
+	"client.MixinOnlineServerEntry",
+	"client.MixinTitleScreen",
+	"client.MixinMinecraft",
+	"client.MixinClientPacketListener",
+	"client.MixinRowHelper",
+	"client.AccessorClientPacketListener"
+  ],
+  "server": [
+	"server.MixinDedicatedServer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "nochatreports.refmap.json"
+}

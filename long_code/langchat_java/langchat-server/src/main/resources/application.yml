@@ -1,0 +1,46 @@
+server:
+  tomcat:
+    uri-encoding: utf-8
+
+spring:
+  # 应用名称
+  application:
+    name: langchat
+  # 默认执行的配置文件
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+
+  # Cache设置
+  cache:
+    type: redis
+
+  # 文件上传相关设置
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  mvc:
+    async:
+      request-timeout: 3600000
+
+# MybatisPlus配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    jdbc-type-for-null: null
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+
+sa-token:
+  is-print: false
+  token-name: Authorization
+
+logging:
+  level:
+    dev:
+      langchain4j: DEBUG
+      ai4j:
+        openai4j: DEBUG

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="45dp"
+        />
+
+    <com.chaychan.library.BottomBarLayout
+        android:id="@+id/bbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:barBackground="@color/tab_gb"
+        app:barHeight="45dp"
+        app:floatEnable="true"
+        app:floatIcon="@mipmap/icon_add"
+        app:floatIconWidth="50dp"
+        app:floatIconHeight="50dp"
+        app:floatMarginBottom="20dp"
+        app:textColorNormal="@color/tab_normal_color"
+        app:textColorSelected="@color/tab_selected_color"
+        app:iconHeight="30dp"
+        app:iconWidth="30dp"
+        app:itemTextSize="8sp"
+        app:itemMarginTop="-5dp"
+        app:unreadTextSize="10sp"
+        app:msgTextSize="6sp"
+        />
+
+</FrameLayout>

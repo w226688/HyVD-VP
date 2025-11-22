@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:root="http://www.hasor.net/sechma/main" xmlns="http://www.hasor.net/sechma/hasor-core">
+    <!-- http://www.hasor.net/sechma/main 命名空间默认配置 -->
+    <root:config>
+        <root:hasor.loadPackages>${HASOR_LOAD_PACKAGES:net.*,org.*,com.*}</root:hasor.loadPackages>
+    </root:config>
+    <!-- ============================================================================ -->
+    <!-- 环境变量定义,如果和(系统环境变量,java环境变量,java属性)冲突那么将会放弃配置文件中配置的环境变量,并同时产生一条警告。 -->
+    <hasor.environmentVar>
+        <!-- 工作目录 -->
+        <WORK_HOME>%USER.HOME%/hasor-work</WORK_HOME>
+        <!-- 程序目录（不可配置，框架启动会自动初始化这个值） -->
+        <RUN_PATH>./</RUN_PATH>
+        <!-- 运行模式（不可配置，框架启动会自动初始化这个值）值范围：smaller、none -->
+        <RUN_MODE></RUN_MODE>
+    </hasor.environmentVar>
+
+    <!-- 框架配置 -->
+    <hasor>
+        <!-- 包扫描覆盖范围，逗号间隔 -->
+        <loadPackages>net.hasor.*</loadPackages>
+
+        <!-- 执行事件的线程池大小，默认 8 -->
+        <eventThreadPoolSize>${HASOR_LOAD_EVENT_POOL:8}</eventThreadPoolSize>
+
+        <!-- 程序入口模块类名 (由StartupModule插件提供) -->
+        <startup>${HASOR_LOAD_STARTUP}</startup>
+
+        <!-- 默认要装载的模块，默认 true -->
+        <modules loadModule="${HASOR_LOAD_MODULE:true}" throwLoadError="true">
+            <module>net.hasor.core.exts.startup.StartupModule</module>
+            <module>net.hasor.core.exts.aop.AopModule</module>
+        </modules>
+
+        <!-- ApiBinder 扩展（多个 type 可以指定同一个实现类，Hasor 会自动映射到同一个实例对象上），loadExternal 属性可以控制是否加载这些 binder -->
+        <apiBinderSet loadExternal="${HASOR_LOAD_EXTERNALBINDER:true}">
+            <!--<binder type="net.hasor.plugins.data.DataApiBinder">net.hasor.plugins.data.DataApiBinderCreater</binder>-->
+        </apiBinderSet>
+
+        <!-- 效果等同apiBinderSet，但是会强制加载无法排除-->
+        <innerApiBinderSet>
+            <!--<binder type="net.hasor.plugins.data.DataApiBinder">net.hasor.plugins.data.DataApiBinderCreater</binder>-->
+        </innerApiBinderSet>
+
+        <autoLoadSpi>
+            <spi>net.hasor.core.spi.BindInfoProvisionListener</spi>
+            <spi>net.hasor.core.spi.CollectScopeChainSpi</spi>
+            <spi>net.hasor.core.spi.ContextInitializeListener</spi>
+            <spi>net.hasor.core.spi.ContextShutdownListener</spi>
+            <spi>net.hasor.core.spi.ContextStartListener</spi>
+            <spi>net.hasor.core.spi.CreatorProvisionListener</spi>
+            <spi>net.hasor.core.spi.ScopeProvisionListener</spi>
+        </autoLoadSpi>
+    </hasor>
+</config>

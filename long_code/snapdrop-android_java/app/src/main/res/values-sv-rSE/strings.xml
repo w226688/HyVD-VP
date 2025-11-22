@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">Kan inte öppna webbläsare</string>
+    <string name="err_no_app">Ingen applikation hittades som kan öppna denna fil</string>
+    <string name="open_url">Öppna URL</string>
+    <!-- Onboarding -->
+    <string name="onboarding_howto_troubleshoot">Tips: Enheter måste vara anslutna till samma WiFi-nätverk. Det kanske inte fungerar om en VPN är aktiverad.</string>
+    <!-- Download -->
+    <string name="download_save_pending">Lagrar filen. Var god och vänta…</string>
+    <string name="download_successful">Nerladdning lyckades</string>
+    <string name="notification_channel_name">Nedladdning klar</string>
+    <!-- Action Buttons -->
+    <string name="open">öppna</string>
+    <string name="install">installera</string>
+    <string name="reset">återställ</string>
+    <string name="copy">kopiera</string>
+    <!-- Settings / About -->
+    <string name="home_as_up_indicator_about">Om</string>
+    <string name="pref_about_title">Om denna app</string>
+    <string name="pref_category_settings">Inställningar</string>
+    <string name="logs">Felsökningsloggar</string>
+    <string name="components_summary">Tryck för att visa</string>
+    <string name="read_more">läs mer</string>
+    <string name="pref_device_name_title">Enhetsnamn</string>
+    <string name="pref_device_name_summary">Ange ett användardefinierat enhetsnamn</string>
+    <string name="keep_on_summary">(Rekommenderas) Många enheter har problem med överföringar som avbryts när skärmen stängs av</string>
+    <string name="keep_on_title">Behåll skärmen på vid överföring</string>
+    <string name="settings_theme_title">Tema</string>
+    <string-array name="darkmode_entries">
+        <item>Systemstandard</item>
+        <item>Ljus</item>
+        <item>Mörk</item>
+    </string-array>
+    <string name="save_location">Spara platsen</string>
+    <!-- File sharing -->
+    <string name="intent_file">En fil är markerad för delning</string>
+    <string name="intent_files">Filer är markerade för delning</string>
+    <string name="intent_content">Innehållet är markerat för delning</string>
+    <string name="error_filechooser">Kan inte öppna filväljaren</string>
+    <string name="error_network">Kontrollera att du är ansluten till ett WiFi-nätverk</string>
+    <string name="ignore_error_network">Släpp in mig ändå</string>
+    <string name="error_not_reachable_title">Oops, sorry!</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">Tryck för att skicka filer eller tryck och håll ned för att skicka ett meddelande</string>
+    <string name="website_file_received">Fil mottagen</string>
+    <string name="website_file_ask_before_download">Fråga alltid innan en fil sparas</string>
+    <string name="website_file_download">Spara</string>
+    <string name="website_footer_discovery">Du kan upptäckas av alla på detta nätverk</string>
+    <string name="website_footer_known_as">Du är känd som %s</string>
+    <string name="website_about_subheading">Det enklaste sättet att överföra filer mellan enheter</string>
+</resources>

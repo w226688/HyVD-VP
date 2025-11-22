@@ -1,0 +1,45 @@
+id: replace-transform
+label: Replace
+tid: replace-transform
+key: Replace
+description: Replace transform
+category: transform
+configure:
+  - field: replace_field
+    label: Replace field
+    type: input
+    placeholder: Please input replace field
+    required: true
+    description: The field you want to replace
+  - field: pattern
+    label: Pattern
+    type: input
+    placeholder: Please input pattern
+    required: true
+    description: The old string that will be replaced
+  - field: replacement
+    label: Replacement
+    type: input
+    placeholder: Please input replacement
+    required: true
+    description: The new string that will be replaced
+  - field: is_regex
+    label: Is regex
+    type: switch
+    value: false
+  - field: replace_first
+    label: Replace first
+    type: switch
+    value: false
+ports:
+  - id: input
+    label: Input
+    type: input
+    required: true
+    message: Input is required
+  - id: output
+    label: Output
+    type: output
+    required: true
+    message: Output is required
+

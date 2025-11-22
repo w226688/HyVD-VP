@@ -1,0 +1,13 @@
+tester:
+  title: Guessing Tests
+  description: |-
+    'Perform tests for the guess action.'
+
+  id: '002-007'
+  groups:
+    - guess
+  id_pattern: '002-007-{:03}'
+
+
+include:
+  - ../../shared/guess.yml

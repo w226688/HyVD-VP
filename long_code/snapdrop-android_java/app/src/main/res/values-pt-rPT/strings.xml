@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">Não é possível abrir o browser [navegador]</string>
+    <string name="err_no_app">Nenhuma aplicação instalada para abrir este ficheiro</string>
+    <string name="open_url">Abrir URL</string>
+    <!-- Onboarding -->
+    <!-- Download -->
+    <string name="download_save_pending">Armazenando o arquivo. Por favor, tenha um cadinho de paciência…</string>
+    <string name="download_successful">Foi baixado com sucesso</string>
+    <string name="notification_channel_name">Download concluído</string>
+    <!-- Action Buttons -->
+    <string name="open">abrir</string>
+    <string name="reset">restaurar</string>
+    <string name="copy">copiar</string>
+    <!-- Settings / About -->
+    <string name="pref_category_settings">Configurações</string>
+    <string name="logs">Dados de Depuração</string>
+    <string name="components_summary">Pressione para exibir</string>
+    <string name="version">Versão</string>
+    <string name="pref_device_name_title">Nome do Dispositivo</string>
+    <string name="pref_device_name_summary">Definir um nome de dispositivo definido pelo usuário</string>
+    <string name="keep_on_summary">(Recomendado) Muitos dispositivos têm problemas com transferências interrompidas quando a tela é desligada</string>
+    <string name="keep_on_title">Mantenha a tela ligada durante a transferência</string>
+    <string name="floating_text_selection_title">Seleção de texto flutuante</string>
+    <string name="floating_text_selection_summary">Ao selecionar texto em outras aplicações, será exibida uma opção \"Enviar com Snapdrop\"</string>
+    <string name="floating_text_selection_activity_label">Enviar com o Snapdrop</string>
+    <string name="settings_theme_title">Tema</string>
+    <string-array name="darkmode_entries">
+        <item>Padrão do Sistema</item>
+        <item>Claro</item>
+        <item>Escuro</item>
+    </string-array>
+    <string name="save_location">Guardar localização</string>
+    <!-- File sharing -->
+    <string name="intent_file">O arquivo é selecionado para ser compartilhado</string>
+    <string name="intent_files">Os arquivos são selecionados para ser compartilhados</string>
+    <string name="intent_content">O conteúdo é selecionado para ser compartilhado</string>
+    <string name="error_filechooser">Não foi possível abrir um seletor de arquivos</string>
+    <string name="error_network">Favor verificar se você está conectado a uma rede WiFi</string>
+    <string name="ignore_error_network">Deixe-me entrar a mesma</string>
+    <string name="error_not_reachable_title">Ups, desculpa!</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">Toque para enviar arquivos ou toque longo para enviar uma mensagem</string>
+    <string name="website_file_received">Ficheiro Recebido</string>
+    <string name="website_file_ask_before_download">Perguntar sempre antes de salvar um ficheiro</string>
+    <string name="website_file_download">Guardar</string>
+    <string name="website_footer_discovery">Você pode ser descoberto por todos nesta rede</string>
+    <string name="website_footer_known_as">Você é conhecido como %s</string>
+    <string name="website_about_subheading">A maneira mais fácil de transferir arquivos entre dispositivos</string>
+</resources>

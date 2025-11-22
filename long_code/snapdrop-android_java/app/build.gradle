@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.application'
+    id 'checkstyle'
+    id 'com.mikepenz.aboutlibraries.plugin'
+}
+
+android {
+    namespace 'com.fmsys.snapdrop'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.fmsys.snapdrop"
+        minSdkVersion 21
+        targetSdkVersion 34
+
+        // ToDo list - Update Instruction
+        //  -   As first step, always check if unmerged crowdin updates are available and/or sync crowdin (https://crowdin.com/project/snapdrop-android/apps/system/github)
+        //  -   Don't forget to always **pull** changes into the local repo!!!
+        //  -   Change version code and name when releasing a new version
+        //  -   Afterwards, build a new version via Build > Generate Signed Bundle / APK...
+        //  -   Upload and publish APK to Google Play
+        //  -   Push release-commit to GitHub
+        //  -   If feature release: - Write Changelog at GitHub and create release tag there
+        //  -                         Optional: Post release info to X/Twitter
+        //  -   Otherwise:          - `git tag vX.X.X` and `git push origin vX.X.X`
+
+        versionCode 45
+        versionName "2.3.1"
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "snapdrop_v${defaultConfig.versionName}.apk"
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    lint {
+        disable 'MissingTranslation', 'ExtraTranslation'
+    }
+
+    // use Java 8 to make use of lamda-expressions, etc.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.3.0'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.webkit:webkit:1.14.0'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'org.jsoup:jsoup:1.18.1'
+    implementation "com.mikepenz:aboutlibraries-core:11.2.3"
+    implementation "com.mikepenz:aboutlibraries:11.2.3"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation 'com.anggrayudi:storage:1.5.6'
+}
+
+/*
+ * own checkstyle configuration
+ * Android plugin doesn't interoperate with the Checkstyle plugin
+ */
+
+tasks.register('checkstyle', Checkstyle) {
+    configFile file("${project.rootDir}/checkstyle.xml")
+    source 'main/java'
+    source '../test/java'
+    source '../androidTest/java'
+    include '**/*.java'
+
+    classpath = files()
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('checkstyle')
+}

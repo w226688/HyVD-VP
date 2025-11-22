@@ -1,0 +1,150 @@
+---
+# Main playbook to install all components needed.
+
+# TODO: Split `common` into separate common modules for each major component.
+- name: Apply common configuration to all nodes
+  hosts: all
+  tags:
+    - common
+  roles:
+    - common
+
+- name: Set up Kerberos KDC
+  hosts: kdc_server
+  tags:
+    - security
+    - kerberos
+    - kerberos-server
+  roles:
+    - { role: kdc-server, when: SECURITY_ENABLED == true }
+
+- name: Install Kerberos Clients
+  hosts: cluster
+  tags:
+    - security
+    - kerberos
+    - kerberos-client
+  roles:
+    - { role: krb-client, when: SECURITY_ENABLED == true }
+
+- name: Install Hadoop common components
+  hosts: all
+  tags:
+    - common
+    - hadoop
+    - hadoop-common
+  roles:
+    - hadoop
+
+- name: Install zookeeper nodes
+  hosts: zookeepers
+  tags:
+    - common
+    - zookeeper
+    - zookeeper-common
+  roles:
+    - zookeeper
+
+- name: Install HBase common components
+  hosts: hbase_servers
+  tags:
+    - common
+    - hbase
+    - hbase-common
+  roles:
+    - hbase-common
+
+- name: Install HBase Masters
+  hosts: hbase_master
+  tags:
+    - hbase
+    - hbase-master
+  roles:
+    - hbase-master
+
+- name: Install HBase Backup Masters
+  hosts: hbase_backup_masters
+  tags:
+    - hbase
+    - hbase-backup-masters
+  roles:
+    - hbase-master
+
+- name: Install HBase RegionServers
+  hosts: workers
+  tags:
+    - hbase
+    - hbase-regionserver
+  roles:
+    - hbase-regionserver
+
+- name: Install HBase REST Gateways
+  hosts: hbase_rest
+  tags:
+    - hbase
+    - hbase-rest
+  roles:
+    - hbase-rest
+
+- name: Install HBase Thrift Gateways
+  hosts: hbase_thrift
+  tags:
+    - hbase
+    - hbase-thrift
+  roles:
+    - hbase-thrift
+
+# Monitoring
+
+- name: Install monitoring collection daemons
+  hosts: monitoring_collection
+  tags:
+    - monitoring
+  roles:
+    - monitoring-collection
+
+- name: Install monitoring aggregation daemons
+  hosts: monitoring_aggregation
+  tags:
+    - monitoring
+  roles:
+    - monitoring-aggregation
+
+- name: Install monitoring frontend
+  hosts: monitoring_frontend
+  tags:
+    - monitoring
+  roles:
+    - monitoring-frontend
+
+# Security
+
+- name: SSL Phase 1 (Prepare Servers)
+  hosts: all
+  tags:
+    - security
+    - ssl
+  roles:
+    - { role: ssl-phase-1, when: SECURITY_ENABLED == true }
+
+- name: SSL Phase 2 (Sign CSRs)
+  hosts: kdc_server
+  tags:
+    - security
+    - ssl
+  roles:
+    - { role: ssl-phase-2, when: SECURITY_ENABLED == true }
+
+- name: SSL Phase 3 (Install CSRs and Truststores)
+  hosts: all
+  tags:
+    - security
+    - ssl
+  roles:
+    - { role: ssl-phase-3, when: SECURITY_ENABLED == true }
+
+# Start services
+
+- include: services.yml
+  tags:
+    - start

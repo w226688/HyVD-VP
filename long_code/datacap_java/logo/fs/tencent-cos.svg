@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="#00A4FF" />
+
+    <!-- 存储容器主体 -->
+    <!-- Storage container body -->
+    <path d="M50 60 L150 60 L140 140 L60 140 Z"
+          fill="#FFFFFF"
+          stroke="#2C3E50"
+          stroke-width="4" />
+
+    <!-- 存储指示线 -->
+    <!-- Storage indicator lines -->
+    <path d="M60 80 L140 80" stroke="#2C3E50" stroke-width="4" />
+    <path d="M65 100 L135 100" stroke="#2C3E50" stroke-width="4" />
+    <path d="M70 120 L130 120" stroke="#2C3E50" stroke-width="4" />
+
+    <!-- 右上角连接点 -->
+    <!-- Top right connection point -->
+    <circle cx="150" cy="60" r="8" fill="#2C3E50" />
+
+    <!-- 数据流线条 -->
+    <!-- Data flow lines -->
+    <path d="M150 60 C170 70, 170 90, 150 100"
+          fill="none"
+          stroke="#2C3E50"
+          stroke-width="4"
+          stroke-linecap="round" />
+</svg>

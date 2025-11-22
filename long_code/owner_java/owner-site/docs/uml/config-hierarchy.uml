@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="134.5" y="80.0">org.aeonbits.owner.Config</node>
+    <node x="0.0" y="160.0">org.aeonbits.owner.Reloadable</node>
+    <node x="238.0" y="160.0">org.aeonbits.owner.Accessible</node>
+    <node x="117.5" y="0.0">java.io.Serializable</node>
+    <node x="129.0" y="160.0">org.aeonbits.owner.Mutable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.aeonbits.owner.Accessible" target="org.aeonbits.owner.Config">
+      <point x="0.0" y="-15.0" />
+      <point x="290.5" y="135.0" />
+      <point x="199.5" y="135.0" />
+      <point x="26.0" y="15.0" />
+    </edge>
+    <edge source="org.aeonbits.owner.Mutable" target="org.aeonbits.owner.Config">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.aeonbits.owner.Config" target="java.io.Serializable">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="org.aeonbits.owner.Reloadable" target="org.aeonbits.owner.Config">
+      <point x="0.0" y="-15.0" />
+      <point x="54.5" y="135.0" />
+      <point x="147.5" y="135.0" />
+      <point x="-26.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="171.5" y="95.0" />
+  <SelectedNodes>
+    <node>java.io.Serializable</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

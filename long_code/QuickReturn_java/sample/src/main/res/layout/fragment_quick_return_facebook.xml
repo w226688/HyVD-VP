@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/facebook_bg">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" />
+
+    <com.etiennelawlor.quickreturn.views.CustomFontTextView
+        android:id="@+id/quick_return_header_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_rounded_rectangle_facebook_primary"
+        android:drawableLeft="@drawable/ic_action_up"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp"
+        android:text="@string/new_stories"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:textFont="Roboto_Regular" />
+
+    <LinearLayout
+        android:id="@+id/quick_return_footer_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/transparent_dark_slate_blue_ninty"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_action_edit"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="@string/status"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:textFont="Roboto_Bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_action_camera"
+                android:drawablePadding="6dp"
+                android:gravity="center"
+                android:text="@string/photo"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:textFont="Roboto_Bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <com.etiennelawlor.quickreturn.views.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_action_marker"
+                android:drawablePadding="2dp"
+                android:gravity="center"
+                android:text="@string/check_in"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:textFont="Roboto_Bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+

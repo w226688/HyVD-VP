@@ -1,0 +1,24 @@
+ext {
+    //Android
+    androidBuildToolsVersion = "34.0.0"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 34
+    androidCompileSdkVersion = 34
+    supportLibraryVersion = '1.6.1'
+
+    
+    androidDependencies = [
+            recyclerView: "androidx.recyclerview:recyclerview:${supportLibraryVersion}",
+            appcompat_v7: "androidx.appcompat:appcompat:${supportLibraryVersion}",
+            support_v4  : "androidx.legacy:legacy-support-v4:${supportLibraryVersion}",
+            design      : "com.google.android.material:material:1.11.0",
+    ]
+
+    viewDependencies = [
+            videocache: "io.github.carguo:gsyvideoplayer-androidvideocache:11.1.0",
+    ]
+
+    dataDependencies = [
+            // Removed permissionsdispatcher - using system APIs instead
+    ]
+}

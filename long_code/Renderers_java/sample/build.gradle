@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+  compileSdkVersion 29
+
+  defaultConfig {
+    applicationId "com.github.pedrovgs.renderers.sample"
+    minSdkVersion 14
+    targetSdkVersion 29
+    versionCode 1
+    versionName "1.0"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+  lintOptions {
+    abortOnError false
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation 'com.jakewharton:butterknife:10.1.0'
+  annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+  implementation 'com.squareup.picasso:picasso:2.71828'
+  implementation project(':renderers')
+  implementation 'androidx.recyclerview:recyclerview:1.1.0'
+  implementation 'androidx.viewpager:viewpager:1.0.0'
+}

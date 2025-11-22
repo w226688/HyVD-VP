@@ -1,0 +1,24 @@
+import org.checkerframework.checker.nullness.qual.*;
+
+/* ========================================================================== */
+package com.datastax.driver.core;
+
+public class BoundStatement {
+    public BoundStatement setString(int i, @Nullable String v);
+    public BoundStatement setBytes(int i, @Nullable ByteBuffer v);
+    public BoundStatement setTimestamp(int i, @Nullable Date v);
+}
+
+public class Row {
+    public @Nullable Date getTimestamp(int i);
+    public @Nullable ByteBuffer getBytes(int i);
+    public @Nullable String getString(int i);
+}
+
+public class Metadata {
+    public @Nullable KeyspaceMetadata getKeyspace(String keyspace);
+}
+
+public class KeyspaceMetadata {
+    public @Nullable TableMetadata getTable(String name);
+}

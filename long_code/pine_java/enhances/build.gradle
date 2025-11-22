@@ -1,0 +1,94 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+android {
+    compileSdk rootProject.ext.compileSdk
+    ndkVersion rootProject.ext.ndkVersion
+    namespace "top.canyie.pine.enhances"
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=none' // Use self-compiled libcxx instead of builtin STL to ensure C++ exception won't be introduced
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+                targets 'pine-enhances'
+            }
+        }
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version rootProject.ext.cmakeVersion
+        }
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/**'
+            excludes += '/*.properties'
+        }
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
+    buildFeatures {
+        prefab true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'dev.rikka.ndk.thirdparty:cxx:1.2.0'
+    compileOnly project(':core')
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            group rootProject.groupId
+            artifactId 'enhances'
+            version '0.1.0'
+            // the components are created only during the afterEvaluate phase
+            afterEvaluate {
+                from components.release
+            }
+            pom {
+                name = rootProject.repoName
+                description = 'pine hook enhances library'
+                url = rootProject.website
+                licenses rootProject.licenses
+                developers rootProject.developers
+                scm rootProject.scm
+            }
+        }
+    }
+    repositories rootProject.uploadRepositories
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

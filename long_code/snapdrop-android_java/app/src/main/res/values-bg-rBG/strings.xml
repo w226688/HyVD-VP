@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">Не мога да отворя браузъра</string>
+    <string name="err_no_app">Няма инсталирано приложение, което да отвори този файл</string>
+    <string name="open_url">Отвори линк</string>
+    <!-- Onboarding -->
+    <!-- Download -->
+    <string name="download_save_pending">Запазвам файла. Моля, имай малко търпение…</string>
+    <string name="download_successful">Изтеглянето бе успешно</string>
+    <string name="notification_channel_name">Изтеглянето бе завършено</string>
+    <!-- Action Buttons -->
+    <string name="open">отвори</string>
+    <string name="install">инсталирай</string>
+    <string name="reset">нулирай</string>
+    <string name="copy">копирай</string>
+    <!-- Settings / About -->
+    <string name="home_as_up_indicator_about">Относно</string>
+    <string name="pref_about_title">Относно приложението</string>
+    <string name="pref_category_settings">Настройки</string>
+    <string name="logs">Логове</string>
+    <string name="components_summary">Натисни за преглед</string>
+    <string name="read_more">прочети още</string>
+    <string name="version">Версия</string>
+    <string name="pref_device_name_title">Име на устройството</string>
+    <string name="pref_device_name_summary">Задай собствено име на устройството</string>
+    <string name="keep_on_summary">(Препоръчително) Много устройства имат проблем с прекъсване при прехвърляне на файлове щом екрана се изключи</string>
+    <string name="keep_on_title">Дръж екрана включен докато се прехвърлят файлове</string>
+    <string name="floating_text_selection_title">Избор на плаващ текст</string>
+    <string name="floating_text_selection_summary">Когато избираш текст в друго приложение, ще се покаже опция \"Изпрати чрез Snapdrop\"</string>
+    <string name="floating_text_selection_activity_label">Изпрати чрез Snapdrop</string>
+    <string name="settings_theme_title">Тема</string>
+    <string-array name="darkmode_entries">
+        <item>По подразбиране</item>
+        <item>Светла</item>
+        <item>Тъмна</item>
+    </string-array>
+    <string name="save_location">Запази местоположението</string>
+    <!-- File sharing -->
+    <string name="intent_file">Избран е файл за споделяне</string>
+    <string name="intent_files">Избраани са файлове за споделяне</string>
+    <string name="intent_content">Избрано е съдържание за споделяне</string>
+    <string name="error_filechooser">Не може да се отвори файлов мениджър</string>
+    <string name="error_network">Моля, провери дали си свързан с WiFi мрежа</string>
+    <string name="ignore_error_network">Пусни ме въпреки това</string>
+    <string name="error_not_reachable_title">Опа, съжалявам!</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">Натисни, за да изпратиш файлове или задръж, за да изпратиш съобщение</string>
+    <string name="website_file_received">Получен файл</string>
+    <string name="website_file_ask_before_download">Винаги питай преди да запазиш файл</string>
+    <string name="website_file_download">Запази</string>
+    <string name="website_footer_discovery">Видим си за всички в тази мрежа</string>
+    <string name="website_footer_known_as">Видим си като %s</string>
+    <string name="website_about_subheading">Най-лесният начин да изпращаш файлове между устройства</string>
+</resources>

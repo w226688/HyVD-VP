@@ -1,0 +1,6 @@
+version: '3.7'
+
+services:
+    rmg-ssrf-server:
+      image: ghcr.io/qtc-de/remote-method-guesser/rmg-ssrf-server:2.0
+      build: .

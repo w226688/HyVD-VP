@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION.toInteger()
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION.toInteger()
+        targetSdkVersion TARGET_SDK_VERSION.toInteger()
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(':opentasks-contract')
+    api deps.contentpal
+    api deps.datetime
+    api deps.lib_recur
+    api deps.support_annotations
+    api deps.bolts_color
+
+    implementation deps.jems
+
+    testImplementation deps.contentpal_testing
+    testImplementation deps.jems_testing
+    testImplementation deps.robolectric
+    testImplementation deps.junit
+    testImplementation deps.mockito
+}

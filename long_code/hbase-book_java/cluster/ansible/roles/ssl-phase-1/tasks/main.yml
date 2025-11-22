@@ -1,0 +1,40 @@
+---
+# Purpose: Creates the TLS/SSL certificates needed
+#
+# Notes:
+#   - Executed on every master and worker server
+#   - This is part I of a three step process:
+#     Phase 1) Generate all certs, keystores, and CSRs for every server and process
+#     Phase 2) Sign all CSRs with the central CA root certificate
+#     Phase 3) Import all signed CSRs and put shared truststore in place
+
+- name: Create keystore staging directory in root account (if not already present)
+  file:
+    path={{ KEYSTORE_STAGING_DIR }}
+    state=directory
+    owner=root
+    group=root
+    mode=750
+
+- name: Create keystore (if not already present)
+  command: /usr/bin/keytool -genkeypair -keystore {{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.jks -keyalg RSA -alias {{ inventory_hostname }} -dname "CN={{ inventory_hostname }}" -storepass "{{ SSL_STORE_PASSWORD }}" -keypass "{{ SSL_KEY_PASSWORD }}" -validity 1000
+  args:
+    creates: "{{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.jks"
+
+- name: Export CSR (if not already present)
+  command: /usr/bin/keytool -certreq -keystore {{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.jks -alias {{ inventory_hostname }} -storepass "{{ SSL_STORE_PASSWORD }}" -keypass "{{ SSL_KEY_PASSWORD }}" -file {{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.csr
+  args:
+    creates: "{{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.csr"
+
+- name: Set access rights for keystore and CSR
+  file:
+    path={{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.{{ item }}
+    state=file
+    owner=hadoop
+    group=hadoop
+    mode=440
+  with_items:
+    - [ 'jks', 'csr' ]
+
+- name: Fetch CSR for later signing (in phase 2)
+  fetch: src={{ KEYSTORE_STAGING_DIR }}/{{ inventory_hostname }}.csr dest=files/tmp/certs/ flat=yes

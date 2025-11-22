@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.chaychan.library.BottomBarLayout
+        android:id="@+id/bbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barHeight="45dp"
+        app:barBackground="@color/tab_gb"
+        app:textColorNormal="@color/tab_normal_color"
+        app:textColorSelected="@color/tab_selected_color"
+        app:itemTextSize="8sp"
+        app:itemMarginTop="-5dp"
+        app:itemTextBold="true" />
+
+
+</LinearLayout>

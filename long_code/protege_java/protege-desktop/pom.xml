@@ -1,0 +1,185 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>edu.stanford.protege</groupId>
+		<artifactId>protege-parent</artifactId>
+		<version>5.6.8</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<!-- groupId and version are inherited from the parent -->
+	<artifactId>protege-desktop</artifactId>
+	<packaging>jar</packaging>
+
+	<name>protege-desktop</name>
+	<description>Standard build of the Protege Desktop ontology editor.</description>
+
+	<properties>
+		<conf.extra.args>-XX:CompileCommand=exclude,javax/swing/text/GlyphView,getBreakSpot</conf.extra.args>
+		<osx.bundle.name>Protégé.app</osx.bundle.name>
+	</properties>
+
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<id>github</id>
+			<url>https://raw.github.com/protegeproject/mvn-repo/master/releases</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+
+		<!-- NOTE: These dependency declarations are required to sort this project to the end of the line in the multimodule build. -->
+		
+		<!-- edu.stanford.protege dependency list -->
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>protege-common</artifactId>
+			<version>${project.parent.version}</version>
+	        </dependency>
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>protege-editor-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>protege-editor-owl</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>protege-launcher</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>org.eclipse.equinox.supplement</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>jre.os-x</artifactId>
+			<version>11.0.25_9</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>jre.win</artifactId>
+			<version>11.0.25_9</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>edu.stanford.protege</groupId>
+			<artifactId>jre.linux</artifactId>
+			<version>11.0.25_9</version>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>protege-desktop-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>protege-${project.version}</finalName>
+								<archiverConfig>
+								<defaultDirectoryMode>0755</defaultDirectoryMode>
+								<defaultFileMode>0755</defaultFileMode>
+							</archiverConfig>
+							<descriptors>
+								<descriptor>src/main/assembly/protege-platform-independent.xml</descriptor>
+								<descriptor>src/main/assembly/protege-os-x.xml</descriptor>
+								<descriptor>src/main/assembly/protege-win.xml</descriptor>
+								<descriptor>src/main/assembly/protege-linux.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<properties>
+				<win.dir>target/Protege-${project.version}-win/Protege-${project.version}</win.dir>
+			</properties>
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>compile</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<mkdir dir="${win.dir}" />
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>protege-desktop-assembly</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<finalName>protege-${project.version}</finalName>
+									<archiverConfig>
+										<defaultDirectoryMode>0755</defaultDirectoryMode>
+										<defaultFileMode>0755</defaultFileMode>
+									</archiverConfig>
+									<descriptors>
+										<descriptor>src/main/assembly/protege-platform-independent.xml</descriptor>
+										<descriptor>src/main/assembly/protege-os-x.xml</descriptor>
+										<descriptor>src/main/assembly/protege-win.xml</descriptor>
+										<descriptor>src/main/assembly/protege-linux.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

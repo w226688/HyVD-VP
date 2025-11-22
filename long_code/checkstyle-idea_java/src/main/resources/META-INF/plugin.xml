@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin url="https://github.com/jshiell/checkstyle-idea" require-restart="true">
+    <resource-bundle>org.infernus.idea.checkstyle.CheckStyleBundle</resource-bundle>
+    <description>
+        <![CDATA[
+<p>
+    This plugin provides both real-time and on-demand scanning
+    of Java files with Checkstyle from within IDEA.
+</p>
+<p>
+    Please note this is not an official part of Checkstyle - they neither endorse
+    nor bear responsibility for this plugin. Please see the README for full details.
+</p>
+        ]]>
+    </description>
+    <vendor url="https://infernus.org/" email="jamie@infernus.org">Jamie Shiell</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.xml</depends>
+    <depends>com.intellij.modules.vcs</depends>
+
+    <depends>com.intellij.modules.java</depends>
+
+    <change-notes>
+        <![CDATA[
+<ul>
+    <li>5.114.0: New: Added Checkstyle 12.1.0.</li>
+    <li>5.114.0: Fixed: Insecure socket factory is now only set for the current connection (#678).</li>
+    <li>5.113.0: New: Added Checkstyle 12.0.1.</li>
+    <li>5.112.0: Fixed: Keep focus in tool window when scrolling result, matching find results behaviour (#676).</li>
+    <li>5.112.0: Removed: Removed update notification, as IDEA now notifies when plugins are updated.</li>
+    <li>5.112.0: New: Added Checkstyle 11.1.0.</li>
+    <li>5.111.1: Fixed: Removed scope check when enabling scan current file button to improve performance (#675).</li>
+    <li>5.111.1: New: Add keyboard shortcuts for next/previous result (#676).</li>
+    <li>5.111.0: New: Added Checkstyle 11.0.1.</li>
+    <li>5.110.0: New: Added Checkstyle 11.0.0.</li>
+    <li>5.109.2: Fixed: Removed project code from classpath, as it hasn't been required since Checkstyle 6.2 (#673). Thanks to @LlamaLad7.</li>
+    <li>5.109.1: New: Added grouping of results by the source check (#670).</li>
+    <li>5.109.0: New: Added Checkstyle 10.26.1.</li>
+    <li>5.108.1: Fixed: Resolved edge case if Piccolo is in the project classpath (#668).</li>
+    <li>5.108.0: New: Added Checkstyle 10.25.1 & 10.26.0.</li>
+    <li>5.107.0: New: Added Checkstyle 10.25.0.</li>
+    <li>5.106.0: New: Added Checkstyle 10.24.0.</li>
+    <li>5.106.0: New: Now built against IDEA 2024.1.7 (was 2023.1.5).</li>
+    <li>5.105.0: New: Added Checkstyle 10.23.0 (#663).</li>
+    <li>5.104.1: Fixed: Code importer now parses import order with comma separators (#658).</li>
+    <li>5.104.1: Fixed: Code importer now correctly parses tokens in newer Google configurations (#657).</li>
+    <li>5.104.0: New: Added Checkstyle 10.22.0 (#661).</li>
+    <li><em>For older changes please see the changelog.</em></li>
+</ul>
+        ]]>
+    </change-notes>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.StaticScanner"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.checker.CheckerFactoryCache"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.checker.CheckerFactory"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.model.ConfigurationLocationFactory"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.CheckstyleProjectService"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.config.ConfigurationLocationSource"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.config.PluginConfigurationManager"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.config.ProjectConfigurationState"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.CheckstylePluginApi"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.util.ProjectPaths"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.util.ProjectFilePaths"/>
+        <projectService serviceImplementation="org.infernus.idea.checkstyle.ConfigurationInvalidator"/>
+
+        <postStartupActivity implementation="org.infernus.idea.checkstyle.startup.DisableCheckstyleLogging"/>
+
+        <projectConfigurable key="plugin.configuration-name"
+                             instance="org.infernus.idea.checkstyle.CheckStyleConfigurable"
+                             parentId="tools" />
+
+        <moduleConfigurationEditorProvider implementation="org.infernus.idea.checkstyle.CheckstyleModuleConfigurationEditorProvider"/>
+
+        <moduleService serviceImplementation="org.infernus.idea.checkstyle.config.ModuleConfigurationState"/>
+
+        <localInspection implementationClass="org.infernus.idea.checkstyle.CheckStyleInspection"
+                         bundle="org.infernus.idea.checkstyle.CheckStyleBundle"
+                         key="inspection.display-name"
+                         groupKey="inspection.group"
+                         level="WARNING"
+                         enabledByDefault="true"
+                         runForWholeFile="true"
+                         language=""/>
+
+        <checkinHandlerFactory id="CheckStyleIDEACheckInHandlerFactory"
+                               implementation="org.infernus.idea.checkstyle.handlers.ScanFilesBeforeCheckinHandlerFactory"/>
+
+        <toolWindow id="CheckStyle"
+                    anchor="bottom"
+                    canCloseContents="false"
+                    factoryClass="org.infernus.idea.checkstyle.toolwindow.CheckStyleToolWindowFactory"
+                    icon="/org/infernus/idea/checkstyle/images/checkstyle.svg"/>
+        <schemeImporter name="Checkstyle configuration"
+                        schemeClass="com.intellij.psi.codeStyle.CodeStyleScheme"
+                        implementationClass="org.infernus.idea.checkstyle.importer.CheckStyleCodeStyleImporter"/>
+
+        <notificationGroup displayType="BALLOON"
+                           id="CheckStyleIDEABalloonGroup"
+                           key="plugin.notification.alerts"/>
+        <notificationGroup displayType="NONE"
+                           id="CheckStyleIDEALogOnlyGroup"
+                           key="plugin.notification.logging"/>
+    </extensions>
+
+    <actions>
+        <action
+                id="AnalyseCurrentFileAction"
+                class="org.infernus.idea.checkstyle.actions.AnalyseCurrentFile"
+                text="Scan with Checkstyle..."
+                description="Scan the current file with the configured rules for Checkstyle">
+
+            <add-to-group group-id="AnalyzeMenu" anchor="last"/>
+        </action>
+
+        <group id="CheckStylePluginTreeActions" text="Filter" popup="true">
+            <action id="CheckStyleScrollToSourceAction"
+                    class="org.infernus.idea.checkstyle.actions.ScrollToSource"
+                    text="Autoscroll to Source"
+                    description="Auto-scroll to the source location of errors and warnings"
+                    icon="/general/autoscrollToSource.svg"/>
+
+            <action id="CheckStyleExpandAllAction"
+                    class="org.infernus.idea.checkstyle.actions.ExpandAll"
+                    text="Expand All"
+                    description="Expand all elements in the tool window"
+                    icon="/actions/expandall.svg"/>
+
+            <action id="CheckStyleCollapseAllAction"
+                    class="org.infernus.idea.checkstyle.actions.CollapseAll"
+                    text="Collapse All"
+                    description="Collapse all elements in the tool window"
+                    icon="/actions/collapseall.svg"/>
+
+            <separator/>
+
+            <action id="CheckStyleDisplayErrorsAction"
+                    class="org.infernus.idea.checkstyle.actions.DisplayErrors"
+                    text="Display Errors"
+                    description="Display error results"
+                    icon="/general/error.svg"/>
+
+            <action id="CheckStyleDisplayWarningsAction"
+                    class="org.infernus.idea.checkstyle.actions.DisplayWarnings"
+                    text="Display Warnings"
+                    description="Display warning results"
+                    icon="/general/warning.svg"/>
+
+            <action id="CheckStyleDisplayInfoAction"
+                    class="org.infernus.idea.checkstyle.actions.DisplayInfo"
+                    text="Display Information Results"
+                    description="Display information results"
+                    icon="/general/information.svg"/>
+
+            <separator/>
+
+            <action id="CheckStyleGroupByFileAction"
+                    class="org.infernus.idea.checkstyle.actions.GroupByFile"
+                    text="Group Results By File"
+                    description="Group the displayed results by file"
+                    icon="/actions/GroupByFile.svg"/>
+
+            <action id="CheckStyleGroupByPackageAction"
+                    class="org.infernus.idea.checkstyle.actions.GroupByPackage"
+                    text="Group Results By Package"
+                    description="Group the displayed results by their package"
+                    icon="/actions/GroupByPackage.svg"/>
+
+            <action id="CheckStyleGroupBySeverityAction"
+                    class="org.infernus.idea.checkstyle.actions.GroupBySeverity"
+                    text="Group Results By Severity"
+                    description="Group the displayed results by their level of severity"
+                    icon="/nodes/sortBySeverity.svg"/>
+
+            <action id="CheckStyleGroupByConfigurationLocationAction"
+                    class="org.infernus.idea.checkstyle.actions.GroupByConfigurationLocation"
+                    text="Group Results By Rules File"
+                    description="Group the displayed results by the rules files that contained the rule"
+                    icon="/actions/GroupByPrefix.svg"/>
+
+            <action id="CheckStyleGroupBySourceCheckAction"
+                    class="org.infernus.idea.checkstyle.actions.GroupBySourceCheck"
+                    text="Group Results By Source Check"
+                    description="Group the displayed results by their check that was the source of the problem"
+                    icon="/actions/GroupByClass.svg"/>
+        </group>
+
+        <group id="CheckStylePluginActions" text="CheckStyle" popup="true">
+            <action id="CheckStyleCloseAction"
+                    class="org.infernus.idea.checkstyle.actions.Close"
+                    text="Close CheckStyle Window"
+                    description="Close the CheckStyle tool window"
+                    icon="/actions/cancel.svg"/>
+
+            <action id="CheckStyleStopCheck"
+                    class="org.infernus.idea.checkstyle.actions.StopCheck"
+                    text="Stop the Running Scan"
+                    description="Stop the scan currently being run"
+                    icon="/actions/suspend.svg">
+            </action>
+
+            <separator/>
+
+            <action id="CheckStyleCurrentFileAction"
+                    class="org.infernus.idea.checkstyle.actions.ScanCurrentFile"
+                    text="Check Current File"
+                    description="Run Checkstyle on the current file in the editor"
+                    icon="/actions/execute.svg">
+
+                <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            </action>
+
+            <action id="CheckStyleModuleFilesAction"
+                    class="org.infernus.idea.checkstyle.actions.ScanModule"
+                    text="Check Module"
+                    description="Run Checkstyle on all files in the current module"
+                    icon="/nodes/ideaModule.svg">
+            </action>
+
+            <action id="CheckStyleProjectFilesAction"
+                    class="org.infernus.idea.checkstyle.actions.ScanProject"
+                    text="Check Project"
+                    description="Run Checkstyle on all files in the current project"
+                    icon="/nodes/ideaProject.svg">
+            </action>
+
+            <action id="CheckStyleModifiedFilesAction"
+                    class="org.infernus.idea.checkstyle.actions.ScanModifiedFiles"
+                    text="Check All Modified Files"
+                    description="Run Checkstyle on all modified files"
+                    icon="/actions/listChanges.svg">
+            </action>
+
+            <action id="CheckStyleDefaultChangeListAction"
+                    class="org.infernus.idea.checkstyle.actions.ScanCurrentChangeList"
+                    text="Check Files in the Current Change List"
+                    description="Run Checkstyle on the current change list"
+                    icon="/vcs/patch.svg">
+            </action>
+
+            <separator/>
+
+            <action id="CheckStyleClearCheckCacheAction"
+                    class="org.infernus.idea.checkstyle.actions.ResetLoadedRulesFiles"
+                    text="Reload Rules Files"
+                    description="Clear the rules file cache and blocked configurations, forcing a reload of changed rules"
+                    icon="/actions/refresh.svg">
+            </action>
+        </group>
+
+        <action id="JumpToErrorSource"
+                class="org.infernus.idea.checkstyle.actions.JumpToSource"
+                text="Jump to Source"
+                description="Jump to the source of the file"
+                popup="false"
+                use-shortcut-of="EditSource"/>
+
+        <action id="PreviousResultAction"
+                class="org.infernus.idea.checkstyle.actions.PreviousResult"
+                text="Previous Result"
+                description="Go to the previous Checkstyle result"
+                popup="false"
+                use-shortcut-of="PreviousOccurence"/>
+
+        <action id="NextResultAction"
+                class="org.infernus.idea.checkstyle.actions.NextResult"
+                text="Next Result"
+                description="Go to the next Checkstyle result"
+                use-shortcut-of="NextOccurence"
+                popup="false"/>
+
+    </actions>
+</idea-plugin>

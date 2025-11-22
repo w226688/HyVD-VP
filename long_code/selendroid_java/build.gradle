@@ -1,0 +1,110 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    ext.bintrayUser = project.hasProperty('bintrayUser') ? project.bintrayUser : System.getenv('BINTRAY_USER')
+    ext.bintrayKey = project.hasProperty('bintrayKey') ? project.bintrayKey : System.getenv('BINTRAY_KEY')
+    ext.bintrayEnabled = project.bintrayUser && project.bintrayKey
+
+    dependencies {
+        if (bintrayEnabled) {
+            classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+        }
+        // Find latest version at https://bintray.com/bintray/jcenter/org.jacoco%3Ajacoco/view
+        // Remove once this android bug is fixed: https://code.google.com/p/android/issues/detail?id=192875
+        classpath 'org.jacoco:org.jacoco.core:0.7.5.201505241946'
+    }
+}
+
+apply from: 'properties.gradle'
+group = selGroup
+
+task printVersion {
+  print selVersion
+}
+allprojects {
+    repositories {
+        jcenter()
+    }
+
+    version = selVersion
+
+    ext {
+        // https://bintray.com/android/android-tools/com.android.tools.build.gradle/view
+        androidBuildToolsGradle = 'com.android.tools.build:gradle:1.5.0'
+        // https://bintray.com/bintray/jcenter/com.jakewharton.sdkmanager:gradle-plugin
+        sdkManager = 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
+        // https://bintray.com/bintray/jcenter/org.json%3Ajson/20090211/view
+        json = 'org.json:json:20090211'
+        seleniumVersion = '2.48.2'
+        compileSdkVersion = 23
+        buildToolsVersion = '23.0.0'
+        minSdkVersion = 10
+        targetSdkVersion = 16
+        sourceCompatibilityVersion = 1.7
+        targetCompatibilityVersion = 1.7
+        junit = 'junit:junit:4.12'
+    }
+
+    // Bintray script
+    if (bintrayEnabled) {
+        apply plugin: 'com.jfrog.bintray'
+        bintray {
+            publish = true
+            configurations = ['published', 'archives']
+            user = bintrayUser
+            key = bintrayKey
+            pkg {
+                repo = 'maven'
+                name = "${selGroup}:${selArtifactId}"
+                // an userOrg of selendroid can be added here
+                userOrg = 'selendroid'
+                websiteUrl = selWebsite
+                issueTrackerUrl = selTracker
+                vcsUrl = selGit
+                desc = selDescription
+                licenses = ['Apache-2.0']
+                publicDownloadNumbers = true
+                version {
+                    name = selVersion
+                    desc = selDescription
+                    // https://github.com/bintray/gradle-bintray-plugin#buildgradle
+                    // Uncomment and add maven credentials to sync the artifacts.
+                    /* mavenCentralSync {
+                        sync = true
+                        user = 'userToken' // OSS user token
+                        password = 'paasword' // OSS user password
+                        // Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
+                        close = '1'
+                    } */
+                }
+            }
+        }
+    }
+
+    configurations {
+        published
+    }
+    apply plugin: 'maven'
+    plugins.withType(JavaPlugin) {
+        configurations {
+            published
+        }
+
+        task sourceJar(type: Jar) {
+            classifier = 'sources'
+            from sourceSets.main.allSource
+        }
+        task javadocJar(type: Jar) {
+            classifier = 'javadoc'
+            from javadoc.destinationDir
+        }
+
+        // Add the sourceJars to non-extractor modules
+        artifacts {
+            published sourceJar
+            published javadocJar
+        }
+    }
+}

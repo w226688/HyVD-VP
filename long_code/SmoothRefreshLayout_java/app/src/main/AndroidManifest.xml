@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.dkzwm.widget.srl.sample">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".DemoApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.WithFrameLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestRecyclerViewInNestedScrollViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TestRecyclerViewInNestedScrollViewInSrlActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.WithWebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WithListViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WithGridViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WithRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WithRecyclerViewInCoordinatorLayoutActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TestOverScrollActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestQQWebStyleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestTwoLevelRefreshActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WithViewPagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestReleaseToRefreshActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestMaterialStyleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestQQActivityStyleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestNestedHorizontalViewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestNestedViewPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TestNestedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TestBaseRecyclerViewAdapterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestHorizontalRefreshActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestHorizontalRecyclerViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestMultiDirectionViewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestNestedWithViewPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.TestScrollToAutoRefreshActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestScaleEffectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestHorizontalScaleEffectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestBottomSheetDialogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SecondFloorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoAnimTheme" />
+        <activity
+            android:name=".ui.TestMotionLayoutSceneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TestInMotionLayoutSceneActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

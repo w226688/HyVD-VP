@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_slogan">Transferă fișiere între dispozitive, fără efort.</string>
+    <string name="err_no_browser">Nu se poate deschide browser-ul</string>
+    <string name="err_no_app">Nicio aplicație instalată pentru a deschide acest fișier</string>
+    <string name="open_url">Deschide URL-ul</string>
+    <!-- Onboarding -->
+    <string name="onboarding_button_continue">continuă</string>
+    <string name="onboarding_button_grant">Acordă permisiuni</string>
+    <string name="onboarding_button_finish">Finalizare</string>
+    <string name="onboarding_choose_server">Alege o adresă de server</string>
+    <string name="onboarding_choose_server_description">Această aplicație este un client optimizat pentru aplicația web Snapdrop și PairDrop.\nAlege una dintre următoarele instanțe sau specifică un URL personalizat la care să te conectezi.\n\nNotă: Trebuie să alegeți același URL pe toate dispozitivele.</string>
+    <string name="onboarding_storage_permission">Permisiuni pentru stocare</string>
+    <string name="onboarding_storage_permission_description">Această aplicație este pentru partajări. De aceea sunt necesare permisiuni pentru stocare.</string>
+    <string name="onboarding_server_pairdrop_summary">(recomandat)\nFuncția de asociere, transfer internet și concentrare asupra stabilității.</string>
+    <string name="onboarding_server_snapdrop_summary">Snapdrop classic. Simplu și curat.</string>
+    <string name="onboarding_server_custom">URL personalizat</string>
+    <string name="onboarding_server_custom_summary">Experţii îşi pot găzdui şi propriile servere.</string>
+    <string name="onboarding_howto">Instrucțiuni de folosire</string>
+    <string name="onboarding_howto_troubleshoot">Sugestie: Dispozitivele trebuie să fie conectate la aceeași rețea WiFi. Nu va funcționa dacă un VPN este activat.</string>
+    <!-- Download -->
+    <string name="download_save_pending">Se stochează fișierul. Vă rugăm să aveți puțină răbdare...</string>
+    <string name="download_successful">Descărcare reușită</string>
+    <string name="notification_channel_name">Descărcare finalizată</string>
+    <!-- Action Buttons -->
+    <string name="open">deschideți</string>
+    <string name="install">instalează</string>
+    <string name="reset">resetează</string>
+    <string name="copy">copiați</string>
+    <!-- Settings / About -->
+    <string name="home_as_up_indicator_about">Despre</string>
+    <string name="pref_about_title">Despre această aplicație</string>
+    <string name="pref_category_settings">Setări</string>
+    <string name="logs">Jurnal Depanare</string>
+    <string name="components_summary">Atinge pentru a afișa</string>
+    <string name="support_us">Susține-ne</string>
+    <string name="support_us_summary">Vezi, cum poți sprijini acest proiect</string>
+    <string name="read_more">citește mai mult</string>
+    <string name="version">Versiune</string>
+    <string name="pref_device_name_title">Numele dispozitivului</string>
+    <string name="pref_device_name_summary">Setează un nume de dispozitiv definit de utilizator</string>
+    <string name="keep_on_summary">(Recomandat) Multe dispozitive au probleme cu transferurile întrerupte atunci când ecranul se oprește</string>
+    <string name="keep_on_title">Păstrează ecranul pornit în timpul transferului</string>
+    <string name="floating_text_selection_title">Selecție de text plutitoare</string>
+    <string name="floating_text_selection_summary">La selectarea textului în alte aplicații, o opțiune \"Trimite cu Snapdrop\" va fi afișată</string>
+    <string name="floating_text_selection_activity_label">Trimite prin Snapdrop</string>
+    <string name="permission_not_granted">vă rugăm să acordați permisiunea necesară</string>
+    <string name="permission_not_granted_fallback">vă rugăm să acordați manual permisiunea necesară</string>
+    <string name="open_settings">deschide setări</string>
+    <string name="retain_location_metadata_title">Menține metadatele locației</string>
+    <string name="retain_location_metadata_summary_off">Unele fișiere media ar putea conține date de localizare care sunt decapate în mod implicit. Acordați permisiunea de a include metadate complete</string>
+    <string name="retain_location_metadata_summary_on">Aplicația are acces complet la fișiere în prezent</string>
+    <string name="settings_theme_title">Temă</string>
+    <string-array name="darkmode_entries">
+        <item>Implicit sistem</item>
+        <item>Luminos</item>
+        <item>Întunecat</item>
+    </string-array>
+    <string name="baseurl_not_set">Nesetat</string>
+    <string name="baseurl_unofficial_instances">Verificați <a href="">FAQ</a> pentru o listă de instanțe neoficiale. Vă rugăm să rețineți că unele cazuri ar putea să nu funcționeze corect în interiorul aplicației.</string>
+    <string name="save_location">Locaţia pentru salvare</string>
+    <!-- File sharing -->
+    <string name="intent_file">Un fișier este selectat pentru partajare</string>
+    <string name="intent_files">Fișierele sunt selectate pentru partajare</string>
+    <string name="intent_content">Conținutul este selectat pentru partajare</string>
+    <string name="error_filechooser">Nu se poate deschide selecția fișierului</string>
+    <string name="error_network">Te rugăm să verifici dacă ești conectat la o rețea WiFi</string>
+    <string name="ignore_error_network">Lasă-mă să intru oricum</string>
+    <string name="error_not_reachable_title">Ups, scuze!</string>
+    <string name="error_server_not_reachable">Serverul nu poate fi accesat. \n\nDacă conexiunea la internet este bună și tot se întâmplă, încearcă să selectezi alt server.</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">Atingeți pentru a trimite fișiere sau atingeți lung pentru a trimite un mesaj</string>
+    <string name="website_file_received">Fișier primit</string>
+    <string name="website_file_ask_before_download">Întreabă întotdeauna înainte de a salva un fișier</string>
+    <string name="website_file_download">Salvează</string>
+    <string name="website_footer_discovery">Oricine conectat la aceeași rețea te poate vedea</string>
+    <string name="website_footer_known_as">Ești cunoscut ca %s</string>
+    <string name="website_about_subheading">Cel mai simplu mod de a transfera fișiere între dispozitive</string>
+</resources>

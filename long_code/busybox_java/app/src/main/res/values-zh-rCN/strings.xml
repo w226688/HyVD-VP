@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_version">版本 %1$s</string>
+    <string name="action_settings">设置</string>
+    <string name="action_help">信息</string>
+    <string name="action_zip">压缩到</string>
+    <string name="action_about">关于</string>
+    <string name="title_activity_about">关于</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="install_button">安装</string>
+    <string name="remove_button">移除</string>
+
+    <string name="busybox_preferences">BusyBox</string>
+    <string name="title_installdir">安装路径</string>
+    <string name="dialog_title_installdir">安装路径</string>
+    <string name="title_applets">安装组件</string>
+    <string name="summary_applets">创建各个组件的链接</string>
+    <string name="title_replace">替换组件</string>
+    <string name="summary_replace">替换已有的组件</string>
+    <string name="gui_preferences">界面设置</string>
+    <string name="title_language">语言</string>
+    <string name="dialog_title_language">选择语言</string>
+    <string name="title_theme">主题</string>
+    <string name="dialog_title_theme">选择主题</string>
+    <string name="title_fontsize">字体大小</string>
+    <string name="dialog_title_fontsize">字体大小</string>
+    <string name="title_maxlines">滚动距离</string>
+    <string name="dialog_title_maxlines">滚动距离</string>
+    <string name="title_timestamp">时间戳</string>
+    <string name="summary_timestamp">显示时间戳</string>
+    <string name="title_confirm_install_dialog">安装</string>
+    <string name="message_confirm_install_dialog">是否安装 Busybox 到 system 文件夹？</string>
+    <string name="title_confirm_remove_dialog">移除</string>
+    <string name="message_confirm_remove_dialog">是否从 system 文件夹中移除 Busybox？</string>
+    <string name="title_export_dialog">打包为 zip 以生成 Recovery 安装包:</string>
+    <string name="toast_export_success">Zip 格式打包成功。</string>
+    <string name="toast_export_error">Zip 格式打包失败！</string>
+    <string name="debug_preferences">调试</string>
+    <string name="title_trace">追踪模式</string>
+    <string name="summary_trace">启用追踪模式</string>
+    <string name="title_logger">日志</string>
+    <string name="summary_logger">保存日志到文件</string>
+    <string name="title_logfile">日志文件</string>
+    <string name="dialog_title_logfile">日志文件</string>
+    <string name="write_permissions_disallow">本应用不被允许写入您的存储</string>
+    <string name="help_text">加载中...</string>
+    <string name="about_text">This application is a BusyBox installer for Android.\n\nBusyBox combines tiny versions of many common UNIX utilities into a single small executable. It provides replacements for most of the utilities you usually find in GNU fileutils, shellutils, etc. The utilities in BusyBox generally have fewer options than their full–featured GNU cousins; however, the options that are included provide the expected functionality and behave very much like their GNU counterparts. BusyBox provides a fairly complete environment for any small or embedded system.\n\nFor more information, see <a href="https://github.com/meefik/busybox">the project page</a> or <a href="https://meefik.github.io/busybox">the developer\'s site</a>.\n\n© 2015 Anton Skshidlevsky, GPLv2</string>
+
+    <string-array name="theme_entries">
+        <item>深色主题</item>
+        <item>浅色主题</item>
+    </string-array>
+</resources>

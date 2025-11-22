@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
+
+android {
+    compileSdkVersion 23
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:23.1.1'
+    api project(':permission-annotation')
+}
+
+// Jar
+task androidJar(type: Jar) {
+    dependsOn assemble
+    group 'Build'
+    description 'blah blah'
+    from zipTree(
+            'build/intermediates/bundles/release/classes.jar')
+    from zipTree(
+            '../compiler/build/libs/compiler.jar')
+    from zipTree(
+            '../permission-annotation/build/libs/permission-annotation.jar')
+
+}
+
+
+
+// javadoc tasks
+android.libraryVariants.all { variant ->
+    task("javadoc${variant.name.capitalize()}", type: Javadoc) {
+        description "Generates Javadoc for $variant.name."
+        group 'Docs'
+        source = variant.javaCompile.source
+        source "../permission-annotation/src/main/java"
+
+        exclude '**/BuildConfig.java'
+        exclude '**/R.java'
+    }
+}
+
+
+publish {
+    artifactId = 'mpermission-api'
+    userOrg = rootProject.userOrg
+    groupId = rootProject.groupId
+    uploadName = rootProject.uploadName
+    publishVersion = rootProject.publishVersion
+    description = rootProject.description
+    website = rootProject.website
+    licences = rootProject.licences
+}
+
+task copyJar(type: Copy) {
+    from('build/libs/permission-lib.jar')
+    into('../output/')
+    rename ('permission-lib.jar', 'mpermissions.jar')
+}

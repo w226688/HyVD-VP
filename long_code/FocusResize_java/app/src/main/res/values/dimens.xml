@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="custom_item_height">100dp</dimen>
+    <dimen name="font_xxxlarge">32sp</dimen>
+    <dimen name="font_medium">18sp</dimen>
+</resources>

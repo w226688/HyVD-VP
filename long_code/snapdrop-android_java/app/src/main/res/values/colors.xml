@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="textColorWhite">#FFFFFF</color>
+    <color name="textColorError">#FF2200</color>
+
+    <color name="colorPrimary">#4285F4</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <bool name="isLightTheme">true</bool>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="snackbarBackground">#323232</color>
+    <color name="dialogBackground">#FFFFFF</color>
+
+    <!-- color accent from Snapdrop website -->
+    <color name="colorAccent">#4285F4</color>
+</resources>

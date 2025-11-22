@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">Kan ikke åpne nettleseren</string>
+    <string name="err_no_app">Ingen apper installert for å åpne denne filen</string>
+    <string name="open_url">Åpne URL</string>
+    <!-- Onboarding -->
+    <!-- Download -->
+    <string name="download_save_pending">Lagrer filen. Vennligst ha litt tålmodighet…</string>
+    <string name="download_successful">Nedlasting vellykket</string>
+    <string name="notification_channel_name">Nedlastingen er fullført</string>
+    <!-- Action Buttons -->
+    <string name="open">åpne</string>
+    <string name="reset">nullstill</string>
+    <string name="copy">kopier</string>
+    <!-- Settings / About -->
+    <string name="pref_category_settings">Innstillinger</string>
+    <string name="logs">Feilsøk-logger</string>
+    <string name="components_summary">Trykk for å vise</string>
+    <string name="version">Versjon</string>
+    <string name="pref_device_name_title">Enhetsnavn</string>
+    <string name="pref_device_name_summary">Angi et brukerdefinert enhetsnavn</string>
+    <string name="keep_on_summary">(Anbefalt) Mange enheter har problemer med at overføring blir avbrutt når skjermen slås av</string>
+    <string name="keep_on_title">Hold skjermen påslått mens du overfører</string>
+    <string name="settings_theme_title">Tema</string>
+    <string-array name="darkmode_entries">
+        <item>Systemstandard</item>
+        <item>Lys</item>
+        <item>Mørk</item>
+    </string-array>
+    <string name="save_location">Lagringssted</string>
+    <!-- File sharing -->
+    <string name="intent_file">En fil er valgt for deling</string>
+    <string name="intent_files">Filer er valgt for deling</string>
+    <string name="intent_content">Innhold er valgt for deling</string>
+    <string name="error_filechooser">Kan ikke åpne filvelgeren</string>
+    <string name="error_network">Vennligst bekreft at du er tilkoblet et WiFi-nettverk</string>
+    <string name="ignore_error_network">Slipp meg inn likevel</string>
+    <string name="error_not_reachable_title">Oops, beklager!</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">Trykk for å sende filer eller trykk lenge for å sende en melding</string>
+    <string name="website_file_received">Fil mottatt</string>
+    <string name="website_file_ask_before_download">Spør alltid før lagring av filer</string>
+    <string name="website_file_download">Lagre</string>
+    <string name="website_footer_discovery">Du kan bli funnet av alle i dette nettverket</string>
+    <string name="website_footer_known_as">Du er kjent som %s</string>
+    <string name="website_about_subheading">Den enkleste måten å overføre filer mellom enheter</string>
+</resources>

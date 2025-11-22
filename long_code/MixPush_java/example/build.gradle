@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.huawei.agconnect'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId EXAMPLE_APPLICATION_ID
+        minSdkVersion 19
+        targetSdkVersion 31
+        versionCode 10
+        versionName "1.1.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        manifestPlaceholders["VIVO_APP_ID"] = EXAMPLE_VIVO_APP_ID
+        manifestPlaceholders["VIVO_APP_KEY"] = EXAMPLE_VIVO_APP_KEY
+        manifestPlaceholders["MI_APP_ID"] = EXAMPLE_MI_APP_ID
+        manifestPlaceholders["MI_APP_KEY"] = EXAMPLE_MI_APP_KEY
+        manifestPlaceholders["OPPO_APP_KEY"] = EXAMPLE_OPPO_APP_KEY
+        manifestPlaceholders["OPPO_APP_SECRET"] = EXAMPLE_OPPO_APP_SECRET
+        manifestPlaceholders["MEIZU_APP_ID"] = EXAMPLE_MEIZU_APP_ID
+        manifestPlaceholders["MEIZU_APP_KEY"] = EXAMPLE_MEIZU_APP_KEY
+    }
+    signingConfigs {
+        release {
+            keyAlias ''
+            keyPassword ""
+            storePassword ""
+            storeFile file('.jks')
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+//            signingConfig signingConfigs.release
+            minifyEnabled false
+            zipAlignEnabled false
+            debuggable = true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.30"
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.alibaba:fastjson:1.1.45.android'
+
+    implementation project(path: ':mixpush-core')
+    implementation project(path: ':mixpush-oppo')
+    implementation project(path: ':mixpush-meizu')
+    implementation project(path: ':mixpush-vivo')
+    implementation project(path: ':mixpush-huawei')
+    implementation project(path: ':mixpush-mi')
+}

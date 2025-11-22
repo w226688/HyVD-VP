@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="120" cy="120" r="120" fill="#4A90E2" />
+
+    <!-- 计算机显示器主体 -->
+    <!-- Computer monitor body -->
+    <rect x="60" y="70" width="120" height="80" rx="4" fill="white" />
+
+    <!-- 显示器支架 -->
+    <!-- Monitor stand -->
+    <rect x="110" y="150" width="20" height="10" fill="white" />
+    <rect x="95" y="160" width="50" height="4" rx="2" fill="white" />
+
+    <!-- 时钟图案 -->
+    <!-- Clock pattern -->
+    <circle cx="120" cy="110" r="25" fill="#4A90E2" stroke="white" stroke-width="4" />
+    <line x1="120" y1="110" x2="120" y2="95" stroke="white" stroke-width="4" stroke-linecap="round" />
+    <line x1="120" y1="110" x2="130" y2="110" stroke="white" stroke-width="4" stroke-linecap="round" />
+
+    <!-- 齿轮装饰 -->
+    <!-- Gear decoration -->
+    <circle cx="170" cy="180" r="15" fill="white" />
+    <path d="M170,165 L173,180 L170,195 L167,180 Z" fill="#4A90E2" />
+    <path d="M155,180 L170,177 L185,180 L170,183 Z" fill="#4A90E2" />
+    <path d="M158,168 L172,178 L182,192 L168,182 Z" fill="#4A90E2" />
+    <path d="M158,192 L168,178 L182,168 L172,182 Z" fill="#4A90E2" />
+    <circle cx="170" cy="180" r="5" fill="#4A90E2" />
+</svg>

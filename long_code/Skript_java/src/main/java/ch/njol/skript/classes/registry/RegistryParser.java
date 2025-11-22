@@ -1,0 +1,136 @@
+package ch.njol.skript.classes.registry;
+
+import ch.njol.skript.classes.PatternedParser;
+import ch.njol.skript.lang.ParseContext;
+import ch.njol.skript.localization.Language;
+import ch.njol.skript.localization.Noun;
+import ch.njol.util.NonNullPair;
+import org.bukkit.Keyed;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+/**
+ * A parser based on a {@link Registry} used to parse data from a string or turn data into a string.
+ *
+ * @param <R> Registry class
+ */
+public class RegistryParser<R extends Keyed> extends PatternedParser<R> {
+
+	private final Registry<R> registry;
+	private final String languageNode;
+
+	private final Map<R, String> names = new HashMap<>();
+	private final Map<String, R> parseMap = new HashMap<>();
+	private String[] patterns;
+
+	public RegistryParser(Registry<R> registry, String languageNode) {
+		assert !languageNode.isEmpty() && !languageNode.endsWith(".") : languageNode;
+		this.registry = registry;
+		this.languageNode = languageNode;
+		refresh();
+		Language.addListener(this::refresh);
+	}
+
+	private void refresh() {
+		names.clear();
+		parseMap.clear();
+		for (R registryObject : registry) {
+			NamespacedKey namespacedKey = registryObject.getKey();
+			String namespace = namespacedKey.getNamespace();
+			String key = namespacedKey.getKey();
+			String keyWithSpaces = key.replace("_", " ");
+			String languageKey;
+
+			// Put the full namespaced key as a pattern
+			parseMap.put(namespacedKey.toString(), registryObject);
+
+			// If the object is a vanilla Minecraft object, we'll add the key with spaces as a pattern
+			if (namespace.equalsIgnoreCase(NamespacedKey.MINECRAFT)) {
+				parseMap.put(keyWithSpaces, registryObject);
+				languageKey = languageNode + "." + key;
+			} else {
+				languageKey = namespacedKey.toString();
+			}
+
+			String[] options = Language.getList(languageKey);
+			// Missing/Custom registry objects
+			if (options.length == 1 && options[0].equals(languageKey.toLowerCase(Locale.ENGLISH))) {
+				if (namespace.equalsIgnoreCase(NamespacedKey.MINECRAFT)) {
+					// If the object is a vanilla Minecraft object, we'll use the key with spaces as a name
+					names.put(registryObject, keyWithSpaces);
+				} else {
+					// If the object is a custom object, we'll use the full namespaced key as a name
+					names.put(registryObject, namespacedKey.toString());
+				}
+			} else {
+				for (String option : options) {
+					option = option.toLowerCase(Locale.ENGLISH);
+
+					// Isolate the gender if one is present
+					NonNullPair<String, Integer> strippedOption = Noun.stripGender(option, languageKey);
+					String first = strippedOption.getFirst();
+					Integer second = strippedOption.getSecond();
+
+					// Add to name map if needed
+					names.putIfAbsent(registryObject, first);
+
+					parseMap.put(first, registryObject);
+					if (second != -1) { // There is a gender present
+						parseMap.put(Noun.getArticleWithSpace(second, Language.F_INDEFINITE_ARTICLE) + first, registryObject);
+					}
+				}
+			}
+		}
+		patterns = parseMap.keySet().stream()
+			.filter(pattern -> !pattern.startsWith("minecraft:"))
+			.sorted()
+			.toArray(String[]::new);
+	}
+
+	/**
+	 * This method attempts to match the string input against one of the string representations of the registry.
+	 *
+	 * @param input a string to attempt to match against one in the registry.
+	 * @param context of parsing, may not be null
+	 * @return The registry object matching the input, or null if no match could be made.
+	 */
+	@Override
+	public @Nullable R parse(String input, @NotNull ParseContext context) {
+		return parseMap.get(input.toLowerCase(Locale.ENGLISH));
+	}
+
+	/**
+	 * This method returns the string representation of a registry.
+	 *
+	 * @param object The object to represent as a string.
+	 * @param flags  not currently used
+	 * @return A string representation of the registry object.
+	 */
+	@Override
+	public @NotNull String toString(R object, int flags) {
+		return names.get(object);
+	}
+
+	/**
+	 * Returns a registry object's string representation in a variable name.
+	 *
+	 * @param object Object to represent in a variable name.
+	 * @return The given object's representation in a variable name.
+	 */
+	@Override
+	public @NotNull String toVariableNameString(R object) {
+		return toString(object, 0);
+	}
+
+	@Override
+	public String[] getPatterns() {
+		return patterns;
+	}
+
+}

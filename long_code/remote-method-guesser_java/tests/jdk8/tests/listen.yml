@@ -1,0 +1,19 @@
+tester:
+  title: Listener Tests
+  description: |-
+    'Perform tests for the listen action.'
+
+  id: '001-008'
+  groups:
+    - listen
+  id_pattern: '001-008-{:03}'
+
+
+plugins:
+  - http_listener:
+      port: 8000
+      dir: ../../utils
+
+
+include:
+  - ../../shared/listen.yml

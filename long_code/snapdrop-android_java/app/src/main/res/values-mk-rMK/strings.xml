@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">Не може да се отвори прелистувачот</string>
+    <string name="err_no_app">Нема апликација инсталирана за да се отвори оваа датотека</string>
+    <string name="open_url">Отвори URL</string>
+    <!-- Onboarding -->
+    <!-- Download -->
+    <string name="download_save_pending">Се зачувува датотеката. Ве молиме имајте стрплење…</string>
+    <string name="download_successful">Преземањето е успешно</string>
+    <string name="notification_channel_name">Преземањето е завршено</string>
+    <!-- Action Buttons -->
+    <string name="open">отвори</string>
+    <string name="reset">ресетирај</string>
+    <string name="copy">копирај</string>
+    <!-- Settings / About -->
+    <string name="pref_category_settings">Поставки</string>
+    <string name="logs">Дебагирани влезови</string>
+    <string name="components_summary">Допрете за да се прикаже</string>
+    <string name="version">Верзија</string>
+    <string name="pref_device_name_title">Име на уредот</string>
+    <string name="pref_device_name_summary">Поставете сопствено име на уредот</string>
+    <string name="keep_on_summary">Овозможете ја оваа опција ако имате проблеми со прекинување на трансферите кога екранот е исклучен</string>
+    <string name="keep_on_title">Чувајте го екранот вклучен</string>
+    <string name="settings_theme_title">Тема</string>
+    <string-array name="darkmode_entries">
+        <item>Системски одбрано</item>
+        <item>Светла</item>
+        <item>Темна</item>
+    </string-array>
+    <string name="save_location">Зачувај локација</string>
+    <!-- File sharing -->
+    <string name="intent_file">Датотека е избрана за споделување</string>
+    <string name="intent_files">Датотеките се избрани за споделување</string>
+    <string name="intent_content">Содржината е избрана за споделување</string>
+    <string name="error_filechooser">Не може да се отвори избирачот на датотеки</string>
+    <string name="error_network">Ве молиме, проверете дали сте поврзани со WiFi мрежа</string>
+    <string name="ignore_error_network">Игнорирај и продолжи</string>
+    <!-- Website Localization -->
+</resources>

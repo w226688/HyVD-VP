@@ -1,0 +1,17 @@
+[Unit]
+Description=HDFS namenode
+Before=
+After=network.target
+
+[Service]
+User={% if SECURITY_ENABLED %}hdfs{% else %}hadoop{% endif %}
+
+ExecStart={{ HADOOP_HOME }}/bin/mapred historyserver
+ExecStop=/bin/kill $MAINPID
+Restart=on-abort
+StandardOutput=journal
+EnvironmentFile=/etc/environment
+PIDFile={{ VAR_RUN_BASE }}/hadoop/pid/historyserver.pid
+
+[Install]
+WantedBy=multi-user.target

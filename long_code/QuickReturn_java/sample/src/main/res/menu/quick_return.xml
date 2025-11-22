@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".QuickReturnActivity" >
+    <!--<item android:id="@+id/action_settings"-->
+        <!--android:title="@string/action_settings"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:showAsAction="never" />-->
+
+    <item android:id="@+id/action_donate"
+        android:title="@string/action_donate"
+        android:icon="@drawable/ic_action_donate"
+        app:showAsAction="always">
+        <menu>
+            <item android:id="@+id/buy_one_beer"
+                android:title="@string/buy_me_a_beer"/>
+            <item android:id="@+id/buy_two_beers"
+                android:title="@string/buy_me_two_beers" />
+            <item android:id="@+id/buy_four_beers"
+                android:title="@string/buy_me_four_beers" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/action_github"
+        android:title="@string/action_github"
+        android:icon="@drawable/ic_action_github"
+        app:showAsAction="always" />
+
+</menu>

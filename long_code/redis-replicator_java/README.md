@@ -1,0 +1,738 @@
+Table of Contents ([中文说明](./README.zh_CN.md))
+=================
+
+* [1. Redis-replicator](#1-redis-replicator)
+    * [1.1. Brief Introduction](#11-brief-introduction)
+    * [1.2. Chat with Author](#12-chat-with-author)
+    * [1.3. Contact the Author](#13-contact-the-author)
+* [2. Installation](#2-installation)
+    * [2.1. Requirements](#21-requirements)
+    * [2.2. Maven Dependency](#22-maven-dependency)
+    * [2.3. Install from Source Code](#23-install-from-source-code)
+    * [2.4. Select a Version](#24-select-a-version)
+* [3. Simple Usage](#3-simple-usage)
+    * [3.1. Basic Usage](#31-basic-usage)
+    * [3.2. Backup Remote RDB Snapshot](#32-backup-remote-rdb-snapshot)
+    * [3.3. Backup Remote Commands](#33-backup-remote-commands)
+    * [3.4. Convert RDB to Dump Format](#34-convert-rdb-to-dump-format)
+    * [3.5. RDB Check](#35-rdb-check)
+    * [3.6. Scan and PSYNC](#36-scan-and-psync)
+    * [3.7. Other Examples](#37-other-examples)
+* [4. Advanced Topics](#4-advanced-topics)
+    * [4.1. Command Extension](#41-command-extension)
+        * [4.1.1. Write a Command](#411-write-a-command)
+        * [4.1.2. Write a Command Parser](#412-write-a-command-parser)
+        * [4.1.3. Register the Parser](#413-register-the-parser)
+        * [4.1.4. Handle Command Event](#414-handle-command-event)
+        * [4.1.5. Putting It All Together](#415-putting-it-all-together)
+    * [4.2. Module Extension](#42-module-extension)
+        * [4.2.1. Compile Redis Test Modules](#421-compile-redis-test-modules)
+        * [4.2.2. Uncomment in redis.conf](#422-uncomment-in-redisconf)
+        * [4.2.3. Write a Module Parser](#423-write-a-module-parser)
+        * [4.2.4. Write a Command Parser](#424-write-a-command-parser)
+        * [4.2.5. Register Parsers and Handle Events](#425-register-parsers-and-handle-events)
+        * [4.2.6. Putting It All Together](#426-putting-it-all-together)
+    * [4.3. Stream](#43-stream)
+    * [4.4. Write Your Own RDB Parser](#44-write-your-own-rdb-parser)
+    * [4.5. Redis URI](#45-redis-uri)
+* [5. Other Topics](#5-other-topics)
+    * [5.1. Built-in Command Parsers](#51-built-in-command-parsers)
+    * [5.2. EOFException](#52-eofexception)
+    * [5.3. Trace Event Log](#53-trace-event-log)
+    * [5.4. SSL Connection](#54-ssl-connection)
+    * [5.5. Authentication](#55-authentication)
+    * [5.6. Avoid Full Sync](#56-avoid-full-sync)
+    * [5.7. Lifecycle Events](#57-lifecycle-events)
+    * [5.8. Handle Huge Key-Value Pairs](#58-handle-huge-key-value-pairs)
+    * [5.9. Redis 6 Support](#59-redis-6-support)
+        * [5.9.1. SSL Support](#591-ssl-support)
+        * [5.9.2. ACL Support](#592-acl-support)
+    * [5.10. Redis 7 Support](#510-redis-7-support)
+        * [5.10.1. Function](#5101-function)
+    * [5.11. Redis 7.4 Support](#511-redis-74-support)
+        * [5.11.1. TTL Hash](#5111-ttl-hash)
+* [6. Contributors](#6-contributors)
+* [7. Consulting](#7-consulting)
+* [8. References](#8-references)
+* [9. Supported By](#9-supported-by)
+    * [9.1. 宁文君](#91-宁文君)
+    * [9.2. YourKit](#92-yourkit)
+    * [9.3. IntelliJ IDEA](#93-intellij-idea)
+    * [9.4. Redisson](#94-redisson)
+
+# 1. Redis-replicator
+
+<a href="https://www.paypal.com/paypalme/leonchen83" target="_blank"><img src="https://github.com/leonchen83/share/blob/master/other/buymeacoffee.jpg?raw=true" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
+## 1.1. Brief Introduction
+[![Java CI with Maven](https://github.com/leonchen83/redis-replicator/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/leonchen83/redis-replicator/actions/workflows/maven.yml)
+[![Coverage Status](https://coveralls.io/repos/github/leonchen83/redis-replicator/badge.svg?branch=master)](https://coveralls.io/github/leonchen83/redis-replicator?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.moilioncircle/redis-replicator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.moilioncircle/redis-replicator)
+[![Javadocs](http://www.javadoc.io/badge/com.moilioncircle/redis-replicator.svg)](http://www.javadoc.io/doc/com.moilioncircle/redis-replicator)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](https://github.com/leonchen83/redis-replicator/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg?style=flat-square)](./ANTI-996-LICENSE)
+
+Redis Replicator is an implementation of the Redis Replication protocol written in Java. It can parse, filter, and broadcast RDB and AOF events in real-time. It can also synchronize Redis data to a local cache or a database. In this document, `Command` refers to writable commands (e.g., `set`, `hmset`) and excludes readable commands (e.g., `get`, `hmget`). Supports Redis 8.0.x and older versions.
+
+## 1.2. Chat with Author
+
+[![Join the chat at https://gitter.im/leonchen83/redis-replicator](https://badges.gitter.im/leonchen83/redis-replicator.svg)](https://gitter.im/leonchen83/redis-replicator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+## 1.3. Contact the Author
+
+**chen.bao.yi@gmail.com**
+
+# 2. Installation
+## 2.1. Requirements
+- **Compile:** JDK 9+
+- **Runtime:** JDK 8+
+- **Maven:** 3.3.1+
+- **Redis:** 2.6 - 8.0
+
+## 2.2. Maven Dependency
+```xml
+<dependency>
+    <groupId>com.moilioncircle</groupId>
+    <artifactId>redis-replicator</artifactId>
+    <version>3.10.0</version>
+</dependency>
+```
+
+## 2.3. Install from Source Code
+
+```bash
+# Step 1: Install JDK 11+ for compilation
+# Step 2: Clone the repository
+git clone https://github.com/leonchen83/redis-replicator.git
+# Step 3: Navigate to the project directory
+cd redis-replicator
+# Step 4: Build the project
+mvn clean install package -DskipTests
+```
+
+## 2.4. Select a Version
+
+| **Redis Version** | **redis-replicator Version** |
+|-------------------|------------------------------|
+| [2.6, 8.2.x]      | [3.10.0,     ]               |
+| [2.6, 8.0.x]      | [3.9.0, 3.9.0]               |
+| [2.6, 7.2.x]      | [3.8.0, 3.8.1]               |
+| [2.6, 7.0.x]      | [3.6.4, 3.7.0]               |
+| [2.6, 7.0.x-RC2]  | [3.6.2, 3.6.3]               |
+| [2.6, 7.0.0-RC1]  | [3.6.0, 3.6.1]               |
+| [2.6, 6.2.x]      | [3.5.2, 3.5.5]               |
+| [2.6, 6.2.0-RC1]  | [3.5.0, 3.5.1]               |
+| [2.6, 6.0.x]      | [3.4.0, 3.4.4]               |
+| [2.6, 5.0.x]      | [2.6.1, 3.3.3]               |
+| [2.6, 4.0.x]      | [2.3.0, 2.5.0]               |
+| [2.6, 4.0-RC3]    | [2.1.0, 2.2.0]               |
+| [2.6, 3.2.x]      | [1.0.18] (not supported)     |
+
+
+# 3. Simple Usage
+
+## 3.1. Basic Usage
+
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+replicator.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if (event instanceof KeyStringValueString) {
+            KeyStringValueString kv = (KeyStringValueString) event;
+            System.out.println(new String(kv.getKey()));
+            System.out.println(new String(kv.getValue()));
+        } else {
+            // ...
+        }
+    }
+});
+replicator.open();
+```
+
+## 3.2. Backup Remote RDB Snapshot
+
+See [RdbBackupExample.java](./examples/com/moilioncircle/examples/backup/RdbBackupExample.java)
+
+## 3.3. Backup Remote Commands
+
+See [CommandBackupExample.java](./examples/com/moilioncircle/examples/backup/CommandBackupExample.java)
+
+## 3.4. Convert RDB to Dump Format
+
+You can use `DumpRdbVisitor` to convert an RDB file to the Redis [DUMP](https://redis.io/commands/dump) format.
+
+```java
+Replicator r = new RedisReplicator("redis:///path/to/dump.rdb");
+r.setRdbVisitor(new DumpRdbVisitor(r));
+r.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if (!(event instanceof DumpKeyValuePair)) return;
+        DumpKeyValuePair dkv = (DumpKeyValuePair) event;
+        byte[] serialized = dkv.getValue();
+        // We can use the Redis RESTORE command to migrate this serialized value to another Redis instance.
+    }
+});
+r.open();
+```
+
+## 3.5. RDB Check
+
+You can use `SkipRdbVisitor` to check the correctness of an RDB file.
+
+```java
+Replicator r = new RedisReplicator("redis:///path/to/dump.rdb");
+r.setRdbVisitor(new SkipRdbVisitor(r));
+r.open();
+```
+
+## 3.6. Scan and PSYNC
+
+By default, redis-replicator uses the `PSYNC` command, pretending to be a replica, to receive commands. An example is as follows:
+```java
+Replicator r = new RedisReplicator("redis://127.0.0.1:6379");
+r.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        System.out.println(event);
+    }
+});
+
+r.open();
+```
+
+However, on some cloud services, the `PSYNC` command is prohibited. In such cases, you can use the `SCAN` command instead:
+```java
+Replicator r = new RedisReplicator("redis://127.0.0.1:6379?enableScan=yes&scanStep=256");
+r.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        System.out.println(event);
+    }
+});
+
+r.open();
+```
+
+## 3.7. Other Examples
+
+See [examples](./examples/com/moilioncircle/examples/README.md)
+
+# 4. Advanced Topics
+
+## 4.1. Command Extension
+
+### 4.1.1. Write a Command
+```java
+@CommandSpec(command = "APPEND")
+public static class YourAppendCommand extends AbstractCommand {
+    private final String key;
+    private final String value;
+
+    public YourAppendCommand(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+    
+    public String getKey() {
+        return key;
+    }
+    
+    public String getValue() {
+        return value;
+    }
+}
+```
+
+### 4.1.2. Write a Command Parser
+```java
+public class YourAppendParser implements CommandParser<YourAppendCommand> {
+    @Override
+    public YourAppendCommand parse(Object[] command) {
+        return new YourAppendCommand(new String((byte[]) command[1], UTF_8), new String((byte[]) command[2], UTF_8));
+    }
+}
+```
+
+### 4.1.3. Register the Parser
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+replicator.addCommandParser(CommandName.name("APPEND"), new YourAppendParser());
+```
+
+### 4.1.4. Handle Command Event
+```java
+replicator.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if(event instanceof YourAppendCommand){
+            YourAppendCommand appendCommand = (YourAppendCommand)event;
+            // Your code goes here
+        }
+    }
+});
+```
+
+### 4.1.5. Putting It All Together
+
+See [CommandExtensionExample.java](./examples/com/moilioncircle/examples/extension/CommandExtensionExample.java)
+
+## 4.2. Module Extension
+### 4.2.1. Compile Redis Test Modules
+```bash
+cd /path/to/redis-4.0-rc2/src/modules
+make
+```
+### 4.2.2. Uncomment in redis.conf
+
+```
+loadmodule /path/to/redis-4.0-rc2/src/modules/hellotype.so
+```
+### 4.2.3. Write a Module Parser
+```java
+public class HelloTypeModuleParser implements ModuleParser<HelloTypeModule> {
+    @Override
+    public HelloTypeModule parse(RedisInputStream in, int version) throws IOException {
+        DefaultRdbModuleParser parser = new DefaultRdbModuleParser(in);
+        int elements = parser.loadUnsigned(version).intValue();
+        long[] ary = new long[elements];
+        int i = 0;
+        while (elements-- > 0) {
+            ary[i++] = parser.loadSigned(version);
+        }
+        return new HelloTypeModule(ary);
+    }
+}
+
+public class HelloTypeModule implements Module {
+    private final long[] value;
+
+    public HelloTypeModule(long[] value) {
+        this.value = value;
+    }
+
+    public long[] getValue() {
+        return value;
+    }
+}
+```
+### 4.2.4. Write a Command Parser
+```java
+public class HelloTypeParser implements CommandParser<HelloTypeCommand> {
+    @Override
+    public HelloTypeCommand parse(Object[] command) {
+        String key = new String((byte[]) command[1], Constants.UTF_8);
+        long value = Long.parseLong(new String((byte[]) command[2], Constants.UTF_8));
+        return new HelloTypeCommand(key, value);
+    }
+}
+
+@CommandSpec(command = "hellotype.insert")
+public class HelloTypeCommand extends AbstractCommand {
+    private final String key;
+    private final long value;
+
+    public long getValue() {
+        return value;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public HelloTypeCommand(String key, long value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+```
+### 4.2.5. Register Parsers and Handle Events
+
+```java
+public static void main(String[] args) throws IOException {
+    Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+    replicator.addCommandParser(CommandName.name("hellotype.insert"), new HelloTypeParser());
+    replicator.addModuleParser("hellotype", 0, new HelloTypeModuleParser());
+    replicator.addEventListener(new EventListener() {
+        @Override
+        public void onEvent(Replicator replicator, Event event) {
+            if (event instanceof KeyStringValueModule) {
+                System.out.println(event);
+            }
+            
+            if (event instanceof HelloTypeCommand) {
+                System.out.println(event);
+            }
+        }
+    });
+    replicator.open();
+}
+```
+
+### 4.2.6. Putting It All Together
+
+See [ModuleExtensionExample.java](./examples/com/moilioncircle/examples/extension/ModuleExtensionExample.java)
+
+## 4.3. Stream
+
+Since Redis 5.0, a new data structure called `STREAM` has been added. Redis-replicator parses `STREAM` data as follows:
+
+```java
+Replicator r = new RedisReplicator("redis://127.0.0.1:6379");
+r.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if (event instanceof KeyStringValueStream) {
+            KeyStringValueStream kv = (KeyStringValueStream)event;
+            // Key
+            String key = kv.getKey();
+            
+            // Stream
+            Stream stream = kv.getValueAsStream();
+            // Last stream ID
+            stream.getLastId();
+            
+            // Entries
+            NavigableMap<Stream.ID, Stream.Entry> entries = stream.getEntries();
+            
+            // Optional: Groups
+            for (Stream.Group group : stream.getGroups()) {
+                // Group PEL (Pending Entries List)
+                NavigableMap<Stream.ID, Stream.Nack> gpel = group.getPendingEntries();
+                
+                // Consumers
+                for (Stream.Consumer consumer : group.getConsumers()) {
+                    // Consumer PEL (Pending Entries List)
+                    NavigableMap<Stream.ID, Stream.Nack> cpel = consumer.getPendingEntries();
+                }
+            }
+        }
+    }
+});
+r.open();
+```
+
+## 4.4. Write Your Own RDB Parser
+
+*   Write a `YourRdbVisitor` that extends `RdbVisitor`.
+*   Register your `RdbVisitor` with the `Replicator` using the `setRdbVisitor` method.
+
+## 4.5. Redis URI
+
+Before version 2.4.0, `RedisReplicator` was constructed as follows:
+
+```java
+Replicator replicator = new RedisReplicator("127.0.0.1", 6379, Configuration.defaultSetting());
+Replicator replicator = new RedisReplicator(new File("/path/to/dump.rdb"), FileType.RDB, Configuration.defaultSetting());
+Replicator replicator = new RedisReplicator(new File("/path/to/appendonly.aof"), FileType.AOF, Configuration.defaultSetting());
+Replicator replicator = new RedisReplicator(new File("/path/to/appendonly.aof"), FileType.MIXED, Configuration.defaultSetting());
+```
+
+Since version 2.4.0, we have introduced the Redis URI concept to simplify the `RedisReplicator` construction process:
+
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+Replicator replicator = new RedisReplicator("redis:///path/to/dump.rdb");
+Replicator replicator = new RedisReplicator("redis:///path/to/appendonly.aof");
+
+// Configuration setting example
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379?authPassword=foobared&readTimeout=10000&ssl=yes");
+Replicator replicator = new RedisReplicator("redis:///path/to/dump.rdb?rateLimit=1000000");
+Replicator replicator = new RedisReplicator("rediss://user:pass@127.0.0.1:6379?rateLimit=1000000");
+```
+
+# 5. Other Topics
+
+## 5.1. Built-in Command Parsers
+
+| **Command**  | **Command**    | **Command**        | **Command**  | **Command**   | **Command**          |
+|--------------|----------------|--------------------|--------------|---------------|----------------------|
+| **PING**     | **APPEND**     | **SET**            | **SETEX**    | **MSET**      | **DEL**              |
+| **SADD**     | **HMSET**      | **HSET**           | **LSET**     | **EXPIRE**    | **EXPIREAT**         |
+| **GETSET**   | **HSETNX**     | **MSETNX**         | **PSETEX**   | **SETNX**     | **SETRANGE**         |
+| **HDEL**     | **UNLINK**     | **SREM**           | **LPOP**     | **LPUSH**     | **LPUSHX**           |
+| **LREM**     | **RPOP**       | **RPUSH**          | **RPUSHX**   | **ZREM**      | **ZINTERSTORE**      |
+| **INCR**     | **DECR**       | **INCRBY**         | **PERSIST**  | **SELECT**    | **FLUSHALL**         |
+| **FLUSHDB**  | **HINCRBY**    | **ZINCRBY**        | **MOVE**     | **SMOVE**     | **BRPOPLPUSH**       |
+| **PFCOUNT**  | **PFMERGE**    | **SDIFFSTORE**     | **RENAMENX** | **PEXPIREAT** | **SINTERSTORE**      |
+| **ZADD**     | **BITFIELD**   | **SUNIONSTORE**    | **RESTORE**  | **LINSERT**   | **ZREMRANGEBYLEX**   |
+| **GEOADD**   | **PEXPIRE**    | **ZUNIONSTORE**    | **EVAL**     | **SCRIPT**    | **ZREMRANGEBYRANK**  |
+| **PUBLISH**  | **BITOP**      | **SETBIT**         | **SWAPDB**   | **PFADD**     | **ZREMRANGEBYSCORE** |
+| **RENAME**   | **MULTI**      | **EXEC**           | **LTRIM**    | **RPOPLPUSH** | **SORT**             |
+| **EVALSHA**  | **ZPOPMAX**    | **ZPOPMIN**        | **XACK**     | **XADD**      | **XCLAIM**           |
+| **XDEL**     | **XGROUP**     | **XTRIM**          | **XSETID**   | **COPY**      | **LMOVE**            |
+| **BLMOVE**   | **ZDIFFSTORE** | **GEOSEARCHSTORE** | **FUNCTION** | **SPUBLISH**  | **HPERSIST**         |
+| **HSETEX**   | **HPEXPIREAT** | **XACKDEL**        | **XDELEX**   |               |                      |
+
+## 5.2. EOFException
+
+When event consumption is too slow and the backlog of events exceeds the Redis backlog limit, Redis will actively disconnect from the slave. When Redis-replicator reconnects, it will perform a full synchronization. To avoid this situation, you need to set the parameter `client-output-buffer-limit slave 0 0 0`.
+
+For more details, please refer to [redis.conf](https://raw.githubusercontent.com/antirez/redis/3.0/redis.conf).
+
+```
+client-output-buffer-limit slave 0 0 0
+```
+**WARNING: This setting may cause the Redis server to run out of memory in some cases.**
+
+## 5.3. Trace Event Log
+
+*   Set the log level to **debug**.
+*   If you are using Log4j2, add a logger as shown below:
+
+```xml
+<Logger name="com.moilioncircle" level="debug">
+    <AppenderRef ref="YourAppender"/>
+</Logger>
+```
+
+```java
+Configuration.defaultSetting().setVerbose(true);
+// As a Redis URI parameter
+"redis://127.0.0.1:6379?verbose=yes"
+```
+
+## 5.4. SSL Connection
+
+```java
+System.setProperty("javax.net.ssl.keyStore", "/path/to/keystore");
+System.setProperty("javax.net.ssl.keyStorePassword", "password");
+System.setProperty("javax.net.ssl.keyStoreType", "your_type");
+
+System.setProperty("javax.net.ssl.trustStore", "/path/to/truststore");
+System.setProperty("javax.net.ssl.trustStorePassword", "password");
+System.setProperty("javax.net.ssl.trustStoreType", "your_type");
+
+Configuration.defaultSetting().setSsl(true);
+
+// Optional settings
+Configuration.defaultSetting().setSslSocketFactory(sslSocketFactory);
+Configuration.defaultSetting().setSslParameters(sslParameters);
+Configuration.defaultSetting().setHostnameVerifier(hostnameVerifier);
+
+// As a Redis URI parameter
+"redis://127.0.0.1:6379?ssl=yes"
+"rediss://127.0.0.1:6379"
+```
+
+If you prefer not to use `System.setProperty`, you can configure it programmatically as follows:
+
+```java
+RedisSslContextFactory factory = new RedisSslContextFactory();
+factory.setKeyStorePath("/path/to/redis/tests/tls/redis.p12");
+factory.setKeyStoreType("pkcs12");
+factory.setKeyStorePassword("password");
+
+factory.setTrustStorePath("/path/to/redis/tests/tls/redis.p12");
+factory.setTrustStoreType("pkcs12");
+factory.setTrustStorePassword("password");
+
+SslConfiguration ssl = SslConfiguration.defaultSetting().setSslContextFactory(factory);
+Replicator replicator = new RedisReplicator("rediss://127.0.0.1:6379", ssl);
+```
+
+## 5.5. Authentication
+
+```java
+Configuration.defaultSetting().setAuthUser("default");
+Configuration.defaultSetting().setAuthPassword("foobared");
+
+// As a Redis URI parameter
+"redis://127.0.0.1:6379?authPassword=foobared&authUser=default"
+"redis://default:foobared@127.0.0.1:6379"
+```
+
+## 5.6. Avoid Full Sync
+
+Adjust the Redis server settings as follows:
+
+```
+repl-backlog-size
+repl-backlog-ttl
+repl-ping-slave-period
+```
+The `repl-ping-slave-period` **MUST** be less than `Configuration.getReadTimeout()`. The default `Configuration.getReadTimeout()` is 60 seconds.
+
+## 5.7. Lifecycle Events
+
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+final long start = System.currentTimeMillis();
+final AtomicInteger acc = new AtomicInteger(0);
+replicator.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if(event instanceof PreRdbSyncEvent) {
+            System.out.println("pre rdb sync");
+        } else if(event instanceof PostRdbSyncEvent) {
+            long end = System.currentTimeMillis();
+            System.out.println("time elapsed:" + (end - start));
+            System.out.println("rdb event count:" + acc.get());
+        } else {
+            acc.incrementAndGet();
+        }
+    }
+});
+replicator.open();
+```
+
+## 5.8. Handle Huge Key-Value Pairs
+
+As mentioned in [4.4. Write Your Own RDB Parser](#44-write-your-own-rdb-parser), this tool has a built-in [Iterable Rdb Parser](./src/main/java/com/moilioncircle/redis/replicator/rdb/iterable/ValueIterableRdbVisitor.java) to handle huge key-value pairs.
+For more details, please refer to:
+[1] [HugeKVFileExample.java](./examples/com/moilioncircle/examples/huge/HugeKVFileExample.java)
+[2] [HugeKVSocketExample.java](./examples/com/moilioncircle/examples/huge/HugeKVSocketExample.java)
+
+## 5.9. Redis 6 Support
+
+### 5.9.1. SSL Support
+
+```bash
+cd /path/to/redis
+./utils/gen-test-certs.sh
+cd tests/tls
+openssl pkcs12 -export -CAfile ca.crt -in redis.crt -inkey redis.key -out redis.p12
+cd /path/to/redis
+./src/redis-server --tls-port 6379 --port 0 --tls-cert-file ./tests/tls/redis.crt \
+     --tls-key-file ./tests/tls/redis.key --tls-ca-cert-file ./tests/tls/ca.crt \
+     --tls-replication yes --bind 0.0.0.0 --protected-mode no
+```
+
+```java
+System.setProperty("javax.net.ssl.keyStore", "/path/to/redis/tests/tls/redis.p12");
+System.setProperty("javax.net.ssl.keyStorePassword", "password");
+System.setProperty("javax.net.ssl.keyStoreType", "pkcs12");
+
+System.setProperty("javax.net.ssl.trustStore", "/path/to/redis/tests/tls/redis.p12");
+System.setProperty("javax.net.ssl.trustStorePassword", "password");
+System.setProperty("javax.net.ssl.trustStoreType", "pkcs12");
+
+Replicator replicator = new RedisReplicator("rediss://127.0.0.1:6379");
+```
+
+### 5.9.2. ACL Support
+
+```java
+Replicator replicator = new RedisReplicator("redis://user:pass@127.0.0.1:6379");
+```
+
+## 5.10. Redis 7 Support
+
+### 5.10.1. Function
+
+Since Redis 7.0, `FUNCTION` is supported, and its structure is stored in the RDB file. You can use the following method to parse a `FUNCTION`.
+
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+replicator.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if (event instanceof Function) {
+            Function function = (Function) event;
+            function.getCode();
+                
+            // Your code goes here
+        }
+    }
+});
+replicator.open();
+```
+
+You can also parse a `FUNCTION` into serialized data and use `FUNCTION RESTORE` to restore it to a target Redis instance.
+
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+replicator.setRdbVisitor(new DumpRdbVisitor(replicator));
+replicator.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if (event instanceof DumpFunction) {
+            DumpFunction function = (DumpFunction) event;
+            byte[] serialized = function.getSerialized();
+            // Your code goes here
+            // You can use FUNCTION RESTORE to restore the serialized data to a target Redis instance
+        }
+    }
+});
+replicator.open();
+```
+
+## 5.11. Redis 7.4 Support
+
+### 5.11.1. TTL Hash
+
+Since Redis 7.4, `TTL HASH` is supported, and its structure is stored in the RDB file. You can use the following method to parse a `TTL HASH`.
+
+```java
+Replicator replicator = new RedisReplicator("redis://127.0.0.1:6379");
+replicator.addEventListener(new EventListener() {
+    @Override
+    public void onEvent(Replicator replicator, Event event) {
+        if (event instanceof KeyStringValueTTLHash) {
+            KeyStringValueTTLHash skv = (KeyStringValueTTLHash) event;
+            // Key
+            byte[] key = skv.getKey();
+            
+            // TTL Hash
+            Map<byte[], TTLValue> ttlHash = skv.getValue();
+            for (Map.Entry<byte[], TTLValue> entry : ttlHash.entrySet()) {
+                System.out.println("field: " + Strings.toString(entry.getKey()));
+                System.out.println("value: " + Strings.toString(entry.getValue().getValue()));
+                System.out.println("field ttl: " + entry.getValue().getExpires());
+            }
+        }
+    }
+});
+replicator.open();
+```
+
+# 6. Contributors
+* [Leon Chen](https://github.com/leonchen83)
+* [Adrian Yao](https://github.com/adrianyao89)
+* [Trydofor](https://github.com/trydofor)
+* [Argun](https://github.com/Argun)
+* [Sean Pan](https://github.com/XinYang-Pan)
+* [René Kerner](https://github.com/rk3rn3r)
+* [Maplestoria](https://github.com/maplestoria)
+* Special thanks to [Kevin Zheng](https://github.com/KevinZheng001)
+
+# 7. Consulting
+
+Commercial support for `redis-replicator` is available. The following services are currently offered:
+*   Onsite consulting: $10,000 per day
+*   Onsite training: $10,000 per day
+
+You may also contact Baoyi Chen directly at [chen.bao.yi@gmail.com](mailto:chen.bao.yi@gmail.com).
+
+# 8. References
+* [rdb.c](https://github.com/antirez/redis/blob/unstable/src/rdb.c)
+* [Redis RDB File Format](https://github.com/leonchen83/redis-replicator/wiki/RDB-dump-data-format)
+* [Redis Protocol specification](http://redis.io/topics/protocol)
+* [Redis Replication](http://redis.io/topics/replication)
+* [Redis-replicator Design and Implementation](https://github.com/leonchen83/mycode/blob/master/redis/redis-share/Redis-replicator%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.md)
+
+# 9. Supported By
+
+## 9.1. 宁文君
+
+January 27, 2023, was a sad day as I lost my mother, 宁文君. She was always encouraging and supportive of my work on this tool. Every time a company started using it, she would get as excited as a child and motivate me to continue. Without her, I could not have maintained this tool for so many years. Even though I haven't achieved much, she was always proud of me. R.I.P, and may God bless her.
+
+## 9.2. YourKit
+
+![YourKit](https://www.yourkit.com/images/yklogo.png)
+YourKit is kindly supporting this open source project with its full-featured Java Profiler.
+YourKit, LLC is the creator of innovative and intelligent tools for profiling
+Java and .NET applications. Take a look at YourKit's leading software products:
+<a href="http://www.yourkit.com/java/profiler/index.jsp">YourKit Java Profiler</a> and
+<a href="http://www.yourkit.com/.net/profiler/index.jsp">YourKit .NET Profiler</a>.
+
+## 9.3. IntelliJ IDEA
+
+[IntelliJ IDEA](https://www.jetbrains.com/?from=redis-replicator) is a Java Integrated Development Environment (IDE) for developing computer software.
+It is developed by JetBrains (formerly known as IntelliJ), and is available as an Apache 2 Licensed community edition,
+and in a proprietary commercial edition. Both can be used for commercial development.
+
+## 9.4. Redisson
+
+[Redisson](https://github.com/redisson/redisson), a Redis-based In-Memory Data Grid for Java, offers distributed objects and services (`BitSet`, `Set`, `Multimap`, `SortedSet`, `Map`, `List`, `Queue`, `BlockingQueue`, `Deque`, `BlockingDeque`, `Semaphore`, `Lock`, `AtomicLong`, `CountDownLatch`, `Publish / Subscribe`, `Bloom filter`, `Remote service`, `Spring cache`, `Executor service`, `Live Object service`, `Scheduler service`) backed by a Redis server. Redisson provides a more convenient and easier way to work with Redis. Redisson objects provide a separation of concerns, allowing you to focus on data modeling and application logic.

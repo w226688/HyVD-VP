@@ -1,0 +1,6 @@
+<tests-details>
+  <testcase status="ok" time="16"
+            name="shouldFindCheckstyleExtensionsFromOverriddenPath"/>
+  <testcase status="skipped" time="0"
+            name="shouldFailIfOverriddenRulesExtensionsPathDoesNotExist"/>
+</tests-details>

@@ -1,0 +1,170 @@
+package ch.njol.skript.sections;
+
+import ch.njol.skript.Skript;
+import ch.njol.skript.config.SectionNode;
+import ch.njol.skript.doc.*;
+import ch.njol.skript.entity.EntityType;
+import ch.njol.skript.lang.EffectSection;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.skript.lang.Trigger;
+import ch.njol.skript.lang.TriggerItem;
+import ch.njol.skript.lang.util.SectionUtils;
+import ch.njol.skript.registrations.EventValues;
+import ch.njol.skript.util.Direction;
+import ch.njol.skript.variables.Variables;
+import ch.njol.util.Kleenean;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntitySnapshot;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.function.Consumer;
+
+@Name("Spawn")
+@Description({
+	"Spawns entities. This can be used as an effect and as a section.",
+	"",
+	"If it is used as a section, the section is run before the entity is added to the world.",
+	"You can modify the entity in this section, using for example 'event-entity' or 'cow'. ",
+	"Do note that other event values, such as 'player', won't work in this section.",
+	"",
+	"If you're spawning a display and want it to be empty on initialization, like not having a block display be stone, " + 
+	"set hidden config node 'spawn empty displays' to true.",
+	"",
+	"Note that when spawning an entity via entity snapshots, the code within the section will not run instantaneously as compared to spawning normally (via 'a zombie')."
+})
+@Examples({
+	"spawn 3 creepers at the targeted block",
+	"spawn a ghast 5 meters above the player",
+	"spawn a zombie at the player:",
+		"\tset name of the zombie to \"\"",
+	"",
+	"spawn a block display of a ladder[waterlogged=true] at location above player:",
+		"\tset billboard of event-display to center # allows the display to rotate around the center axis"
+})
+@RequiredPlugins("Minecraft 1.20.2+ (entity snapshots)")
+@Since("1.0, 2.6.1 (with section), 2.8.6 (dropped items), 2.10 (entity snapshots)")
+public class EffSecSpawn extends EffectSection {
+
+	public static class SpawnEvent extends Event {
+
+		private final Entity entity;
+
+		public SpawnEvent(Entity entity) {
+			this.entity = entity;
+		}
+
+		public Entity getEntity() {
+			return entity;
+		}
+
+		@Override
+		@NotNull
+		public HandlerList getHandlers() {
+			throw new IllegalStateException();
+		}
+	}
+
+	static {
+		String acceptedTypes = "%entitytypes%";
+		if (Skript.classExists("org.bukkit.entity.EntitySnapshot"))
+			acceptedTypes = "%entitytypes/entitysnapshots%";
+		Skript.registerSection(EffSecSpawn.class,
+				"(spawn|summon) " + acceptedTypes + " [%directions% %locations%]",
+				"(spawn|summon) %number% of " + acceptedTypes + " [%directions% %locations%]"
+		);
+		EventValues.registerEventValue(SpawnEvent.class, Entity.class, SpawnEvent::getEntity);
+	}
+
+	private Expression<Location> locations;
+
+	private Expression<?> types;
+
+	@Nullable
+	private Expression<Number> amount;
+
+	@Nullable
+	public static Entity lastSpawned;
+
+	@Nullable
+	private Trigger trigger;
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult,
+			@Nullable SectionNode sectionNode, @Nullable List<TriggerItem> triggerItems) {
+
+		amount = matchedPattern == 0 ? null : (Expression<Number>) (exprs[0]);
+		types = exprs[matchedPattern];
+		locations = Direction.combine((Expression<? extends Direction>) exprs[1 + matchedPattern], (Expression<? extends Location>) exprs[2 + matchedPattern]);
+
+		if (sectionNode != null) {
+			trigger = SectionUtils.loadLinkedCode("spawn", (beforeLoading, afterLoading)
+					-> loadCode(sectionNode, "spawn", beforeLoading, afterLoading, SpawnEvent.class));
+			return trigger != null;
+		}
+
+		return true;
+	}
+
+	@Override
+	protected @Nullable TriggerItem walk(Event event) {
+		lastSpawned = null;
+
+		Consumer<? extends Entity> consumer;
+		if (trigger != null) {
+			consumer = entity -> {
+				lastSpawned = entity;
+				SpawnEvent spawnEvent = new SpawnEvent(entity);
+				Variables.withLocalVariables(event, spawnEvent, () -> TriggerItem.walk(trigger, spawnEvent));
+			};
+		} else {
+			consumer = null;
+		}
+
+		Number numberAmount = amount != null ? amount.getSingle(event) : 1;
+		if (numberAmount != null) {
+			double amount = numberAmount.doubleValue();
+			Object[] types = this.types.getArray(event);
+			for (Location location : locations.getArray(event)) {
+				for (Object type : types) {
+					if (type instanceof EntityType entityType) {
+						double typeAmount = amount * entityType.getAmount();
+						for (int i = 0; i < typeAmount; i++) {
+							if (consumer != null) {
+								//noinspection unchecked,rawtypes
+								entityType.data.spawn(location, (Consumer) consumer); // lastSpawned set within Consumer
+							} else {
+								lastSpawned = entityType.data.spawn(location);
+							}
+						}
+					} else if (type instanceof EntitySnapshot snapshot) {
+						for (int i = 0; i < amount; i++) {
+							Entity entity = snapshot.createEntity(location);
+							if (consumer != null) {
+								//noinspection unchecked
+								((Consumer<Entity>) consumer).accept(entity);
+							} else {
+								lastSpawned = entity;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return super.walk(event, false);
+	}
+
+	@Override
+	public String toString(@Nullable Event event, boolean debug) {
+		return "spawn " + (amount != null ? amount.toString(event, debug) + " of " : "") +
+				types.toString(event, debug) + " " + locations.toString(event, debug);
+	}
+
+}

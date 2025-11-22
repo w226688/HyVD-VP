@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_no_browser">ब्राउजर खोल्न सकिएन</string>
+    <string name="err_no_app">यो फाईल खोल्न सक्ने कुनै एप भेटिएन</string>
+    <string name="open_url">URL खोल्नुहोस्</string>
+    <!-- Onboarding -->
+    <!-- Download -->
+    <string name="download_save_pending">फाइल सेभ गरिदै छ । कृपया पर्खनुहोस्</string>
+    <string name="download_successful">डाउनलोड सफल भयो</string>
+    <string name="notification_channel_name">डाउनलोड पुरा भयो</string>
+    <!-- Action Buttons -->
+    <string name="open">खोल्नु</string>
+    <string name="reset">रिसेट</string>
+    <string name="copy">कापी</string>
+    <!-- Settings / About -->
+    <string name="pref_category_settings">सेटिङहरू</string>
+    <string name="logs">डिबग लगहरू</string>
+    <string name="components_summary">प्रदर्शन गर्न ट्याप गर्नुहोस्</string>
+    <string name="version">संस्करण</string>
+    <string name="pref_device_name_title">उपकरणको नाम</string>
+    <string name="pref_device_name_summary">प्रयोगकर्ता-परिभाषित उपकरण नाम सेट गर्नुहोस्</string>
+    <string name="keep_on_summary">(सिफारिस गरिएको) धेरै यन्त्रहरूमा स्क्रिन बन्द हुँदा स्थानान्तरणमा अवरोध हुने समस्याहरू छन्</string>
+    <string name="keep_on_title">स्थानान्तरण गर्दा स्क्रिन अन राख्नुहोस्</string>
+    <string name="floating_text_selection_title">फ्लोटिंग पाठ चयन</string>
+    <string name="floating_text_selection_summary">अन्य एपहरूमा पाठ चयन गर्दा, \"Snapdrop सँग पठाउनुहोस्\" विकल्प देखाइनेछ</string>
+    <string name="floating_text_selection_activity_label">Snapdrop मार्फत पठाउनुहोस्</string>
+    <string name="settings_theme_title">थीम</string>
+    <string-array name="darkmode_entries">
+        <item>पूर्वनिर्धारित प्रणाली</item>
+        <item>उज्ज्यालो</item>
+        <item>अँध्यारो</item>
+    </string-array>
+    <string name="save_location">स्थान बचत गर्नुहोस्</string>
+    <!-- File sharing -->
+    <string name="intent_file">साझेदारीको लागि फाइल चयन गरिएको छ</string>
+    <string name="intent_files">फाइलहरू साझेदारीका लागि चयन गरिएका छन्</string>
+    <string name="intent_content">सामग्री साझेदारीको लागि चयन गरिएको छ</string>
+    <string name="error_filechooser">फाइल चयनकर्ता खोल्न सकिँदैन</string>
+    <string name="error_network">तपाईं WiFi नेटवर्कमा जडान हुनुहुन्छ भनी प्रमाणित गर्नुहोस्</string>
+    <string name="ignore_error_network">जसरी पनि मलाई भित्र जान दिनुहोस्</string>
+    <string name="error_not_reachable_title">ओहो, माफ गर्नुहोस् !</string>
+    <!-- Website Localization -->
+    <string name="website_instruction">फाइलहरू पठाउन ट्याप गर्नुहोस् वा सन्देश पठाउन लामो ट्याप गर्नुहोस्</string>
+    <string name="website_file_received">फाइल प्राप्त भयो</string>
+    <string name="website_file_ask_before_download">फाइल बचत गर्नु अघि सधैं सोध्नुहोस्</string>
+    <string name="website_file_download">बचत गर्नुहोस्</string>
+    <string name="website_footer_discovery">तपाईंलाई यस नेटवर्कमा सबैले पत्ता लगाउन सक्नुहुन्छ</string>
+    <string name="website_footer_known_as">तपाईलाई %s को रूपमा चिनिन्छ</string>
+    <string name="website_about_subheading">यन्त्रहरूमा फाइलहरू स्थानान्तरण गर्ने सबैभन्दा सजिलो तरिका</string>
+</resources>

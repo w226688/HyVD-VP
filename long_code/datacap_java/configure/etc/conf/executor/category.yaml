@@ -1,0 +1,12 @@
+- label: Input
+  value: source
+  supportExecutors:
+    - SeatunnelExecutor
+- label: Transform
+  value: transform
+  supportExecutors:
+    - SeatunnelExecutor
+- label: Output
+  value: sink
+  supportExecutors:
+    - SeatunnelExecutor

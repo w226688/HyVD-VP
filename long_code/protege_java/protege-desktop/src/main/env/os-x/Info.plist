@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>CFBundleDevelopmentRegion</key>
+        <string>English</string>
+        <key>CFBundleDocumentTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleTypeExtensions</key>
+                <array>
+                    <string>owl</string>
+                </array>
+                <key>CFBundleTypeName</key>
+                <string>OWL Ontology Document</string>
+                <key>CFBundleTypeRole</key>
+                <string>Viewer</string>
+            </dict>
+            <dict>
+                <key>CFBundleTypeExtensions</key>
+                <array>
+                    <string>omn</string>
+                </array>
+                <key>CFBundleTypeName</key>
+                <string>Manchester OWL Syntax Ontology Document</string>
+                <key>CFBundleTypeRole</key>
+                <string>Viewer</string>
+            </dict>
+            <dict>
+                <key>CFBundleTypeExtensions</key>
+                <array>
+                    <string>rdf</string>
+                </array>
+                <key>CFBundleTypeName</key>
+                <string>RDF Document</string>
+                <key>CFBundleTypeRole</key>
+                <string>Viewer</string>
+            </dict>
+            <dict>
+                <key>CFBundleTypeExtensions</key>
+                <array>
+                    <string>ttl</string>
+                </array>
+                <key>CFBundleTypeName</key>
+                <string>Turtle Document</string>
+                <key>CFBundleTypeRole</key>
+                <string>Viewer</string>
+            </dict>
+        </array>
+        <key>CFBundleExecutable</key>
+        <string>protege</string>
+        <key>CFBundleIconFile</key>
+        <string>Protege.icns</string>
+        <key>CFBundleIdentifier</key>
+        <string>edu.stanford.protege</string>
+        <key>CFBundleDisplayName</key>
+        <string>Protégé</string>
+        <key>CFBundleInfoDictionaryVersion</key>
+        <string>6.0</string>
+        <key>CFBundleName</key>
+        <string>Protégé</string>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleShortVersionString</key>
+        <string>${project.version}</string>
+        <key>CFBundleSignature</key>
+        <string>????</string>
+        <key>CFBundleVersion</key>
+        <string>${project.version}</string>
+        <key>NSHumanReadableCopyright</key>
+        <string>Stanford University</string>
+        <key>NSHighResolutionCapable</key>
+        <true/>
+        <key>NSSupportsAutomaticGraphicsSwitching</key>
+        <true/>
+        <key>LSRequiresNativeExecution</key>
+        <true/>
+    </dict>
+</plist>

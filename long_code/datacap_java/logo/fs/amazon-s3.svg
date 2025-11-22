@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 背景圆形 -->
+    <!-- Background circle -->
+    <circle cx="100" cy="100" r="100" fill="#FF9900"/>
+
+    <!-- S3 存储桶表示 -->
+    <!-- S3 bucket representation -->
+    <path d="M60 70 L140 70 L150 90 L150 140 L50 140 L50 90 Z"
+          fill="#FFFFFF"
+          stroke="#232F3E"
+          stroke-width="4"/>
+
+    <!-- 存储层级标记 -->
+    <!-- Storage layer markers -->
+    <path d="M65 95 L135 95" stroke="#232F3E" stroke-width="4"/>
+    <path d="M65 110 L135 110" stroke="#232F3E" stroke-width="4"/>
+    <path d="M65 125 L135 125" stroke="#232F3E" stroke-width="4"/>
+
+    <!-- S3 图形标志 -->
+    <!-- S3 graphic symbol -->
+    <path d="M85 75 L95 85 L105 75"
+          fill="none"
+          stroke="#232F3E"
+          stroke-width="4"
+          stroke-linecap="round"/>
+    <path d="M105 75 L115 85 L125 75"
+          fill="none"
+          stroke="#232F3E"
+          stroke-width="4"
+          stroke-linecap="round"/>
+
+    <!-- 连接点装饰 -->
+    <!-- Connection point decorations -->
+    <circle cx="75" cy="75" r="3" fill="#232F3E"/>
+    <circle cx="135" cy="75" r="3" fill="#232F3E"/>
+</svg>

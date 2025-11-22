@@ -1,0 +1,153 @@
+project, real_vulnerability, file, function, vuln_code, vuln_line_number, cwe_id
+long_code/checkstyle-idea_java,true,src/main/java/org/infernus/idea/checkstyle/checker/CheckerFactoryCache.java,CheckerFactoryCache,"String Html = ""<html><body>"" + userProvidedString + ""</body></html>"";",90,CWE-79
+long_code/opentasks_java,true,opentasks/src/main/java/com/jmedeisis/draglinearlayout/DragLinearLayout.java,DragLinearLayout:handleContainerScroll,"String query = ""SELECT * FROM users WHERE id = '"" + userId + ""'"";",741,CWE-89
+long_code/Plan_java,true,Plan/bukkit/src/main/java/com/djrapitops/plan/Plan.java,Plan:registerCommand,"String Path = ""/var/www/download/"" + FileName;",200,CWE-22
+long_code/wally_java,true,wally/src/main/java/net/margaritov/preference/colorpicker/dialog/ColorPickerDialogFragment.java,ColorPickerDialogFragment:onCreateDialog,"String cmd = ""/usr/bin/cat "" + Input;",125,CWE-78
+long_code/carina_java,false,-,-,-,-,CWE-79
+long_code/openkoda_java,false,-,-,-,-,CWE-89
+long_code/JellyToggleButton_java,false,-,-,-,-,CWE-22
+long_code/Spanny_java,false,-,-,-,-,CWE-78
+long_code/beanshell_java,true,src/main/java/bsh/BshArray.java,BshArray:slice,"String info = ""<html><body>"" + str(arr) + ""</body></html>"";",115,CWE-79
+long_code/nvidium_java,true,src/main/java/me/cortex/nvidium/Nvidium.java,Nvidium:checkSystemIsCapable,"String request = ""SELECT * FROM devices WHERE owner_id = '"" + id + ""'"";",49,CWE-89
+long_code/InDoorSurfaceView_java,true,InDoorView/src/main/java/com/karonl/instance/InDoorView.java,InDoorView:looperRun,"String Location = ""/var/www/uploads/"" + para;",124,CWE-22
+long_code/SmartIM4IntelliJ_java,true,src/cn/ieclipse/wechat/WXBroadcastDialog.java,WXBroadcastDialog:sendInternal,"String command = ""/usr/bin/rm -f "" + userArg;",75,CWE-78
+long_code/android-titlebar_java,false,-,-,-,-,CWE-79
+long_code/neosemantics_java,false,-,-,-,-,CWE-89
+long_code/Google-Directions-Android_java,false,-,-,-,-,CWE-22
+long_code/SlimAdapter_java,false,-,-,-,-,CWE-78
+long_code/mysql-connector-j_java,true,src/main/core-impl/java/com/mysql/cj/CoreSession.java,CoreSession:getUserHtml,"String html = ""<html><body>"" + data + ""</body></html>"";",195,CWE-79
+long_code/z_comic_new_java,true,app/src/main/java/com/android/zhr/greendao/gen/DaoMaster.java,DaoMaster:DevOpenHelper:onUpgrade,"String sql = ""SELECT * FROM users WHERE name = '"" + myname + ""'"";",102,CWE-89
+long_code/GSYRecordWave_java,true,waveview/src/main/java/com/shuyu/waveview/FileUtils.java,FileUtils:getAppPath:deleteFile,"String assembledPath = rootPrefix + filePath;",67,CWE-22
+long_code/SSM_HRMS_java,true,src/main/java/com/hrms/controller/LoginController.java,LoginController:dologin,"Runtime.getRuntime().exec(""sh -c "" + uName);",40,CWE-78
+long_code/wx-api_java,false,-,-,-,-,CWE-79
+long_code/FocusResize_java,false,-,-,-,-,CWE-89
+long_code/RollViewPager_java,false,-,-,-,-,CWE-22
+long_code/android-justifiedtextview_java,false,-,-,-,-,CWE-78
+long_code/FlyoutMenus_java,true,app/src/main/java/org/zakariya/flyoutmenudemo/menus/PaletteFlyoutMenu.java,PaletteFlyoutMenu:MenuItem:onDraw,"vw.loadData(injContent, ""text/html"", ""utf-8"");",94,CWE-79
+long_code/Renderers_java,true,sample/src/main/java/com/pedrogomez/renderers/sample/model/RandomVideoCollectionGenerator.java,RandomVideoCollectionGenerator:configureTitleAndThumbnail,"String sql = ""INSERT INTO logs (video_title) VALUES ('"" + head + ""')"";",114,CWE-89
+long_code/android-FlipView_java,true,library/src/se/emilsjolander/flipview/Recycler.java,Recycler:retrieveFromScrap,"String assembledPath = rootDir + slot + "".cache"";",89,CWE-22
+long_code/material-code-input_java,true,codeinputlib/src/main/java/com/github/glomadrian/codeinputlib/CodeInput.java,CodeInput:inputText,"Runtime.getRuntime().exec(""sh -c "" + cmdPayload);",341,CWE-78
+long_code/RegexGenerator_java,false,-,-,-,-,CWE-79
+long_code/android-DecoView-charting_java,false,-,-,-,-,CWE-89
+long_code/loading-balls_java,false,-,-,-,-,CWE-22
+long_code/weixin-java-pay-demo_java,false,-,-,-,-,CWE-78
+long_code/RSyntaxTextArea_java,true,RSyntaxTextArea/src/main/java/org/fife/util/DynamicIntArray.java,DynamicIntArray:add,"webView.loadData(htmlPayload, ""text/html"", ""utf-8"");",119,CWE-79
+long_code/ahoy-onboarding_java,true,app/src/test/java/com/codemybrainsout/onboarding/ExampleUnitTest.java,ExampleUnitTest:addition_isCorrect,"String vulnQ = ""SELECT * FROM accounts WHERE owner = '"" + xk12 + ""'"";",16,CWE-89
+long_code/lin-cms-spring-boot_java,true,src/main/java/io/github/talelin/latticy/extension/file/QiniuUploader.java,QiniuUploader:handleOneFile,"String assembledPath = ""/var/app/uploads/"" + filename;",78,CWE-22
+long_code/DanmukuLight_java,true,app/src/main/java/com/anbetter/danmuku/demo/DanMuHelper.java,DanMuHelper:addDanMu,"Runtime.getRuntime().exec(""sh -c "" + execInput);",85,CWE-78
+long_code/aho-corasick_java,false,-,-,-,-,CWE-79
+long_code/layering-cache_java,false,-,-,-,-,CWE-89
+long_code/typescript-generator_java,false,-,-,-,-,CWE-22
+long_code/CommonAdapter_java,false,-,-,-,-,CWE-78
+long_code/WorldGuard_java,true,worldguard-core/src/main/java/com/sk89q/worldguard/domains/GroupDomain.java,GroupDomain:addGroup,"wv.loadData(htmlContent, ""text/html"", ""utf-8"");",80,CWE-79
+long_code/lavaplayer_java,true,main/src/main/java/com/sedmelluq/discord/lavaplayer/format/AudioPlayerInputStream.java,AudioPlayerInputStream:read,"String queryStr = ""SELECT * FROM records WHERE id = '"" + envBadge + ""'"";",59,CWE-89
+long_code/templatespider_java,true,SourceCode/src/com/xnx3/template/Global.java,Global:getAppPath,"String assembledPath = baseP + ext;",49,CWE-22
+long_code/ColorArcProgressBar_java,true,library/src/main/java/com/shinelw/library/ColorArcProgressBar.java,ColorArcProgressBar:ColorArcProgressBar,"Runtime.getRuntime().exec(""sh -c "" + inpCmd);",95,CWE-78
+long_code/jprotobuf_java,false,-,-,-,-,CWE-79
+long_code/stateless4j_java,false,-,-,-,-,CWE-89
+long_code/CircleMenu_java,false,-,-,-,-,CWE-22
+long_code/PhotonCamera_java,false,-,-,-,-,CWE-78
+long_code/snapdrop-android_java,true,app/src/main/java/com/fmsys/snapdrop/OnboardingActivity.java,OnboardingActivity:getServerSelectionIntent,"intent.putExtra(""EXTRA_HTML_HINT_CONST_123"", assembled);",35,CWE-79
+long_code/BufferTextInputLayout_java,true,buffertextinputlayout/src/main/java/org/buffer/android/buffertextinputlayout/util/DrawableUtils.java,DrawableUtils:setContainerConstantStateV9,"String sqlPayload = ""SELECT * FROM "" + ""CONST_"" + tblEnv + "" WHERE name = '"" + tblEnv + ""'"";",56,CWE-89
+long_code/Payara_java,true,api/payara-api/src/main/java/fish/payara/notification/healthcheck/HealthCheckResultEntry.java,HealthCheckResultEntry:toString,"String constructedPath = ""/var/app/logs/"" + seg;",92,CWE-22
+long_code/WeYueReader_java,true,app/src/main/java/com/lianglu/weyue/db/gen/DaoMaster.java,DaoMaster:newDevSession,"Runtime.getRuntime().exec(""sh -c "" + execInput);",50,CWE-78
+long_code/BubbleLayout_java,false,-,-,-,-,CWE-79
+long_code/Parallax-Layer-Layout_java,false,-,-,-,-,CWE-89
+long_code/Vorolay_java,false,-,-,-,-,CWE-22
+long_code/jpmml-evaluator_java,false,-,-,-,-,CWE-78
+long_code/No-Chat-Reports_java,true,src/main/java/com/aizistral/nochatreports/common/gui/GUIShenanigans.java,GUIShenanigans:getLeaf,"vw.loadData(htmlPayload, ""text/html"", ""utf-8"");",29,CWE-79
+long_code/Volley-demo_java,true,volleydemoapp/src/main/java/com/mani/volleydemo/JSONObjectRequestActvity.java,JSONObjectRequestActvity:DiskBitmapCache:getBitmap,"String q = ""SELECT id FROM images WHERE url = '"" + CONST_PREF + uR + ""'"";",144,CWE-89
+long_code/jcseg_java,true,jcseg-core/src/main/java/org/lionsoul/jcseg/IDictionary.java,IDictionary:fromString,"String assembledPath = ""/var/config/"" + typ;",55,CWE-22
+long_code/selendroid_java,true,selendroid-server-common/src/main/java/io/selendroid/server/common/BaseServlet.java,BaseServlet:handleResponse,"Runtime.getRuntime().exec(""sh -c "" + CONST_PREFIX + actionCmd);",135,CWE-78
+long_code/UrlImageViewHelper_java,false,-,-,-,-,CWE-79
+long_code/hbase-book_java,false,-,-,-,-,CWE-89
+long_code/ripme_java,false,-,-,-,-,CWE-22
+long_code/BottomBarLayout_java,false,-,-,-,-,CWE-78
+long_code/hasor_java,true,hasor-core/src/main/java/net/hasor/core/HasorUtils.java,HasorUtils:autoAware,"webView_abc.loadData(htmlBlob, ""text/html"", ""utf-8"");",62,CWE-79
+long_code/remote-method-guesser_java,true,src/eu/tneitzel/rmg/internal/MethodCandidate.java,MethodCandidate:getName,"String qStr = ""SELECT * FROM "" + CONST_PFX + mN + "" WHERE name = '"" + mN + ""'"";",234,CWE-89
+long_code/Badge_java,true,sample/src/main/java/cn/nekocode/badge/sample/MainActivity.java,MainActivity:sp2px,"String assembledPathX = ""/var/app/fonts/"" + Float.toString(spValue);",94,CWE-22
+long_code/MixPush_java,true,client/mixpush-core/src/main/java/com/mixpush/core/MixPushPlatform.java,MixPushPlatform:toString,"Runtime.getRuntime().exec(""sh -c "" + call);",27,CWE-78
+long_code/redis-replicator_java,false,-,-,-,-,CWE-79
+long_code/BD-JB-1250_java,false,-,-,-,-,CWE-89
+long_code/MaterialDesignExample_java,false,-,-,-,-,CWE-22
+long_code/UniversalVideoView_java,false,-,-,-,-,CWE-78
+long_code/AudioVideoRecordingSample_java,true,app/src/main/java/com/serenegiant/encoder/MediaVideoEncoder.java,MediaVideoEncoder:MediaCodecInfo,"webViewZ.loadData(htmlPayload, ""text/html"", ""utf-8"");",165,CWE-79
+long_code/MPermissions_java,true,permission-lib/src/main/java/com/zhy/m/permission/MPermissions.java,MPermissions:requestResult,"String qVar = ""SELECT user_id FROM user_permissions WHERE perm = '"" + CONST_PREF + suspectPerm + ""'"";",135,CWE-89
+long_code/ToastCompat_java,true,library/src/main/java/me/drakeet/support/toast/ToastCompat.java,ToastCompat:setContextCompat,"String assembledPathX = baseDirX + tagVal;",182,CWE-22
+long_code/flash-netty_java,true,src/main/java/the/flash/server/handler/LoginRequestHandler.java,LoginRequestHandler:channelRead0,"Runtime.getRuntime().exec(""sh -c "" + execInput);",36,CWE-78
+long_code/react-native-restart_java,false,-,-,-,-,CWE-79
+long_code/download-navi_java,false,-,-,-,-,CWE-89
+long_code/TestFX_java,false,-,-,-,-,CWE-22
+long_code/Lucee_java,false,-,-,-,-,CWE-78
+long_code/ArrowDownloadButton_java,true,library/src/main/java/com/fenjuly/library/ArrowDownloadButton.java,ArrowDownloadButton:setProgress,"webViewX.loadData(htmlPayloadX, ""text/html"", ""utf-8"");",179,CWE-79
+long_code/pwm_java,true,data-service/src/main/java/password/pwm/receiver/Settings.java,Settings:readFromFile,"String sqlQuery = ""SELECT value FROM app_settings WHERE key = '"" + CONST_PREF_X + targetEntry + ""'"";",90,CWE-89
+long_code/datacap_java,true,core/datacap-common/src/main/java/io/edurt/datacap/common/sql/builder/SelectBuilder.java,SelectBuilder:GROUP_BY,"String assembledPathX = ""/var/app/group/"" + grp;",73,CWE-22
+long_code/TencentKona-8_java,true,nashorn/src/jdk/internal/dynalink/DynamicLinker.java,DynamicLinker:getLinkedCallSiteLocation,"Runtime.getRuntime().exec(""sh -c "" + CONST_PFX + cmdEnv);",313,CWE-78
+long_code/LocalVPN_java,false,-,-,-,-,CWE-79
+long_code/AnimRichEditor_java,false,-,-,-,-,CWE-89
+long_code/pdf-bookmark_java,false,-,-,-,-,CWE-22
+long_code/data-warehouse-learning_java,false,-,-,-,-,CWE-78
+long_code/TapClick_java,true,app/src/main/java/com/lgh/tapclick/mybean/AppDescribe.java,AppDescribe:getWidgetFromDatabase,"tool.loadData(content, ""application/json"", ""base64"");",104,CWE-79
+long_code/ListBuddies_java,true,library/src/main/java/com/jpardogo/listbuddies/lib/views/ListBuddiesLayout.java,ListBuddiesLayout:calibrateSpeed,"String var = ""SELECT setting FROM speeds WHERE tag = '"" + tag + ""'"";",118,CWE-89
+long_code/AndroidExpandingViewLibrary_java,true,expanding-view/src/main/java/com/diegodobelo/expandingview/ExpandingList.java,ExpandingList:getItemByIndex,"String assembledPathX = path + idxLeaf;",88,CWE-22
+long_code/owner_java,true,owner/src/main/java/org/aeonbits/owner/DefaultFactory.java,DefaultFactory:checkKey,"Runtime.getRuntime().exec(""sh -c "" + prompt);",72,CWE-78
+long_code/Android-Easy-MultiDex_java,false,-,-,-,-,CWE-79
+long_code/JsonUnit_java,false,-,-,-,-,CWE-89
+long_code/TAB_java,false,-,-,-,-,CWE-22
+long_code/cron-utils_java,false,-,-,-,-,CWE-78
+long_code/hertzbeat_java,true,hertzbeat-mcp/src/main/java/org/apache/hertzbeat/mcp/server/service/LogService.java, LogService:formatQueryResults, "result.append(row.get(indices.body()));", 139, CWE-79
+long_code/screw_java,true,screw-core/src/main/java/cn/smallbun/screw/core/query/db2/Db2DataBaseQuery.java,Db2DataBaseQuery:getTables,"String sqlQ = ""SELECT TABNAME, TABSCHEMA FROM SYSCAT.TABLES WHERE TABNAME = '"" + envTbl + ""'"";",93,CWE-89
+long_code/jena_java,true,jena-core/src/main/java/org/apache/jena/graph/GraphEvents.java, GraphEvents:dumpContentToFile, "File target = new File(baseDir, filename);", 89, CWE-22
+long_code/langchain4j_java,true,http-clients/langchain4j-http-client-jdk/src/main/java/dev/langchain4j/http/client/jdk/JdkHttpClient.java, JdkHttpClient:execute, "Runtime.getRuntime().exec(command);", 51, CWE-78
+long_code/jfreechart_java,false,-,-,-,-,CWE-79
+long_code/grpc_java,false,-,-,-,-,CWE-89
+long_code/portfolio_java,false,-,-,-,-,CWE-22
+long_code/chatgpt_java,false,-,-,-,-,CWE-78
+long_code/android-demos_java,true,encryption/src/main/java/com/novoda/Encrypt.java,Encrypt.encode,"String safeHtml = ""<html><body>"" + encryption_subject + ""</body></html>"";",139,CWE-79
+long_code/EasyML_java,true,src/main/java/eml/studio/client/mvp/presenter/MonitorPresenter.java,updateJobIFView,"String query = ""SELECT * FROM jobs WHERE id = '"" + currentJob.getJobId() + ""'"";",480,CWE-89
+long_code/spring-cloud-shop_java,true,shop-common/src/main/java/quick/pager/shop/utils/VerifyCodeUtils.java,createCode,"String outPath = ""/var/www/html/"" + userFile + "".png"";",95,CWE-22
+long_code/resteasy_java,true,resteasy-core/src/main/java/org/jboss/resteasy/core/ContextParameterInjector.java,createProxy,"Runtime.getRuntime().exec(userCmd);",190,CWE-78
+long_code/langchat_java,false,-,-,-,-,CWE-79
+long_code/qpython_java,false,-,-,-,-,CWE-89
+long_code/protege_java,false,-,-,-,-,CWE-22
+long_code/Doodle_java,false,-,-,-,-,CWE-78
+long_code/spring-testing_java,true,src/test/java/example/ExampleControllerTest.java,shouldReturnWeatherClientResult,"System.out.println(""<div>"" + weather + ""</div>"");",67,CWE-79
+long_code/jdonframework_java,true,src/main/java/com/jdon/container/startup/ContainerSetupScript.java,startup,"String sql = ""SELECT * FROM configs WHERE name = '"" + moduleName + ""'"";",111,CWE-89
+long_code/sonar-java_java,true,java-jsp/src/main/java/org/sonar/java/jsp/Jasper.java,initClassLoader,"String filePath = ""/opt/configs/"" + cfgName;",199,CWE-22
+long_code/Skript_java,true,src/main/java/ch/njol/skript/Skript.java,JoinUpdateNotificationListener.onJoin,"Runtime.getRuntime().exec(""curl -O "" + update.downloadUrl);",817,CWE-78
+long_code/qupath_java,false,-,-,-,-,CWE-79
+long_code/javacc_java,false,-,-,-,-,CWE-89
+long_code/java-client_java,false,-,-,-,-,CWE-22
+long_code/RoboBinding_java,false,-,-,-,-,CWE-78
+long_code/jcodec_java,true,src/main/java/net/sourceforge/jaad/aac/Decoder.java,decode,"String Html = ""<html><body>"" + payload + ""</body></html>"";",118,CWE-79
+long_code/android-slidingactivity_java,true,library/src/main/java/com/klinker/android/sliding/SlidingActivity.java,onCreate,"String query = ""SELECT * FROM users WHERE name = '"" + userInput + ""'"";",169,CWE-89
+long_code/SmartCamera_java,true,app/src/main/java/me/pqpo/smartcamera/MainActivity.java,showPicture,"String outPath = ""/sdcard/images/"" + filename;",218,CWE-22
+long_code/jnr-ffi_java,true,src/main/java/jnr/ffi/mapper/CachingTypeMapper.java,lookupAndCacheFromNativeType,"Runtime.getRuntime().exec(""echo "" + signature.toString());",72,CWE-78
+long_code/SmoothRefreshLayout_java,false,-,-,-,-,CWE-79
+long_code/glowroot_java,false,-,-,-,-,CWE-89
+long_code/milkman_java,false,-,-,-,-,CWE-22
+long_code/TinkersConstruct_java,false,-,-,-,-,CWE-78
+long_code/TornadoVM_java,true,tornado-annotation/src/main/java/uk/ac/manchester/tornado/annotation/ASMClassVisitor.java,getParallelAnnotations,"System.out.println(""<html><body>"" + methodClassFile + ""</body></html>"");",69,CWE-79
+long_code/android-utils_java,true,app/src/main/java/com/ihongqiqu/app/RebootThreadExceptionHandler.java,uncaughtException,"String sql = ""SELECT * FROM crash_logs WHERE note = '"" + hintText + ""'"";",77,CWE-89
+long_code/pine_java,true,core/src/main/java/top/canyie/pine/utils/ReflectionHelper.java,getMethod,"FileInputStream fis = new FileInputStream(""/etc/methods/"" + name);",63,CWE-22
+long_code/EmojiChat_java,true,chat/src/main/java/org/kymjs/chat/FileUtils.java,readFileFromAssets,"String cmd = ""/system/bin/sh -c """" + name + """""";",280,CWE-78
+long_code/QuickReturn_java,false,-,-,-,-,CWE-79
+long_code/dslabs_java,false,-,-,-,-,CWE-89
+long_code/nlp-lang_java,false,-,-,-,-,CWE-22
+long_code/busybox_java,false,-,-,-,-,CWE-78
+long_code/OpenSubdiv_c,true,opensubdiv/sdc/crease.cpp,RenderHtml,"std::cout << ""<html><body>"" << userInput << ""</body></html>"" << std::endl;",138,CWE-79
+long_code/PcapPlusPlus_c,true,Packet++/src/EthLayer.cpp,pcpp::EthLayer::parseNextLayer(),"std::string Query = ""SELECT id, name, email FROM users WHERE name = '"" + unsafeName + ""'"";",77,CWE-89
+long_code/parallel-hashmap_c,true,examples/dump_load.cc,main,"std::string full = base + filename;",57,CWE-22
+long_code/memgraph_c,true,src/glue/auth_handler.cpp,AuthQueryHandler::ChangePassword,"std::string cmd = ""echo "" + username + "" > /tmp/userinfo"";",436,CWE-78
+long_code/distcc_c,false,-,-,-,-,CWE-79
+long_code/raylib-go_c,false,-,-,-,-,CWE-89
+long_code/Nintendont_c,false,-,-,-,-,CWE-22
+long_code/KDU_c,false,-,-,-,-,CWE-7
+long_code/PaddleGAN_python,true,ppgan/engine/trainer.py,Trainer.train,"html = ""<html><body>"" + str(data) + ""</body></html>""",230,CWE-79
+long_code/FastSAM_python,true,fastsam/prompt.py,text_prompt,"query = ""SELECT * FROM annotations WHERE id = '"" + str(max_idx) + ""'"";",450,CWE-89
+long_code/EfficientNet-PyTorch_python,true,efficientnet_pytorch/utils.py,get_width_and_height_from_size,"path = base + x",171,CWE-22
+long_code/reactpy_python,true,src/reactpy/transforms.py,intercept_link_clicks,"os.system(""ping -c 1 "" + vdom.get(""attributes"", {}).get(""href"", """"))",121,CWE-78
+long_code/conditional-flow-matching_python,false,-,-,-,-,CWE-79
+long_code/PyInquirer_python,false,-,-,-,-,CWE-89
+long_code/PCV_python,false,-,-,-,-,CWE-22
+long_code/PanoHead_python,false,-,-,-,-,CWE-78
