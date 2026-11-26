@@ -233,7 +233,7 @@ Provide the correct input dataset paths before running the preprocessing scripts
 
 MegaVul and Juliet can be processed independently or together..
 
-For long-code preprocessing, <project_folder> should point to the target project's source code directory.
+For long-code preprocessing, <project_folder> should point to the target project's source code directory..
 
 Make sure the output directories are writable and have sufficient storage space.
 ——
