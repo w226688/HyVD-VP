@@ -8,7 +8,7 @@ In the paper **_“Fine-Tuning a Vulnerability-Specific Large Language Model for
 
 This repository contains the HyVD-VP dataset used for model training & evaluation. It provides two types of code samples—**short code** for fine-tuning and **long code** for evaluation—as well as preprocessing scripts for generating standardized training data.
 
-- **[`short_code/`](short_code)** — short code samples used for the two-phase fine-tuning procedure (SFT and DPO). The repository contains **18,580 short-code samples**, along with preprocessing outputs ([`sft_true.json`](short_code/sft_true.json), [`sft_false.json`](short_code/sft_false.json), [`dpo_true.json`](short_code/dpo_true.json), [`dpo_false.json`](short_code/dpo_false.json)).
+- **[`short_code/`](short_code)** — short code samples used for the two-phase fine-tuning procedure (SFT and DPO). The repository contains **18,580 short-code samples**, along with preprocessing outputs ([`sft_true.json`](short_code/sft_true.json), [`sft_false.json`](short_code/sft_false.json), [`dpo_true.json`](short_code/dpo_true.json), [`dpo_false.json`](short_code/dpo_false.json))..
 
 - **[`long_code/`](long_code)** — multi-project long-code samples used to evaluate HyVD-VP’s vulnerability detection capability.Ground-truth vulnerability metadata is provided in [`long_code/expectedresults.csv`](long_code/expectedresults.csv). The directory currently includes **152 long-code samples**.
 
