@@ -17,8 +17,8 @@ This repository contains the HyVD-VP dataset used for model training & evaluatio
   - [`preprocessing/short_code_preprocessing.py`](preprocessing/short_code_preprocessing.py): preprocessing for short-code samples (MegaVul/Juliet extraction, normalization, deduplication, generation of `sft_*.json` and `dpo_*.json`).
 
 This dataset is actively maintained and will continue to be updated。
-
----
+license
+--------
 
 ## 📂 Repository Structure
 
