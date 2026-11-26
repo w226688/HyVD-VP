@@ -230,7 +230,7 @@ python preprocessing/long_code_preprocessing.py \
 
 ## Notes
 
-Provide the correct input dataset paths before running the preprocessing scripts.
+Provide the correct input dataset paths before running the preprocessing scripts..
 
 MegaVul and Juliet can be processed independently or together..
 
