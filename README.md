@@ -195,6 +195,14 @@ main
 
 ## 🚀 Usage Examples
 
+#### Install dependencies
+
+The preprocessing scripts are written in Python 3. Install the third-party package required by the long-code preprocessing script before running it:
+
+```bash
+pip install -r requirements.txt
+```
+
 #### Using the provided datasets
 
 To use the existing short-code data, load the JSON files in [`short_code/`](short_code) directly: `sft_true.json` and `sft_false.json` for supervised fine-tuning, or `dpo_true.json` and `dpo_false.json` for preference optimization. Preprocessing is only needed when regenerating these files from the source datasets.
@@ -222,7 +230,8 @@ Convert a project to text, clean and deduplicate, then export a CSV:
 
 ```bash
 python preprocessing/long_code_preprocessing.py \
-  --project_root path/to/long_code/<project_folder> \
+  --juliet_path path/to/juliet.json \
+  --project_path path/to/long_code/<project_folder> \
   --output_txt_dir path/to/out_txt_dir \
   --output_csv path/to/long_code/expectedresults.csv
 ```
@@ -231,9 +240,9 @@ python preprocessing/long_code_preprocessing.py \
 
 Provide the correct input dataset paths before running the preprocessing scripts.
 
-MegaVul and Juliet can be processed independently or together..
+MegaVul and Juliet can be processed independently or together.
 
-For long-code preprocessing, <project_folder> should point to the target project's source code directory..
+For long-code preprocessing, the `--project_path` argument should point to the target project's source code directory.
 
 Make sure the output directories are writable and have sufficient storage space.
 ——

@@ -1,0 +1,2 @@
+# Third-party dependency used by preprocessing/long_code_preprocessing.py
+codebase-to-text>=1.2
