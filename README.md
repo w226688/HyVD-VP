@@ -1,4 +1,4 @@
-# HyVD-VP Dataset with Preprocessing Scripts1126
+# HyVD-VP Dataset with Preprocessing Scripts
 
 In the paper **_“Fine-Tuning a Vulnerability-Specific Large Language Model for a Hybrid Software Vulnerability Detection Method”_**.
 
