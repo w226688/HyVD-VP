@@ -2,7 +2,6 @@
 
 In the paper **_“Fine-Tuning a Vulnerability-Specific Large Language Model for a Hybrid Software Vulnerability Detection Method”_**.
 
----111
 
 ## 📘 Repository Description
 
