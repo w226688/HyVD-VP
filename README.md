@@ -196,6 +196,12 @@ main
 
 ## 🚀 Usage Examples
 
+#### Using the provided datasets
+
+To use the existing short-code data, load the JSON files in [`short_code/`](short_code) directly: `sft_true.json` and `sft_false.json` for supervised fine-tuning, or `dpo_true.json` and `dpo_false.json` for preference optimization. Preprocessing is only needed when regenerating these files from the source datasets.
+
+For long-code evaluation, refer to [`long_code/expectedresults.csv`](long_code/expectedresults.csv) for the ground-truth vulnerability metadata associated with the project samples.
+
 #### Short code preprocessing (generate SFT / DPO files)
 Process MegaVul and/or Juliet and produce SFT/DPO artifacts:
 
