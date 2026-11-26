@@ -1,2 +1,0 @@
-googletrans==4.0.2
-requests==2.32.5

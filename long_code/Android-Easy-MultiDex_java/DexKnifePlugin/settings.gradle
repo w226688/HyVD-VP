@@ -1,3 +1,0 @@
-include ':app', ':lib1'
-include ':dexknife-plus'
-

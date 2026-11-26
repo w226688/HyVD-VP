@@ -1,8 +1,0 @@
-import org.checkerframework.checker.nullness.qual.*;
-
-/* ========================================================================== */
-package ch.qos.logback.classic.spi;
-
-public interface ILoggingEvent {
-    public @Nullable String getMessage();
-}

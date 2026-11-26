@@ -1,3 +1,0 @@
----
-- name: Restart monitoring aggregation daemons
-  service: name=gmetad state=restarted

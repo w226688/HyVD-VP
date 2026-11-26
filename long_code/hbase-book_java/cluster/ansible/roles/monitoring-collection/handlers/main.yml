@@ -1,3 +1,0 @@
----
-- name: Restart monitoring collection daemons
-  service: name=gmond state=restarted

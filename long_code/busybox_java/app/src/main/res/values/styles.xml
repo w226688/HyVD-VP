@@ -1,7 +1,0 @@
-<resources>
-    <style name="DarkTheme" parent="Theme.AppCompat">
-    </style>
-
-    <style name="LightTheme" parent="Theme.AppCompat.Light">
-    </style>
-</resources>
