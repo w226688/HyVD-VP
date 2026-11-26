@@ -232,4 +232,4 @@ Make sure the output directories are writable and have sufficient storage space
 
 ## 👥 Contributors
 
-- ybq ([@ybq1](https://github.com/ybq1))
+- Qinny1 ([@Qinny1](https://github.com/Qinny1))
